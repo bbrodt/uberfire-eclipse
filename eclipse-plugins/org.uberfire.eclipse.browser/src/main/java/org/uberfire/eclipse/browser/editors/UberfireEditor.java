@@ -3,6 +3,7 @@ package org.uberfire.eclipse.browser.editors;
 import java.net.URI;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.widgets.Composite;
@@ -14,7 +15,7 @@ import org.eclipse.ui.part.EditorPart;
 
 public class UberfireEditor extends EditorPart {
 
-    private final static String INDEX_HTML = "C:/Users/bbrodt/uberfire/uberfire-eclipse/target/uberfire-eclipse-1.0.0-SNAPSHOT/index.html";
+    private final static String INDEX_HTML = "/git/uberfire-eclipse/uberfire-eclipse-webapp/target/uberfire-eclipse-1.0.0-SNAPSHOT/index.html";
     
     
     BrowserProxy browser;
@@ -30,10 +31,11 @@ public class UberfireEditor extends EditorPart {
 
     @Override
     public void doSave(IProgressMonitor monitor) {
-        String saveId = "org.uberfire.workbench.model.menu.impl.MenuBuilderImpl$CurrentContext$1#Save";
-
-        Object o = browser.executeMenuAction(saveId);
-        setDirty(false);
+        Action saveAction = browser.getSaveAction();
+        if (saveAction!=null) {
+            saveAction.run();
+            setDirty(false);
+        }
     }
 
     @Override
@@ -67,7 +69,8 @@ public class UberfireEditor extends EditorPart {
         try {
             browser = new BrowserProxy(this);
             browser.createBrowser(parent, SWT.NONE);
-            browser.setUrl(INDEX_HTML + "?path="+getFileUri());
+            String HOME = System.getProperty("user.home");
+            browser.setUrl(HOME + INDEX_HTML + "?path="+getFileUri());
         }
         catch (Exception e) {
             e.printStackTrace();

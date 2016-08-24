@@ -1,5 +1,8 @@
 package org.uberfire.client.editors;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -24,6 +27,8 @@ import org.uberfire.mvp.Command;
 import org.uberfire.mvp.PlaceRequest;
 import org.uberfire.mvp.impl.PathPlaceRequest;
 import org.uberfire.shared.UfResourceType;
+import org.uberfire.workbench.model.menu.MenuFactory;
+import org.uberfire.workbench.model.menu.MenuItem;
 import org.uberfire.workbench.model.menu.Menus;
 
 import com.google.gwt.user.client.Window;
@@ -73,13 +78,13 @@ public class TextEditorPresenter {
 
     @AfterInitialization
     public void init() {
-        Window.alert("TextEditorPresenter.init()");
+//        Window.alert("TextEditorPresenter.init()");
         buildMenus();
     }
 
     @OnStartup
     public void onStartup(final ObservablePath path, final PlaceRequest place) {
-        Window.alert("TextEditorPresenter.onStartup(" + path.toURI() + ")");
+//        Window.alert("TextEditorPresenter.onStartup(" + path.toURI() + ")");
         this.path = path;
         this.place = (PathPlaceRequest) place;
     }
@@ -92,7 +97,7 @@ public class TextEditorPresenter {
 
     @OnMayClose
     public boolean onMayClose() {
-        Window.alert("TextEditorPresenter.onMayClose(" + path.toURI() + ")");
+//        Window.alert("TextEditorPresenter.onMayClose(" + path.toURI() + ")");
         if (view.isDirty()) {
             return false;
         }
@@ -115,17 +120,34 @@ public class TextEditorPresenter {
     }
 
     protected void buildMenus() {
+        final Command cmd = new Command() {
+            @Override
+            public void execute() {
+                Window.alert("Uberfire Rocks!");
+            }
+        };
+        final MenuItem item = MenuFactory
+                .newSimpleItem("Say Hello")
+                .respondsWith(cmd)
+                .endMenu()
+                .build()
+                .getItems()
+                .get(0);
+        List<MenuItem> items = new ArrayList<MenuItem>();
+        items.add(item);
+        MenuItem uberfireMenu = MenuFactory
+                .newTopLevelMenu("Uberfire")
+                .withItems(items)
+                .endMenu()
+                .build()
+                .getItems()
+                .get(0);
         menus = menuBuilder.addSave(new Command() {
             @Override
             public void execute() {
                 onSave();
             }
-        }).addCommand("Close", new Command() {
-            @Override
-            public void execute() {
-                onClose();
-            }
-        }).build();
+        }).addNewTopLevelMenu(uberfireMenu).build();
     }
     
     public void onSave() {
@@ -136,7 +158,7 @@ public class TextEditorPresenter {
     }
 
     public void onClose() {
-        Window.alert("TextEditorPresenter.onClose()");
+//        Window.alert("TextEditorPresenter.onClose()");
         if (onMayClose()) {
             close();
         }
@@ -146,7 +168,7 @@ public class TextEditorPresenter {
         vfsServices.call(new RemoteCallback<String>() {
             @Override
             public void callback(String response) {
-                Window.alert("readAllString returned: "+response);
+//                Window.alert("readAllString returned: "+response);
                 if (response == null)
                     response = "empty";
                 view.setContent(response);
@@ -159,7 +181,7 @@ public class TextEditorPresenter {
         vfsServices.call(new RemoteCallback<Path>() {
             @Override
             public void callback(final Path response) {
-                Window.alert("TextEditorPresenter.save() Response: " + response);
+//                Window.alert("TextEditorPresenter.save() Response: " + response);
                 view.setDirty(false);
             }
         }).write(path, content);

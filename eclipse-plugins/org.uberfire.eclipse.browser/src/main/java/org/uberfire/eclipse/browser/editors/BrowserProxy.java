@@ -12,6 +12,9 @@ import org.eclipse.swt.browser.ProgressListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.ui.IEditorActionBarContributor;
+import org.eclipse.ui.actions.RetargetAction;
 import org.uberfire.eclipse.browser.FileUtils;
 
 
@@ -21,12 +24,15 @@ public class BrowserProxy  {
     Browser browser;
     BrowserListener browserListener;
     BrowserFunction vfsService;
+    Action saveAction = null;
 
     private class BrowserListener implements ProgressListener {
 
         BrowserProxy browser;
+        // flag indicating when page loading is completed, and the menuBar has been created
         boolean completed = false;
-        MenuManager menuBar = null;
+        // menuBar contributions by the WorkbenchEditor
+        IMenuManager menuBar = null;
         
         public BrowserListener(BrowserProxy browser) {
             this.browser = browser;
@@ -50,40 +56,72 @@ public class BrowserProxy  {
                     }
                 }
                 catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }
 
         void buildMenuBar(Object[] menuEntries) {
-            menuBar = new MenuManager("menu");
+            menuBar = editor.getEditorSite().getActionBars().getMenuManager();
             buildMenuBar((Object[])menuEntries, menuBar);
+
+            IEditorActionBarContributor abc = editor.getEditorSite().getActionBarContributor();
+            abc.setActiveEditor(editor);
         }
         
         void buildMenuBar(Object[] menuEntries, IMenuManager menu) {
+            // Parse the menu entries returned from the {@see EclipseEditorBridge}.
+            // This will be an array of groups of two Objects:
+            // * the first Object is the menu label
+            // * the second Object is either:
+            //   * the menu action ID String if it is an action
+            //   * an array of groups of two Objects if it is a submenu
             for (int i=0; i<menuEntries.length-1; i+=2) {
                 Object caption = menuEntries[i];
                 final Object item = menuEntries[i+1];
                 if (item instanceof String) {
-                    menu.add(new Action((String)caption) {
-                        @Override
-                        public void run() {
-                            executeMenuAction((String)item);
-                        }
-                    });
+                    // it's a menu action
+                    Action action = new UberfireEditorAction(browser, (String)caption, (String)item);
+
+                    // search for common menu actions like File -> Save, etc.
+                    if (action.getId().matches(".*[Ss]ave")) {
+                        saveAction = action;
+                    }
+                    // ...others here?
+                    else {
+                        menu.add(action);
+                    }
                 }
                 else if (item instanceof Object[]) {
+                    // it's a submenu
                     MenuManager subMenu = new MenuManager((String)caption);
                     menu.add(subMenu);
                     buildMenuBar((Object[])item, subMenu);
-                    subMenu.setVisible(true);
                 }
             }
         }
+    }
+    
+    public static class UberfireEditorAction extends RetargetAction {
+        BrowserProxy browser;
         
-        public MenuManager getMenuBar() {
-            if (completed)
-                return menuBar;
-            return null;
+        public UberfireEditorAction(BrowserProxy browser, String text, String id) {
+            super(id, text);
+            this.browser = browser;
+            setId(id);
+        }
+        @Override
+        public boolean isEnabled() {
+            return true;
+        }
+        @Override
+        public void run() {
+            browser.executeMenuAction(getId());
+        }
+
+        @Override
+        public void runWithEvent(Event event) {
+            run();
         }
     }
     
@@ -173,10 +211,6 @@ public class BrowserProxy  {
         browserListener = new BrowserListener(this);
         browser.addProgressListener(browserListener);
     }
-
-    public MenuManager getMenuBar() {
-        return browserListener.getMenuBar();
-    }
     
     public Object executeMenuAction(String id) {
         try {
@@ -201,5 +235,9 @@ public class BrowserProxy  {
 
     public Browser getBrowser() {
         return browser;
+    }
+    
+    public Action getSaveAction() {
+        return saveAction;
     }
 }

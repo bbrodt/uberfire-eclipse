@@ -55,7 +55,7 @@ public class HomePerspective {
     }
 
     public void loadEditor(@Observes PerspectiveChange e) {
-        Window.alert("HomePerspective.loadEditor() path="+pathParameter);
+//        Window.alert("HomePerspective.loadEditor() path="+pathParameter);
         EclipsePlaceManagerBridge ec = new EclipsePlaceManagerBridge();
         ec.goTo(pathParameter);
     }
