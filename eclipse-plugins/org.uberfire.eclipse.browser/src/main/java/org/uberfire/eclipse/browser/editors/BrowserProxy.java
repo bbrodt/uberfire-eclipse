@@ -44,7 +44,7 @@ public class BrowserProxy  {
 
         @Override
         public void completed(ProgressEvent event) {
-            if (menuBar==null) {
+            if (!completed) {
                 try {
                     Object o = browser.evaluate(
                             "var ed = new window.uberclipse.Editor();"
@@ -89,13 +89,23 @@ public class BrowserProxy  {
                     }
                     // ...others here?
                     else {
-                        menu.add(action);
+                        if (menu==menuBar) {
+                            menu.insertAfter("edit", action);
+                        }
+                        else {
+                            menu.add(action);
+                        }
                     }
                 }
                 else if (item instanceof Object[]) {
                     // it's a submenu
                     MenuManager subMenu = new MenuManager((String)caption);
-                    menu.add(subMenu);
+                    if (menu==menuBar) {
+                        menu.insertAfter("edit", subMenu);
+                    }
+                    else {
+                        menu.add(subMenu);
+                    }
                     buildMenuBar((Object[])item, subMenu);
                 }
             }
@@ -118,7 +128,6 @@ public class BrowserProxy  {
         public void run() {
             browser.executeMenuAction(getId());
         }
-
         @Override
         public void runWithEvent(Event event) {
             run();
