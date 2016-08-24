@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Uberfire Browser
+Bundle-SymbolicName: org.uberfire.eclipse.browser;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.uberfire.eclipse.browser.Activator
+Bundle-Vendor: JBoss by Red Hat
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
