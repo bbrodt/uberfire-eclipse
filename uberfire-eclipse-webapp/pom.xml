@@ -122,6 +122,7 @@
       </exclusions>
     </dependency>
 <!--
+    </dependency>
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-wb-drl-text-editor-backend</artifactId>      
@@ -163,7 +164,7 @@
           <generateJsInteropExports>true</generateJsInteropExports>
 
           <compileSourcesArtifacts>
-            <compileSourcesArtifact>org.uberfire:uberfire-commons</compileSourcesArtifact>
+            <!-- <compileSourcesArtifact>org.uberfire:uberfire-commons</compileSourcesArtifact> -->
             <compileSourcesArtifact>org.uberfire:uberfire-nio2-model</compileSourcesArtifact>
             <compileSourcesArtifact>org.uberfire:uberfire-io</compileSourcesArtifact>
             <compileSourcesArtifact>org.uberfire:uberfire-api</compileSourcesArtifact>
