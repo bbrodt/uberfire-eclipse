@@ -10,7 +10,18 @@
             icon="icons/sample.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             class="org.uberfire.eclipse.browser.editors.UberfireEditor"
-            id="uberfire.eclipse.browser.editors.UberfireEditor">
+            id="org.uberfire.eclipse.editors.TextEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.uberfire.eclipse.browser.editors.UberfireEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="drl"
+            icon="icons/sample.gif"
+            id="org.uberfire.eclipse.editors.DRLEditor"
+            name="Uberclipse Drools Rule Editor">
       </editor>
    </extension>
 

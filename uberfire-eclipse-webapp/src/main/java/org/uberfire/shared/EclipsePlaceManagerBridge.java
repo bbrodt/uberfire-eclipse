@@ -13,14 +13,14 @@ import jsinterop.annotations.JsType;
 @JsType(namespace = "uberclipse", name = "PlaceManager")
 public class EclipsePlaceManagerBridge {
 
-    public void goTo(String uri) {
+    public void goTo(String uri, String id) {
 //        Window.alert("uberclipse.PlaceManager.goTo(" + uri + ")");
-        getPlaceManager().goTo(createPlace(uri));
+        getPlaceManager().goTo(createPlaceWithId(uri, id));
     }
 
-    public void closePlace(String uri) {
+    public void closePlace(String uri, String id) {
 //        Window.alert("uberclipse.PlaceManager.closePlace(" + uri + ")");
-        getPlaceManager().closePlace(createPlace(uri));
+        getPlaceManager().closePlace(createPlaceWithId(uri, id));
     }
     
     public static PlaceManager getPlaceManager() {
@@ -33,6 +33,15 @@ public class EclipsePlaceManagerBridge {
         if (i > 0)
             filename = uri.substring(i + 1);
         Path path = PathFactory.newPath(filename, uri);
-        return new PathPlaceRequest(path, "TextEditor");
+        return new PathPlaceRequest(path);
+    }
+    
+    public static PathPlaceRequest createPlaceWithId(String uri, String id) {
+        String filename = uri;
+        int i = uri.lastIndexOf("/");
+        if (i > 0)
+            filename = uri.substring(i + 1);
+        Path path = PathFactory.newPath(filename, uri);
+        return new PathPlaceRequest(path, id);
     }
  }
