@@ -56,7 +56,8 @@ public class BrowserProxy  {
                     }
                 }
                 catch (Exception e) {
-                    e.printStackTrace();
+                	// Uberfire objects may not be registered first time through
+//                    e.printStackTrace();
                 }
             }
         }

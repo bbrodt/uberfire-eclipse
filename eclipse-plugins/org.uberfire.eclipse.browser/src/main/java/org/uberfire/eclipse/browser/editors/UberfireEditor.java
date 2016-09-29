@@ -2,7 +2,10 @@ package org.uberfire.eclipse.browser.editors;
 
 import java.net.URI;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
@@ -70,7 +73,7 @@ public class UberfireEditor extends EditorPart {
             browser = new BrowserProxy(this);
             browser.createBrowser(parent, SWT.NONE);
             String HOME = System.getProperty("user.home");
-            browser.setUrl(HOME + INDEX_HTML + "?path="+getFileUri());
+            browser.setUrl(HOME + INDEX_HTML + "?path="+getFileUri()+"&id="+getEditorId());
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -81,6 +84,39 @@ public class UberfireEditor extends EditorPart {
         IPathEditorInput fie = (IPathEditorInput) getEditorInput();
         URI uri = fie.getPath().toFile().toURI();
         return uri.toString();
+    }
+    
+    protected String getEditorId() {
+    	String fileUri = getFileUri();
+    	int i = fileUri.lastIndexOf(".");
+    	if (i>0) {
+    		String ext = fileUri.substring(i+1);
+    		IExtensionRegistry reg = Platform.getExtensionRegistry();
+    	    IConfigurationElement[] elements = reg.getConfigurationElementsFor("org.eclipse.ui.editors");
+    	    for (IConfigurationElement e : elements) {
+    	    	if (e.getName().equals("editor")) {
+    	    		String id = null;
+	    	    	id = e.getAttribute("id");
+	    	    	if (id!=null && id.startsWith("org.uberfire.eclipse.editors.")) {
+	    	    		i = id.lastIndexOf(".");
+	    	    		id = id.substring(i+1); 
+	    	    	}
+	    	    	else
+	    	    		id = null;
+
+    	    	    if (id!=null) {
+    	    	    	String extensions = e.getAttribute("extensions");
+	    	    		for (String s : extensions.split(",")) {
+	    	    			if (s.trim().equals(ext)) {
+	    	    				// this is the one
+	    	    				return id;
+	    	    			}
+	    	    		}
+    	    	    }    	    		
+    	    	}
+    	    }
+    	}
+    	return null;
     }
     
     @Override

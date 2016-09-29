@@ -36,6 +36,7 @@ public class HomePerspective {
     
     PerspectiveDefinition perspectiveDefinition;
     String pathParameter;
+    String idParameter;
     
     @Perspective
     public PerspectiveDefinition buildPerspective() {
@@ -50,6 +51,7 @@ public class HomePerspective {
         if ( Window.Location.getParameterMap().containsKey( "path" ) ) {
             if (!Window.Location.getParameterMap().get("path").isEmpty()) {
                 pathParameter = Window.Location.getParameterMap().get("path").get(0);
+                idParameter = Window.Location.getParameterMap().get("id").get(0);
             }
         }
     }
@@ -57,6 +59,6 @@ public class HomePerspective {
     public void loadEditor(@Observes PerspectiveChange e) {
 //        Window.alert("HomePerspective.loadEditor() path="+pathParameter);
         EclipsePlaceManagerBridge ec = new EclipsePlaceManagerBridge();
-        ec.goTo(pathParameter);
+        ec.goTo(pathParameter, idParameter);
     }
 }
