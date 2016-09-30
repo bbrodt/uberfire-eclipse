@@ -24,7 +24,10 @@
   <inherits name="org.uberfire.UberfireJS"/>
   <inherits name="org.uberfire.commons.UberfireCommons"/>
   <inherits name='org.uberfire.ext.editor.commons.UberfireCommonsEditorClient'/>
-  <inherits name="org.drools.workbench.models.datamodel.DroolsWorkbenchDataModelAPI"/>
+<!-- <inherits name="org.drools.workbench.models.datamodel.DroolsWorkbenchDataModelAPI"/>  -->
+  <inherits name="org.drools.workbench.screens.drltext.DroolsWorkbenchDRLTextEditorClient"/>
+  <inherits name='org.drools.workbench.screens.drltext.DroolsWorkbenchDRLTextEditorAPI'/>
+<!--   <inherits name="org.drools.workbench.screens.globals.DroolsWorkbenchGlobalsEditorClient"/> -->
   <inherits name="org.jboss.errai.security.Security"/>
 
   <inherits name="org.uberfire.client.views.PatternFly"/>    

@@ -128,7 +128,7 @@ public class EclipseVFSService implements VFSService {
     }
 
     public native static String readAllString( final String uri ) /*-{
-        return EclipseVFSService("readAllString", uri);
+        return "empty string"; //EclipseVFSService("readAllString", uri);
     }-*/;
 
     @Override
@@ -143,7 +143,7 @@ public class EclipseVFSService implements VFSService {
     }
 
     public native static String write( final String uri, final String content ) /*-{
-        return EclipseVFSService("write", uri, content);
+        return "write"; //EclipseVFSService("write", uri, content);
     }-*/;
 
     @Override
