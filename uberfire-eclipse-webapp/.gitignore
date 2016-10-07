@@ -12,3 +12,6 @@
 hs_err_pid*
 /target/
 /.errai/
+/src/main/webapp/org.uberfire.UberfireShowcaseClient/
+/src/main/webapp/WEB-INF/classes/
+/src/main/gwt-unitCache/

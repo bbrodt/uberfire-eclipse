@@ -248,7 +248,7 @@
           <strict>true</strict>          
           <runTarget>index.html</runTarget>
           <hostedWebapp>src/main/webapp</hostedWebapp>
-          <extraJvmArgs>-Xmx2048m -XX:CompileThreshold=7000 -Derrai.jboss.home=${errai.jboss.home}</extraJvmArgs>
+          <extraJvmArgs>-Xmx2048m -XX:CompileThreshold=7000 -Derrai.jboss.home=${errai.jboss.home} -Derrai.codegen.details=true</extraJvmArgs>
           <generateJsInteropExports>true</generateJsInteropExports>
 
           <compileSourcesArtifacts>
