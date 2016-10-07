@@ -1,4 +1,4 @@
-package org.uberfire.client.vfs;
+package org.uberfire.client.shadowservices;
 
 import java.util.Map;
 

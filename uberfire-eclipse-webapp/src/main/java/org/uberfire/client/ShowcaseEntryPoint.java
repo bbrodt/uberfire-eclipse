@@ -18,12 +18,16 @@ package org.uberfire.client;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.drools.workbench.screens.drltext.client.editor.DRLEditorPresenter;
+import org.drools.workbench.screens.drltext.service.DRLTextEditorService;
+import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.ioc.client.api.EntryPoint;
 import org.uberfire.client.mvp.PlaceManager;
 
 import com.google.gwt.animation.client.Animation;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -34,7 +38,7 @@ public class ShowcaseEntryPoint {
 
     @Inject
     PlaceManager placeManager;
-
+   
     @PostConstruct
     public void startApp() {
 //        declareEclipseFunctions();

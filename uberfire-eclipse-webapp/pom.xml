@@ -116,11 +116,100 @@
       <version>7.0.0-SNAPSHOT</version>
       <exclusions>
           <exclusion>
-	      <groupId>org.uberfire</groupId>
-	      <artifactId>uberfire-security-management-client</artifactId>
-	  </exclusion>
+		      <groupId>org.uberfire</groupId>
+		      <artifactId>uberfire-security-management-client</artifactId>
+		  </exclusion>
       </exclusions>
     </dependency>
+
+    <dependency>
+      <groupId>org.kie.workbench.widgets</groupId>
+      <artifactId>kie-wb-common-ui</artifactId>      
+      <version>7.0.0-SNAPSHOT</version>
+      <exclusions>
+          <exclusion>
+		      <groupId>org.uberfire</groupId>
+		      <artifactId>uberfire-security-management-client</artifactId>
+		  </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.widgets</groupId>
+      <artifactId>kie-wb-metadata-widget</artifactId>     
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.widgets</groupId>
+      <artifactId>kie-wb-config-resource-widget</artifactId>     
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.services</groupId>
+      <artifactId>kie-wb-common-datamodel-api</artifactId>      
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-services-api</artifactId>      
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-structure-api</artifactId>      
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-structure-client</artifactId>      
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-project-api</artifactId>      
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-message-console-client</artifactId>      
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-message-console-api</artifactId>      
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-workingset-api</artifactId>      
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.kie.uberfire</groupId>
+	    <artifactId>kie-uberfire-social-activities-api</artifactId>
+      <version>7.0.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <scope>provided</scope>
+      <version>4.1.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+      <version>4.1.0.Final</version>
+    </dependency>
+    
 <!--
     <dependency>
       <groupId>org.drools</groupId>
@@ -189,8 +278,24 @@
             <compileSourcesArtifact>org.drools:drools-wb-drl-text-editor-client</compileSourcesArtifact>
             <!-- <compileSourcesArtifact>org.drools:drools-wb-drl-text-editor-backend</compileSourcesArtifact> -->
 
-            <compileSourcesArtifact>drools-workbench-models-datamodel-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.drools:drools-workbench-models-datamodel-api</compileSourcesArtifact>
             <compileSourcesArtifact>org.drools:drools-workbench-models-commons</compileSourcesArtifact>
+
+            <compileSourcesArtifact>org.kie.workbench.widgets:kie-wb-common-ui</compileSourcesArtifact>
+            <compileSourcesArtifact>org.kie.workbench.widgets:kie-wb-metadata-widget</compileSourcesArtifact>
+            <compileSourcesArtifact>org.kie.workbench.widgets:kie-wb-config-resource-widget</compileSourcesArtifact>
+            <compileSourcesArtifact>org.kie.workbench.services:kie-wb-common-services-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.kie.workbench.services:kie-wb-common-datamodel-api</compileSourcesArtifact>
+
+            <compileSourcesArtifact>org.guvnor:guvnor-services-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.guvnor:guvnor-structure-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.guvnor:guvnor-structure-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.guvnor:guvnor-project-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.guvnor:guvnor-message-console-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.guvnor:guvnor-message-console-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.guvnor:guvnor-workingset-api</compileSourcesArtifact>
+
+            <compileSourcesArtifact>org.kie.uberfire:kie-uberfire-social-activities-api</compileSourcesArtifact>
             
           </compileSourcesArtifacts>
         </configuration>        

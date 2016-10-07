@@ -5,6 +5,12 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
+        <dependent-module archiveName="drools-wb-drl-text-editor-api-7.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/drools-wb-drl-text-editor-api/drools-wb-drl-text-editor-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="drools-wb-drl-text-editor-client-7.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/drools-wb-drl-text-editor-client/drools-wb-drl-text-editor-client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/uberfire-client-webapp/target/classes"/>
         <property name="context-root" value="uberfire-eclipse"/>
     </wb-module>
