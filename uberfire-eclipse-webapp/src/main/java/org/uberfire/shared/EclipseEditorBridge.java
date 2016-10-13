@@ -142,7 +142,7 @@ public class EclipseEditorBridge {
 
     private WorkbenchEditorActivity getEditor(String uri) {
         Activity a = EclipsePlaceManagerBridge.getPlaceManager()
-                .getActivity(EclipsePlaceManagerBridge.createPlace(uri));
+                .getActivity(EclipsePlaceManagerBridge.getPlace(uri));
         if (a instanceof WorkbenchEditorActivity) {
             return (WorkbenchEditorActivity) a;
         }

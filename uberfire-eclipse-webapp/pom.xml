@@ -21,8 +21,8 @@
   <artifactId>uberfire-eclipse</artifactId>
   <packaging>war</packaging>
 
-  <name>UberFire Editor for Eclipse</name>
-  <description>UberFire Editor for Eclipse</description>
+  <name>UberFire-Eclipse WebApp</name>
+  <description>UberFire Editor WebApp for Eclipse</description>
 
   <properties>
     <!-- Add the absolute path for $JBOSS_HOME below to manage another instance -->
