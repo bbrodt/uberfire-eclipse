@@ -1,22 +1,17 @@
 package org.uberfire.client.shadowservices;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.drools.workbench.models.datamodel.rule.DSLSentence;
 import org.drools.workbench.screens.drltext.model.DrlModelContent;
 import org.drools.workbench.screens.drltext.service.DRLTextEditorService;
-import org.guvnor.common.services.shared.metadata.model.DiscussionRecord;
 import org.guvnor.common.services.shared.metadata.model.Metadata;
-import org.guvnor.common.services.shared.metadata.model.Overview;
 import org.guvnor.common.services.shared.validation.model.ValidationMessage;
 import org.jboss.errai.bus.server.annotations.ShadowService;
 import org.uberfire.backend.vfs.Path;
-import org.uberfire.backend.vfs.impl.LockInfo;
-import org.uberfire.java.nio.base.version.VersionRecord;
+
+import com.google.gson.Gson;
 
 @ApplicationScoped
 @ShadowService
@@ -72,25 +67,15 @@ public class DRLTextEditorShadowService implements DRLTextEditorService {
 
 	@Override
 	public DrlModelContent loadContent(Path path) {
-		Overview overview = new Overview();
-		Metadata metadata = new Metadata(path, path,
-				"checkinComment", "lastContributor", "creator",
-				new Date(), new Date(),
-				"subject","type","externalRelation", "externalSource", "description",
-				new ArrayList<String>(), new ArrayList<DiscussionRecord>(),
-				new ArrayList<VersionRecord>(),
-				new LockInfo(false, "", null));
-		overview.setMetadata(metadata);
-		overview.setProjectName("projectName");
-		DrlModelContent content = new DrlModelContent(
-				"package org.drools;",
-				overview,
-				new ArrayList<String>(),
-				new ArrayList<DSLSentence>(),
-				new ArrayList<DSLSentence>()
-				);
+		Gson gson = new Gson();
+		String json = loadContent(path.toURI());
+		DrlModelContent content = gson.fromJson(json, DrlModelContent.class); 
 		return content;
 	}
+
+    public native static String loadContent( final String uri ) /*-{
+        return EclipseDRLTextEditorService("loadContent", uri);
+    }-*/;
 
 	@Override
 	public List<String> loadClassFields(Path path, String fullyQualifiedClassName) {

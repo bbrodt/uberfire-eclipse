@@ -6,6 +6,10 @@ import java.lang.reflect.Parameter;
 
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
+import org.uberfire.backend.vfs.Path;
+import org.uberfire.backend.vfs.PathFactory;
+
+import com.google.gson.Gson;
 
 public class ShadowService extends BrowserFunction {
 
@@ -36,13 +40,19 @@ public class ShadowService extends BrowserFunction {
         		if (match) {
         			try {
         				if (arguments.length==1) {
-        					result = m.invoke(this);
+        					if (m.getReturnType().equals(Void.TYPE))
+        						m.invoke(this);
+        					else
+        						result = m.invoke(this);
         				}
         				else {
         					Object args[] = new Object[arguments.length-1];
         					for (int i=0; i<arguments.length-1; ++i)
         						args[i] = arguments[i+1];
-        					result = m.invoke(this, args);
+        					if (m.getReturnType().equals(Void.TYPE))
+            					m.invoke(this, args);
+        					else
+        						result = m.invoke(this, args);
         				}
 					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 						e.printStackTrace();
@@ -51,6 +61,19 @@ public class ShadowService extends BrowserFunction {
         		}
         	}
         }
+        if (result!=null) {
+        	Gson gson = new Gson();
+        	return gson.toJson(result);
+        }
         return result;
     }
+
+	public Path createPath(String uri) {
+        String filename = uri;
+        int i = uri.lastIndexOf("/");
+        if (i > 0)
+            filename = uri.substring(i + 1);
+        Path path = PathFactory.newPath(filename, uri);
+        return path;
+	}
 }

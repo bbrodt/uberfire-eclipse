@@ -13,8 +13,8 @@ public class EclipseVFSService extends ShadowService {
 		super(browser, NAME);
 	}
 
-	public String readAllString(String fileUri) {
-        IFile file = FileUtils.getFile(fileUri);
+	public String readAllString(String uri) {
+        IFile file = FileUtils.getFile(uri);
         String contents = null;
 		try {
 			contents = FileUtils.read(file);
@@ -24,10 +24,10 @@ public class EclipseVFSService extends ShadowService {
         return contents;
 	}
 	
-	public String write(String fileUri, String contents) {
-        String response = fileUri;
+	public String write(String uri, String contents) {
+        String response = uri;
         try {
-            IFile file = FileUtils.getFile(fileUri);
+            IFile file = FileUtils.getFile(uri);
             if (FileUtils.write(file, contents) < 0 )
                 response = "Write Error";
         }

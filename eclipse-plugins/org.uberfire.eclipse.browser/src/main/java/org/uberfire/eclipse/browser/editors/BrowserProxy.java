@@ -17,6 +17,8 @@ import org.eclipse.ui.actions.RetargetAction;
 import org.uberfire.eclipse.browser.shadowservices.EclipseDRLTextEditorService;
 import org.uberfire.eclipse.browser.shadowservices.EclipseVFSService;
 
+import com.google.gson.Gson;
+
 
 public class BrowserProxy  {
 
@@ -143,6 +145,18 @@ public class BrowserProxy  {
     }
     
     public void createBrowser(Composite parent, int style) {
+    	
+    	// test of Gson with a String object
+		String string = "Hello world!";
+		Gson gson = new Gson();
+		String json = gson.toJson(string);
+		System.out.println("to json:"+json);
+		
+		gson = new Gson();
+		String result = gson.fromJson(json, String.class);
+		System.out.println("from json: "+result);
+    	
+    	
         browser = new Browser(parent, style);
 
         browser.setJavascriptEnabled(true);
