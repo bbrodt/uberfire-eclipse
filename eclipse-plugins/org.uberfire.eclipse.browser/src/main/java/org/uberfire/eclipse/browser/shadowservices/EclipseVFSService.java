@@ -5,10 +5,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.swt.browser.Browser;
 import org.uberfire.eclipse.browser.FileUtils;
 
-public class VFSService extends ShadowService {
+public class EclipseVFSService extends ShadowService {
 
-	public VFSService(Browser browser, String name) {
-		super(browser, name);
+	public static final String NAME = "EclipseVFSService";
+
+	public EclipseVFSService(Browser browser) {
+		super(browser, NAME);
 	}
 
 	public String readAllString(String fileUri) {

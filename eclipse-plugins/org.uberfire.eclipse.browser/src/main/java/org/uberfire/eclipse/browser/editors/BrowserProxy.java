@@ -14,7 +14,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.actions.RetargetAction;
-import org.uberfire.eclipse.browser.shadowservices.VFSService;
+import org.uberfire.eclipse.browser.shadowservices.EclipseDRLTextEditorService;
+import org.uberfire.eclipse.browser.shadowservices.EclipseVFSService;
 
 
 public class BrowserProxy  {
@@ -22,7 +23,10 @@ public class BrowserProxy  {
     UberfireEditor editor;
     Browser browser;
     BrowserListener browserListener;
+    
     BrowserFunction vfsService;
+    BrowserFunction drlTextEditorService;
+
     Action saveAction = null;
 
     private class BrowserListener implements ProgressListener {
@@ -183,9 +187,15 @@ public class BrowserProxy  {
             }
         });
 
-        vfsService = new VFSService(browser, "EclipseVFSService");
+        registerServiceFunctions();
+        
         browserListener = new BrowserListener(this);
         browser.addProgressListener(browserListener);
+    }
+    
+    protected void registerServiceFunctions() {
+        vfsService = new EclipseVFSService(browser);
+        drlTextEditorService = new EclipseDRLTextEditorService(browser);
     }
     
     public Object executeMenuAction(String id) {

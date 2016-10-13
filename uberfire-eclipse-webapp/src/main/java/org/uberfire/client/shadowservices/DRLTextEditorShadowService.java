@@ -20,7 +20,7 @@ import org.uberfire.java.nio.base.version.VersionRecord;
 
 @ApplicationScoped
 @ShadowService
-public class EclipseDRLTextEditorService implements DRLTextEditorService {
+public class DRLTextEditorShadowService implements DRLTextEditorService {
 
 	@Override
 	public List<ValidationMessage> validate(Path path, String content) {

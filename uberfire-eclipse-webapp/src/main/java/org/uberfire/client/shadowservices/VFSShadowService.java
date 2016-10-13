@@ -23,7 +23,7 @@ import com.google.gwt.user.client.Window;
 
 @ApplicationScoped
 @ShadowService
-public class EclipseVFSService implements VFSService {
+public class VFSShadowService implements VFSService {
 
     @Override
     public Path get(String uri) {

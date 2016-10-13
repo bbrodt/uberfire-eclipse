@@ -12,7 +12,7 @@ import org.uberfire.java.nio.base.version.VersionRecord;
 
 @ApplicationScoped
 @ShadowService
-public class EclipseVersionService implements VersionService {
+public class VersionShadowService implements VersionService {
 
 	@Override
 	public List<VersionRecord> getVersions(Path path) {
