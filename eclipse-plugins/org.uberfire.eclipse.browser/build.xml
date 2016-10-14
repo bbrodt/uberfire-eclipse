@@ -1,4 +1,4 @@
-<project default="uberfire-eclipse">
+<project name="uberfire-eclipse" default="regen-classpath">
     <target name="regen-classpath">
         <copy tofile="classpath.new" file=".classpath" overwrite="true" force="true">
             <filterchain>
@@ -33,6 +33,7 @@
 		<concat destfile="META-INF/MANIFEST.MF.new" append="true">
 			<filelist files="classpath.mvn"/>
 		</concat>
+    	<echo file="META-INF/MANIFEST.MF.new" append="true">${line.separator}</echo>
 		
 		<move file=".classpath" tofile=".classpath.bak" overwrite="true" force="true"/>
 		<move file="classpath.new" tofile=".classpath" overwrite="true" force="true"/>
