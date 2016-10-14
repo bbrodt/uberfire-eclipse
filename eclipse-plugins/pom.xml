@@ -1,0 +1,247 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.uberfire.eclipse</groupId>
+	<artifactId>org.uberfire.eclipse</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+
+	<name>Uberfire-Eclipse : Plugins</name>
+	<description>Plugins to bridge Uberfire with Eclipse</description>
+
+	<modules>
+		<module>org.uberfire.eclipse.browser</module>
+	</modules>
+
+	<properties>
+		<tycho-version>0.26.0</tycho-version>
+		<tycho-extras-version>0.26.0</tycho-extras-version>
+		<BUILD_ALIAS>Final</BUILD_ALIAS>
+		<BUILD_NUMBER>1</BUILD_NUMBER>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>platform-neon</id>
+			<activation>
+				<property>
+					<name>platform-version-name</name>
+					<value>neon</value>
+				</property>
+				<activeByDefault>true</activeByDefault>
+				<jdk>1.8</jdk>
+			</activation>
+			<properties>
+				<eclipse-site>http://download.eclipse.org/releases/neon</eclipse-site>
+				<platform-version>[4.6,5.0)</platform-version>
+				<platform-version-name>neon</platform-version-name>
+			</properties>
+		</profile>
+		<profile>
+			<id>sign</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-pack200a-plugin</artifactId>
+						<version>${tycho-extras-version}</version>
+						<executions>
+							<execution>
+								<id>pack200-normalize</id>
+								<goals>
+									<goal>normalize</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.eclipse.cbi.maven.plugins</groupId>
+						<artifactId>eclipse-jarsigner-plugin</artifactId>
+						<version>1.0.5</version>
+						<executions>
+							<execution>
+								<id>sign</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-pack200b-plugin</artifactId>
+						<version>${tycho-extras-version}</version>
+						<executions>
+							<execution>
+								<id>pack200-pack</id>
+								<goals>
+									<goal>pack</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<repositories>
+		<repository>
+			<id>eclipse-platform</id>
+			<layout>p2</layout>
+			<url>${eclipse-site}</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.10</version>
+					<executions>
+						<execution>
+							<id>copy-dependencies</id>
+							<goals>
+								<goal>copy-dependencies</goal>
+							</goals>
+							<phase>generate-resources</phase>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-compiler-plugin</artifactId>
+					<version>0.26.0</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+					<executions>
+						<execution>
+							<id>compile</id>
+							<goals>
+								<goal>compile</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>target-platform-configuration</artifactId>
+					<configuration>
+						<resolver>p2</resolver>
+						<ignoreTychoRepositories>true</ignoreTychoRepositories>
+						<environments>
+							<!-- having some problems with 32 bit mac OSX Could not determine 
+								SWT implementation fragment bundle for environment {osgi.os=macosx, osgi.ws=cocoa, 
+								org.eclipse.update.install.features=true, osgi.arch=x86} <environment> <os>macosx</os> 
+								<ws>cocoa</ws> <arch>x86</arch> </environment> -->
+							<environment>
+								<os>macosx</os>
+								<ws>cocoa</ws>
+								<arch>x86_64</arch>
+							</environment>
+							<environment>
+								<os>win32</os>
+								<ws>win32</ws>
+								<arch>x86</arch>
+							</environment>
+							<environment>
+								<os>win32</os>
+								<ws>win32</ws>
+								<arch>x86_64</arch>
+							</environment>
+							<environment>
+								<os>linux</os>
+								<ws>gtk</ws>
+								<arch>x86</arch>
+							</environment>
+							<environment>
+								<os>linux</os>
+								<ws>gtk</ws>
+								<arch>x86_64</arch>
+							</environment>
+						</environments>
+						<includePackedArtifacts>false</includePackedArtifacts>
+						<dependency-resolution>
+							<optionalDependencies>ignore</optionalDependencies>
+						</dependency-resolution>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-packaging-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<sourceReferences>
+							<generate>false</generate>
+						</sourceReferences>
+						<format>'${BUILD_ALIAS}-v'yyyyMMdd-HHmm'-B${BUILD_NUMBER}'</format>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-source-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<executions>
+						<execution>
+							<id>plugin-source</id>
+							<goals>
+								<goal>plugin-source</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho.extras</groupId>
+					<artifactId>tycho-source-feature-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<executions>
+						<execution>
+							<id>source-feature</id>
+							<goals>
+								<goal>source-feature</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-p2-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<executions>
+						<execution>
+							<id>p2-metadata</id>
+							<goals>
+								<goal>p2-metadata</goal>
+							</goals>
+							<phase>package</phase>
+						</execution>
+					</executions>
+					<configuration>
+						<defaultP2Metadata>false</defaultP2Metadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+
+

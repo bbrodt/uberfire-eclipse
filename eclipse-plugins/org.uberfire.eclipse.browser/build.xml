@@ -1,0 +1,42 @@
+<project default="uberfire-eclipse">
+    <target name="regen-classpath">
+        <copy tofile="classpath.new" file=".classpath" overwrite="true" force="true">
+            <filterchain>
+                <linecontains negate="true">
+                    <contains value='classpathentry kind="lib" path="lib/'/>
+                </linecontains>
+            </filterchain>
+            <filterchain>
+                <linecontains negate="true">
+		    <contains value="/classpath"/>
+                </linecontains>
+            </filterchain>
+        </copy>
+        <copy tofile="classpath.mvn.new" file="classpath.mvn" overwrite="true" force="true"/>
+		<replaceregexp file="classpath.mvn.new" match="," replace='"/&gt;&#10;' flags="g"/>
+		<replaceregexp file="classpath.mvn.new" match="^" replace='  &lt;classpathentry kind="lib" path="' byline="true"/>
+		<concat destfile="classpath.new" append="true">
+			<filelist files="classpath.mvn.new"/>
+		</concat>
+		<concat destfile="classpath.new" append="true">"/&gt;&#10;</concat>
+		<concat destfile="classpath.new" append="true">&lt;/classpath&gt;</concat>
+
+        <copy tofile="META-INF/MANIFEST.MF.new" file="META-INF/MANIFEST.MF" overwrite="true" force="true">
+            <filterchain>
+                <linecontainsregexp negate="true">
+                    <regexp pattern='^ lib/.*jar'/>
+                </linecontainsregexp>
+            </filterchain>
+        </copy>
+		<replaceregexp file="classpath.mvn" match="," replace=',&#10;' flags="g"/>
+		<replaceregexp file="classpath.mvn" match="^" replace=' ' byline="true"/>
+		<concat destfile="META-INF/MANIFEST.MF.new" append="true">
+			<filelist files="classpath.mvn"/>
+		</concat>
+		
+		<move file=".classpath" tofile=".classpath.bak" overwrite="true" force="true"/>
+		<move file="classpath.new" tofile=".classpath" overwrite="true" force="true"/>
+		<move file="META-INF/MANIFEST.MF" tofile="META-INF/MANIFEST.MF.bak" overwrite="true" force="true"/>
+		<move file="META-INF/MANIFEST.MF.new" tofile="META-INF/MANIFEST.MF" overwrite="true" force="true"/>
+    </target>
+</project>

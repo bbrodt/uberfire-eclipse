@@ -9,8 +9,6 @@ import org.eclipse.swt.browser.BrowserFunction;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.backend.vfs.PathFactory;
 
-import com.google.gson.Gson;
-
 public class ShadowService extends BrowserFunction {
 
 	public ShadowService(Browser browser, String name) {
@@ -62,8 +60,8 @@ public class ShadowService extends BrowserFunction {
         	}
         }
         if (result!=null) {
-        	Gson gson = new Gson();
-        	return gson.toJson(result);
+//        	Gson gson = new Gson();
+//        	return gson.toJson(result);
         }
         return result;
     }
