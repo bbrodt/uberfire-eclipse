@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.uberfire.eclipse.feature_0.0.0.jar" id="org.uberfire.eclipse.feature" version="0.0.0">
+      <category name="uberfire"/>
+   </feature>
+   <category-def name="uberfire" label="Uberfire-Eclipse Plugins"/>
+</site>

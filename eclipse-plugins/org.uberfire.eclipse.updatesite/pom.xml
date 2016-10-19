@@ -51,6 +51,12 @@
 				</configuration>
 			</plugin>
 		</plugins>
-
 	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.uberfire.eclipse</groupId>
+			<artifactId>org.uberfire.eclipse.runtime</artifactId>
+		</dependency>
+	</dependencies>
 </project>
