@@ -14,72 +14,6 @@
 	<name>Uberfire-Eclipse : Editor Plugin</name>
 	<description>Plugin to support rendering of KIE Workbench editors in an Eclipse IDE</description>
 
-	<repositories>
-		<repository>
-			<id>jboss-public-repository-group</id>
-			<name>JBoss Public Repository Group</name>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>
-		<repository>
-			<id>jboss-snapshots-repository</id>
-			<name>JBoss Snapshots Repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-		</repository>
-		<repository>
-			<id>jboss</id>
-			<name>JBoss Public Repo</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public</url>
-		</repository>
-		<repository>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<id>google-snapshots</id>
-			<name>Google Snapshots Repo</name>
-			<url>https://oss.sonatype.org/content/repositories/google-snapshots</url>
-		</repository>
-		<repository>
-			<id>sonatype-public</id>
-			<name>Sonatype Public Snapshots Repo</name>
-			<url>https://oss.sonatype.org/content/repositories/public</url>
-		</repository>
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>central</id>
-			<name>Central Repository</name>
-			<url>https://repo.maven.apache.org/maven2</url>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>jboss-public-repository-group</id>
-			<name>JBoss Public Repository Group</name>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>jboss-snapshots-repository</id>
-			<name>JBoss Snapshots Repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-		</pluginRepository>
-		<pluginRepository>
-			<releases>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>central</id>
-			<name>Central Repository</name>
-			<url>https://repo.maven.apache.org/maven2</url>
-		</pluginRepository>
-	</pluginRepositories>
-
 	<dependencies>
 		<!-- Uberfire vvv -->
 		<dependency>
@@ -106,111 +40,35 @@
 			<version>7.0.0-SNAPSHOT</version>
 		</dependency>
 		<!-- Drools ^^^ -->
-
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.0.0</version>
-				<configuration>
-					<filesets>
-						<fileset>
-							<directory>lib</directory>
-							<includes>
-								<include>**/*.jar</include>
-								<include>**/*.tmp</include>
-								<include>**/*.log</include>
-							</includes>
-							<followSymlinks>false</followSymlinks>
-						</fileset>
-					</filesets>
-				</configuration>
-			</plugin>
+	<profiles>
+		<profile>
+			<id>update-deps</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>ant-rebuild-classpath-files</id>
+								<phase>clean</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>sh</executable>
+									<arguments>
+										<argument>ant</argument>
+									</arguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<configuration>
-					<skip>false</skip>
-					<stripClassifier>true</stripClassifier>
-					<stripVersion>true</stripVersion>
-					<outputDirectory>${basedir}/lib/</outputDirectory>
-				</configuration>
-				<executions>
-					<execution>
-						<id>build-classpath</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>build-classpath</goal>
-						</goals>
-						<configuration>
-							<outputFile>classpath.mvn</outputFile>
-							<fileSeparator>/</fileSeparator>
-							<prefix>lib</prefix>
-							<stripClassifier>true</stripClassifier>
-							<stripVersion>true</stripVersion>
-							<pathSeparator>,</pathSeparator>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.5.0</version>
-				<executions>
-					<execution>
-						<id>run-ant</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>sh</executable>
-							<arguments>
-								<argument>ant</argument>
-								<argument>regen-classpath</argument>
-							</arguments>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-<!-- 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>regen.classpath</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<target>
-								<ant antfile="build.xml">
-									<target name="regen-classpath"/>
-								</ant>
-							</target>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
- -->
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-compiler-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<extensions>true</extensions>
-			</plugin>
-		</plugins>
-	</build>
 </project>
