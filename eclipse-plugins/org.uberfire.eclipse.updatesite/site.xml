@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <feature url="features/org.uberfire.eclipse.feature_1.0.0.qualifier.jar" id="org.uberfire.eclipse.feature" version="1.0.0.qualifier">
-      <category name="org.uberfire.eclipse.plugins"/>
-   </feature>
-   <category-def name="org.uberfire.eclipse.plugins" label="Uberfire-Eclipse Plugins"/>
-</site>
