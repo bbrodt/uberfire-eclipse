@@ -6,6 +6,7 @@ import java.lang.reflect.Parameter;
 
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
+import org.jboss.errai.marshalling.server.ServerMarshalling;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.backend.vfs.PathFactory;
 
@@ -62,6 +63,8 @@ public class ShadowService extends BrowserFunction {
         if (result!=null) {
 //        	Gson gson = new Gson();
 //        	return gson.toJson(result);
+        	String s = ServerMarshalling.toJSON(result);
+        	System.out.println(s);
         }
         return result;
     }

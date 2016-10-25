@@ -22,6 +22,12 @@
 		</dependency>
 		<!-- Uberfire ^^^ -->
 
+		<dependency>
+			<groupId>org.jboss.errai</groupId>
+			<artifactId>errai-marshalling</artifactId>
+			<version>4.0.0-SNAPSHOT</version>
+		</dependency>
+
 		<!-- Drools vvv -->
 		<dependency>
 			<groupId>org.drools</groupId>
@@ -85,15 +91,15 @@
 							org.drools.*;provider=uberfire;mandatory:=provider,
 							org.uberfire.*;provider=uberfire;mandatory:=provider,
 							org.guvnor.*;provider=uberfire;mandatory:=provider,
+							org.jboss.errai.*;provider=errai;mandatory:=provider,
+							org.slf4j.*,
 						</_exportcontents>
 						<Import-Package>
-							!*
+							org.slf4j;
+							org.slf4j.spi
 						</Import-Package>
-						<!--
-						<Require-Bundle>
-							javax.inject;bundle-version="1.0.0";visibility:=reexport
-						</Require-Bundle>
-						-->
+						<!-- <Require-Bundle> javax.inject;bundle-version="1.0.0";visibility:=reexport 
+							</Require-Bundle> -->
 						<Bundle-ClassPath>.,{maven-dependencies}</Bundle-ClassPath>
 					</instructions>
 				</configuration>

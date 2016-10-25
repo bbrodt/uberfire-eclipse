@@ -11,8 +11,6 @@ import org.guvnor.common.services.shared.validation.model.ValidationMessage;
 import org.jboss.errai.bus.server.annotations.ShadowService;
 import org.uberfire.backend.vfs.Path;
 
-import com.google.gson.Gson;
-
 @ApplicationScoped
 @ShadowService
 public class DRLTextEditorShadowService implements DRLTextEditorService {
@@ -67,9 +65,10 @@ public class DRLTextEditorShadowService implements DRLTextEditorService {
 
 	@Override
 	public DrlModelContent loadContent(Path path) {
-		Gson gson = new Gson();
-		String json = loadContent(path.toURI());
-		DrlModelContent content = gson.fromJson(json, DrlModelContent.class); 
+//		Gson gson = new Gson();
+//		String json = loadContent(path.toURI());
+//		DrlModelContent content = gson.fromJson(json, DrlModelContent.class);
+		DrlModelContent content = null;
 		return content;
 	}
 

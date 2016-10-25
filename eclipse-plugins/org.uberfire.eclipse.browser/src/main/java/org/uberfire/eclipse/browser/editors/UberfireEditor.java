@@ -15,10 +15,21 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPathEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
+import org.jboss.errai.marshalling.server.MappingContextSingleton;
 
 public class UberfireEditor extends EditorPart {
 
     private final static String INDEX_HTML = "/git/uberfire-eclipse/uberfire-eclipse-webapp/target/uberfire-eclipse-1.0.0-SNAPSHOT/index.html";
+
+	static {
+		try {
+			MappingContextSingleton.get();
+		}
+		catch( Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
     
     
     BrowserProxy browser;

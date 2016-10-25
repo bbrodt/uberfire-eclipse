@@ -19,7 +19,6 @@ import org.uberfire.java.nio.file.NoSuchFileException;
 import org.uberfire.java.nio.file.NotDirectoryException;
 import org.uberfire.java.nio.file.ProviderNotFoundException;
 
-import com.google.gson.Gson;
 import com.google.gwt.user.client.Window;
 
 @ApplicationScoped
@@ -119,9 +118,9 @@ public class VFSShadowService implements VFSService {
     public String readAllString(Path path) throws IllegalArgumentException, NoSuchFileException, IOException {
         String response = "none";
         try {
-    		Gson gson = new Gson();
-    		String json = readAllString(path.toURI());
-    		response = gson.fromJson(json, String.class);
+//    		Gson gson = new Gson();
+//    		String json = readAllString(path.toURI());
+//    		response = gson.fromJson(json, String.class);
         }
         catch (Exception e) {
             response = "readAllString failed: "+e.getMessage();
@@ -138,10 +137,10 @@ public class VFSShadowService implements VFSService {
     public Path write(Path path, String content)
             throws IllegalArgumentException, IOException, UnsupportedOperationException {
     	
-		Gson gson = new Gson();
-		String json = write(path.toURI(), content);
-		String uri = gson.fromJson(json, String.class);
-
+//		Gson gson = new Gson();
+//		String json = write(path.toURI(), content);
+//		String uri = gson.fromJson(json, String.class);
+    	String uri = path.toURI();
         String filename = uri;
         int i = uri.lastIndexOf("/");
         if (i>0)
