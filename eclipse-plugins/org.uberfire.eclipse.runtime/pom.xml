@@ -22,12 +22,6 @@
 		</dependency>
 		<!-- Uberfire ^^^ -->
 
-		<dependency>
-			<groupId>org.jboss.errai</groupId>
-			<artifactId>errai-marshalling</artifactId>
-			<version>4.0.0-SNAPSHOT</version>
-		</dependency>
-
 		<!-- Drools vvv -->
 		<dependency>
 			<groupId>org.drools</groupId>

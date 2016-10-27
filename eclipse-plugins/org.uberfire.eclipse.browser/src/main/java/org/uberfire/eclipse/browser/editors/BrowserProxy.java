@@ -194,8 +194,8 @@ public class BrowserProxy  {
     }
     
     protected void registerServiceFunctions() {
-        vfsService = new EclipseVFSService(browser);
         drlTextEditorService = new EclipseDRLTextEditorService(browser);
+        vfsService = new EclipseVFSService(browser);
     }
     
     public Object executeMenuAction(String id) {

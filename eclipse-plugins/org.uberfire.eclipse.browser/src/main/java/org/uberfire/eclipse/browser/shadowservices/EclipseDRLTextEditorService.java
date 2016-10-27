@@ -7,17 +7,19 @@ import java.util.List;
 import org.drools.workbench.models.datamodel.rule.DSLSentence;
 import org.drools.workbench.screens.drltext.model.DrlModelContent;
 import org.drools.workbench.screens.drltext.service.DRLTextEditorService;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.swt.browser.Browser;
 import org.guvnor.common.services.shared.metadata.model.DiscussionRecord;
 import org.guvnor.common.services.shared.metadata.model.Metadata;
 import org.guvnor.common.services.shared.metadata.model.Overview;
 import org.guvnor.common.services.shared.validation.model.ValidationMessage;
 import org.uberfire.backend.vfs.Path;
-import org.uberfire.backend.vfs.PathFactory;
 import org.uberfire.backend.vfs.impl.LockInfo;
+import org.uberfire.eclipse.browser.FileUtils;
 import org.uberfire.java.nio.base.version.VersionRecord;
 
-public class EclipseDRLTextEditorService extends ShadowService implements DRLTextEditorService {
+public class EclipseDRLTextEditorService extends EclipseShadowService implements DRLTextEditorService {
 
 	public static final String NAME = "EclipseDRLTextEditorService";
 	
@@ -89,8 +91,17 @@ public class EclipseDRLTextEditorService extends ShadowService implements DRLTex
 				new LockInfo(false, "", null));
 		overview.setMetadata(metadata);
 		overview.setProjectName("projectName");
+		
+		IFile file = FileUtils.getFile(path.toURI());
+        String fileContent = "";
+		try {
+			fileContent = FileUtils.read(file);
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+		
 		DrlModelContent content = new DrlModelContent(
-				"package org.drools;",
+				fileContent,
 				overview,
 				new ArrayList<String>(),
 				new ArrayList<DSLSentence>(),

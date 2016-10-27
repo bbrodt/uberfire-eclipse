@@ -29,6 +29,7 @@ import org.uberfire.workbench.model.impl.PerspectiveDefinitionImpl;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 
 @ApplicationScoped
@@ -58,13 +59,21 @@ public class HomePerspective {
     }
 
     public void loadEditor(@Observes PerspectiveChange e) {
+//    	Timer t = new Timer() {
+//    		public void run() {
+//    			Window.alert("HomePerspective.loadEditor() path="+pathParameter);
+//		        EclipsePlaceManagerBridge ec = new EclipsePlaceManagerBridge();
+//		        ec.goTo(pathParameter, idParameter);
+//    		}
+//    	};
+//    	t.schedule(5000);
     	Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 			
 			@Override
 			public void execute() {
 //		        Window.alert("HomePerspective.loadEditor() path="+pathParameter);
 		        EclipsePlaceManagerBridge ec = new EclipsePlaceManagerBridge();
-		        ec.goTo(pathParameter, idParameter);
+				ec.goTo(pathParameter, idParameter);
 			}
 		});
     }

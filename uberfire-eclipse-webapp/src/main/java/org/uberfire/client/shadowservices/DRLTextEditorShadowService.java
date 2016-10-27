@@ -13,7 +13,11 @@ import org.uberfire.backend.vfs.Path;
 
 @ApplicationScoped
 @ShadowService
-public class DRLTextEditorShadowService implements DRLTextEditorService {
+public class DRLTextEditorShadowService extends WebappShadowService implements DRLTextEditorService {
+
+	public String getEclipseServiceName() {
+		return "EclipseDRLTextEditorService";
+	}
 
 	@Override
 	public List<ValidationMessage> validate(Path path, String content) {
@@ -65,16 +69,8 @@ public class DRLTextEditorShadowService implements DRLTextEditorService {
 
 	@Override
 	public DrlModelContent loadContent(Path path) {
-//		Gson gson = new Gson();
-//		String json = loadContent(path.toURI());
-//		DrlModelContent content = gson.fromJson(json, DrlModelContent.class);
-		DrlModelContent content = null;
-		return content;
+    	return (DrlModelContent) callEclipseService("loadContent", path);
 	}
-
-    public native static String loadContent( final String uri ) /*-{
-        return EclipseDRLTextEditorService("loadContent", uri);
-    }-*/;
 
 	@Override
 	public List<String> loadClassFields(Path path, String fullyQualifiedClassName) {

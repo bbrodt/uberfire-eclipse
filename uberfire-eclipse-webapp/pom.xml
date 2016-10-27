@@ -18,7 +18,7 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>uberfire-eclipse</artifactId>
+  <artifactId>uberfire-eclipse-webapp</artifactId>
   <packaging>war</packaging>
 
   <name>UberFire-Eclipse WebApp</name>

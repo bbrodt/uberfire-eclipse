@@ -91,7 +91,7 @@ public class TextEditorPresenter {
 
     @OnOpen
     public void onOpen() {
-        Window.alert("TextEditorPresenter.onOpen(" + path.toURI() + ")");
+//        Window.alert("TextEditorPresenter.onOpen(" + path.toURI() + ")");
         load();
     }
 
@@ -151,7 +151,7 @@ public class TextEditorPresenter {
     }
     
     public void onSave() {
-        Window.alert("TextEditorPresenter.onSave()");
+//        Window.alert("TextEditorPresenter.onSave()");
         if (view.isDirty()) {
             save();
         }
