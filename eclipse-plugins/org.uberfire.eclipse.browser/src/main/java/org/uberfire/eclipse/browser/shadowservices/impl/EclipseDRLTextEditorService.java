@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.drools.compiler.compiler.BaseKnowledgeBuilderResultImpl;
 import org.drools.compiler.lang.descr.ImportDescr;
 import org.drools.compiler.lang.descr.PackageDescr;
 import org.drools.eclipse.DRLInfo;
@@ -21,6 +22,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.swt.browser.Browser;
 import org.guvnor.common.services.backend.metadata.MetadataServiceImpl;
+import org.guvnor.common.services.shared.message.Level;
 import org.guvnor.common.services.shared.metadata.model.Metadata;
 import org.guvnor.common.services.shared.metadata.model.Overview;
 import org.guvnor.common.services.shared.validation.model.ValidationMessage;
@@ -28,6 +30,8 @@ import org.jboss.errai.security.shared.api.Group;
 import org.jboss.errai.security.shared.api.Role;
 import org.jboss.errai.security.shared.api.identity.User;
 import org.jboss.errai.security.shared.api.identity.UserImpl;
+import org.kie.internal.builder.KnowledgeBuilderResult;
+import org.kie.internal.builder.ResultSeverity;
 import org.uberfire.backend.server.io.ConfigIOServiceProducer;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.commons.lifecycle.PriorityDisposableRegistry;
@@ -57,7 +61,6 @@ public class EclipseDRLTextEditorService extends EclipseShadowService implements
 	IOService configIOService;
 	SessionInfo sessionInfo;
 	MetadataServiceImpl metadataService;
-//    private DataModelService dataModelService;
     
 	public EclipseDRLTextEditorService(Browser browser) {
 		super(browser, NAME);
@@ -65,8 +68,33 @@ public class EclipseDRLTextEditorService extends EclipseShadowService implements
 
 	@Override
 	public List<ValidationMessage> validate(Path path, String content) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ValidationMessage> errors = new ArrayList<ValidationMessage>();
+        IFile file = FileUtils.getFile(path.toURI());
+		try {
+			DRLInfo info = DroolsEclipsePlugin.getDefault().generateParsedResource(content, file, false, true);
+			for (BaseKnowledgeBuilderResultImpl r : info.getParserErrors()) {
+				ValidationMessage m = new ValidationMessage();
+				switch (r.getSeverity()) {
+				case ERROR:
+					m.setLevel(Level.ERROR);
+					break;
+				case INFO:
+					m.setLevel(Level.INFO);
+					break;
+				case WARNING:
+					m.setLevel(Level.WARNING);
+					break;
+				default:
+					break;
+				
+				}
+				m.setText(r.getMessage());
+				errors.add(m);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return errors;
 	}
 
 	@Override
