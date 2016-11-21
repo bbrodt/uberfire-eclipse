@@ -83,8 +83,10 @@ public class EclipseDRLTextEditorService extends EclipseShadowService implements
 
 	@Override
 	public Path save(Path path, String content, Metadata metadata, String comment) {
-		// TODO Auto-generated method stub
-		return null;
+        IFile file = FileUtils.getFile(path.toURI());
+        if (FileUtils.write(file, content) < 0 )
+            return null;
+		return path;
 	}
 
 	@Override
