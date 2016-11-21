@@ -1,4 +1,4 @@
-package org.uberfire.eclipse.browser.shadowservices;
+package org.uberfire.eclipse.browser.shadowservices.impl;
 
 import java.util.Map;
 
@@ -10,6 +10,7 @@ import org.uberfire.backend.vfs.DirectoryStream.Filter;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.backend.vfs.VFSService;
 import org.uberfire.eclipse.browser.FileUtils;
+import org.uberfire.eclipse.browser.shadowservices.EclipseShadowService;
 import org.uberfire.java.nio.IOException;
 import org.uberfire.java.nio.file.AtomicMoveNotSupportedException;
 import org.uberfire.java.nio.file.DirectoryNotEmptyException;
@@ -19,6 +20,12 @@ import org.uberfire.java.nio.file.NoSuchFileException;
 import org.uberfire.java.nio.file.NotDirectoryException;
 import org.uberfire.java.nio.file.ProviderNotFoundException;
 
+/**
+ * Server-side Shadow Service implementation of the VFS service.
+ * 
+ * @author bbrodt
+ *
+ */
 public class EclipseVFSService extends EclipseShadowService implements VFSService {
 
 	public static final String NAME = "EclipseVFSService";
@@ -54,8 +61,7 @@ public class EclipseVFSService extends EclipseShadowService implements VFSServic
 
 	@Override
 	public Path get(String uri) {
-		// TODO Auto-generated method stub
-		return null;
+		return FileUtils.createVfsPath(uri);
 	}
 
 	@Override

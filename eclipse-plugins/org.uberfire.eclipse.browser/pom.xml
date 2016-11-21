@@ -19,5 +19,10 @@
 			<groupId>org.uberfire.eclipse</groupId>
 			<artifactId>org.uberfire.eclipse.runtime</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>org.drools.eclipse</artifactId>
+			<version>6.5.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

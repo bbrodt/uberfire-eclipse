@@ -7,11 +7,14 @@ import org.uberfire.client.mvp.Activity;
 import org.uberfire.client.mvp.WorkbenchEditorActivity;
 import org.uberfire.workbench.model.menu.MenuCustom;
 import org.uberfire.workbench.model.menu.MenuGroup;
+import org.uberfire.workbench.model.menu.MenuItem;
 import org.uberfire.workbench.model.menu.MenuItemCommand;
 import org.uberfire.workbench.model.menu.MenuItemPerspective;
 import org.uberfire.workbench.model.menu.MenuItemPlain;
 import org.uberfire.workbench.model.menu.MenuVisitor;
 import org.uberfire.workbench.model.menu.Menus;
+
+import com.google.gwt.user.client.Window;
 
 import jsinterop.annotations.JsType;
 
@@ -51,6 +54,8 @@ public class EclipseEditorBridge {
 
         @Override
         public void visit(MenuItemPlain menuItemPlain) {
+            items.add(menuItemPlain.getCaption());
+            items.add(menuItemPlain.getIdentifier());
         }
 
         @Override
@@ -61,6 +66,8 @@ public class EclipseEditorBridge {
 
         @Override
         public void visit(MenuItemPerspective menuItemPerspective) {
+            items.add(menuItemPerspective.getCaption());
+            items.add(menuItemPerspective.getIdentifier());
         }
 
         @Override
@@ -88,7 +95,7 @@ public class EclipseEditorBridge {
     }
 
     public boolean isDirty(String uri) {
-        return !getEditor(uri).onMayClose();
+        return !getEditor(uri).isDirty(); //.onMayClose();
     }
 
     public void executeMenuCommand(String uri, final String cmdId) {

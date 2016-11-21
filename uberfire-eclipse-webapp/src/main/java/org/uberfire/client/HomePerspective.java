@@ -23,13 +23,13 @@ import javax.enterprise.event.Observes;
 import org.uberfire.client.annotations.Perspective;
 import org.uberfire.client.annotations.WorkbenchPerspective;
 import org.uberfire.client.workbench.events.PerspectiveChange;
+import org.uberfire.client.workbench.panels.impl.SimpleWorkbenchPanelPresenter;
 import org.uberfire.shared.EclipsePlaceManagerBridge;
 import org.uberfire.workbench.model.PerspectiveDefinition;
 import org.uberfire.workbench.model.impl.PerspectiveDefinitionImpl;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 
 @ApplicationScoped
@@ -43,7 +43,10 @@ public class HomePerspective {
     
     @Perspective
     public PerspectiveDefinition buildPerspective() {
-        perspectiveDefinition = new PerspectiveDefinitionImpl(SingleWorkbenchPanelPresenter.class.getName() );
+    	// this panel hides menus
+//        perspectiveDefinition = new PerspectiveDefinitionImpl(SingleWorkbenchPanelPresenter.class.getName() );
+    	// use a panel that shows client menus
+        perspectiveDefinition = new PerspectiveDefinitionImpl(SimpleWorkbenchPanelPresenter.class.getName() );
         perspectiveDefinition.setName( "Eclipse Editor Perspective" );
         return perspectiveDefinition;
     }
@@ -59,16 +62,7 @@ public class HomePerspective {
     }
 
     public void loadEditor(@Observes PerspectiveChange e) {
-//    	Timer t = new Timer() {
-//    		public void run() {
-//    			Window.alert("HomePerspective.loadEditor() path="+pathParameter);
-//		        EclipsePlaceManagerBridge ec = new EclipsePlaceManagerBridge();
-//		        ec.goTo(pathParameter, idParameter);
-//    		}
-//    	};
-//    	t.schedule(5000);
     	Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-			
 			@Override
 			public void execute() {
 //		        Window.alert("HomePerspective.loadEditor() path="+pathParameter);

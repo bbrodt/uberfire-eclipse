@@ -8,11 +8,23 @@ Bundle-Vendor: JBoss by Red Hat
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
+ org.eclipse.e4.core.contexts,
+ org.eclipse.e4.core.di,
  org.eclipse.jface.text,
  org.eclipse.ui.editors,
+ org.eclipse.egit.core,
+ org.eclipse.egit.ui,
+ org.eclipse.jgit,
+ javax.xml,
+ javax.inject,
+ org.drools.eclipse;bundle-version="6.5.0",
  org.uberfire.eclipse.runtime;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: 
  .
-Import-Package: org.slf4j
+Import-Package: com.google.common.collect;version="15.0.0",
+ org.eclipse.jdt.core,
+ org.drools.eclipse,
+ org.eclipse.jdt.launching,
+ org.slf4j

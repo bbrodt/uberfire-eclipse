@@ -1,0 +1,350 @@
+[INFO] Scanning for projects...
+[INFO] Computing target platform for MavenProject: org.uberfire.eclipse:org.uberfire.eclipse.browser:1.0.0-SNAPSHOT @ C:\Users\bbrodt\git\uberfire-eclipse\eclipse-plugins\org.uberfire.eclipse.browser\pom.xml
+[INFO] Fetching p2.index from http://download.eclipse.org/releases/neon/
+[INFO] Adding repository http://download.eclipse.org/releases/neon
+[INFO] Fetching p2.index from http://download.eclipse.org/technology/epp/packages/neon/
+[INFO] Fetching p2.index from http://download.eclipse.org/technology/epp/packages/neon/
+[INFO] Fetching p2.index from http://download.eclipse.org/releases/neon/201606221000/
+[INFO] Fetching p2.index from http://download.eclipse.org/releases/neon/201606221000/
+[INFO] Fetching p2.index from http://download.eclipse.org/releases/neon/201609281000/
+[INFO] Fetching p2.index from http://download.eclipse.org/releases/neon/201609281000/
+[INFO] Fetching p2.index from http://download.eclipse.org/releases/neon/201610111000/
+[INFO] Fetching p2.index from http://download.eclipse.org/releases/neon/201610111000/
+[INFO] Resolving dependencies of MavenProject: org.uberfire.eclipse:org.uberfire.eclipse.browser:1.0.0-SNAPSHOT @ C:\Users\bbrodt\git\uberfire-eclipse\eclipse-plugins\org.uberfire.eclipse.browser\pom.xml
+[INFO] Resolving class path of MavenProject: org.uberfire.eclipse:org.uberfire.eclipse.browser:1.0.0-SNAPSHOT @ C:\Users\bbrodt\git\uberfire-eclipse\eclipse-plugins\org.uberfire.eclipse.browser\pom.xml
+Downloading: http://repository.jboss.org/nexus/content/groups/public/org/jboss/tools/tycho-plugins/repository-utils/${jboss-tycho-plugins-version}/repository-utils-${jboss-tycho-plugins-version}.pom
+Downloading: https://repository.jboss.org/nexus/content/repositories/snapshots/org/jboss/tools/tycho-plugins/repository-utils/${jboss-tycho-plugins-version}/repository-utils-${jboss-tycho-plugins-version}.pom
+Downloading: https://repo.maven.apache.org/maven2/org/jboss/tools/tycho-plugins/repository-utils/${jboss-tycho-plugins-version}/repository-utils-${jboss-tycho-plugins-version}.pom
+[WARNING] Failed to retrieve plugin descriptor for org.jboss.tools.tycho-plugins:repository-utils:${jboss-tycho-plugins-version}: Plugin org.jboss.tools.tycho-plugins:repository-utils:${jboss-tycho-plugins-version} or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.jboss.tools.tycho-plugins:repository-utils:jar:${jboss-tycho-plugins-version}
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Uberfire-Eclipse : Editor Plugin 1.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[WARNING] Failed to retrieve plugin descriptor for org.jboss.tools.tycho-plugins:repository-utils:${jboss-tycho-plugins-version}: Plugin org.jboss.tools.tycho-plugins:repository-utils:${jboss-tycho-plugins-version} or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.jboss.tools.tycho-plugins:repository-utils:jar:${jboss-tycho-plugins-version}
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ org.uberfire.eclipse.browser ---
+[INFO] org.uberfire.eclipse:org.uberfire.eclipse.browser:eclipse-plugin:1.0.0-SNAPSHOT
+[INFO] +- org.uberfire.eclipse:org.uberfire.eclipse.runtime:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  +- org.uberfire:uberfire-api:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.uberfire:uberfire-commons:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.jboss.errai:errai-ioc:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.jboss.errai:errai-config:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.jboss.errai:errai-codegen:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.jboss.errai:errai-codegen-gwt:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- com.google.inject:guice:jar:3.0:compile
+[INFO] |  |  |  |  \- aopalliance:aopalliance:jar:1.0:compile
+[INFO] |  |  |  +- com.google.guava:guava-gwt:jar:20.0:compile
+[INFO] |  |  |  |  +- com.google.code.findbugs:jsr305:jar:1.3.9:compile
+[INFO] |  |  |  |  +- com.google.errorprone:error_prone_annotations:jar:2.0.12:compile
+[INFO] |  |  |  |  \- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[INFO] |  |  |  +- javax.inject:javax.inject:jar:1:compile
+[INFO] |  |  |  \- org.jboss.errai:errai-javax-enterprise:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.jboss.errai:errai-security-server:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.apache.deltaspike.core:deltaspike-core-api:jar:1.5.1:compile
+[INFO] |  |  |  +- org.jboss.resteasy:resteasy-cdi:jar:3.0.16.Final:compile
+[INFO] |  |  |  |  +- org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_2.0_spec:jar:1.0.0.Final:compile
+[INFO] |  |  |  |  +- javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO] |  |  |  |  +- org.jboss.resteasy:resteasy-jaxrs:jar:3.0.16.Final:compile
+[INFO] |  |  |  |  |  +- org.jboss.spec.javax.annotation:jboss-annotations-api_1.2_spec:jar:1.0.0.Final:compile
+[INFO] |  |  |  |  |  +- javax.activation:activation:jar:1.1.1:compile
+[INFO] |  |  |  |  |  \- net.jcip:jcip-annotations:jar:1.0:compile
+[INFO] |  |  |  |  \- org.jboss.logging:jboss-logging:jar:3.1.4.GA:compile
+[INFO] |  |  |  +- org.javassist:javassist:jar:3.18.2-GA:compile
+[INFO] |  |  |  \- org.jsoup:jsoup:jar:1.8.3:compile
+[INFO] |  |  \- org.jboss.errai:errai-marshalling:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  +- org.uberfire:uberfire-commons-editor-backend:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.jboss.errai:errai-bus:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.mvel:mvel2:jar:2.2.8.Final:compile
+[INFO] |  |  |  +- junit:junit:jar:4.12:compile
+[INFO] |  |  |  |  \- org.hamcrest:hamcrest-core:jar:1.3:compile
+[INFO] |  |  |  +- io.netty:netty-codec-http:jar:4.0.12.Final:compile
+[INFO] |  |  |  |  +- io.netty:netty-codec:jar:4.0.12.Final:compile
+[INFO] |  |  |  |  |  \- io.netty:netty-transport:jar:4.0.12.Final:compile
+[INFO] |  |  |  |  \- io.netty:netty-handler:jar:4.0.12.Final:compile
+[INFO] |  |  |  |     \- io.netty:netty-buffer:jar:4.0.12.Final:compile
+[INFO] |  |  |  |        \- io.netty:netty-common:jar:4.0.12.Final:compile
+[INFO] |  |  |  +- com.google.guava:guava:jar:20.0:compile
+[INFO] |  |  |  \- org.jgroups:jgroups:jar:3.6.8.Final:compile
+[INFO] |  |  +- org.uberfire:uberfire-commons-editor-api:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.uberfire:uberfire-backend-server:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.ocpsoft.prettytime:prettytime:jar:3.0.2.Final:compile
+[INFO] |  |  |  +- org.jdom:jdom:jar:1.1.3:compile
+[INFO] |  |  |  +- org.jboss.errai:errai-cdi-server:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  |  |  \- org.jboss.errai:errai-cdi-shared:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  |  \- org.jasypt:jasypt:jar:1.9.1:compile
+[INFO] |  |  +- org.uberfire:uberfire-io:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.apache.helix:helix-core:jar:0.6.5:compile
+[INFO] |  |  |  |  +- org.apache.zookeeper:zookeeper:jar:3.3.4:compile
+[INFO] |  |  |  |  |  \- jline:jline:jar:0.9.94:compile
+[INFO] |  |  |  |  +- org.codehaus.jackson:jackson-core-asl:jar:1.8.5:compile
+[INFO] |  |  |  |  +- org.codehaus.jackson:jackson-mapper-asl:jar:1.8.5:compile
+[INFO] |  |  |  |  +- commons-cli:commons-cli:jar:1.2:compile
+[INFO] |  |  |  |  +- com.github.sgroschupf:zkclient:jar:0.1:compile
+[INFO] |  |  |  |  +- org.apache.commons:commons-math:jar:2.1:compile
+[INFO] |  |  |  |  \- org.yaml:snakeyaml:jar:1.12:compile
+[INFO] |  |  |  \- org.slf4j:log4j-over-slf4j:jar:1.7.7:runtime
+[INFO] |  |  +- org.uberfire:uberfire-nio2-model:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  |  \- commons-codec:commons-codec:jar:1.10:compile
+[INFO] |  |  +- org.uberfire:uberfire-server:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  +- com.google.code.gson:gson:jar:2.6.2:compile
+[INFO] |  |  \- org.apache.commons:commons-lang3:jar:3.1:compile
+[INFO] |  +- org.uberfire:uberfire-nio2-jgit:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.apache.sshd:sshd-core:jar:0.12.0:compile
+[INFO] |  |  |  \- org.apache.mina:mina-core:jar:2.0.7:compile
+[INFO] |  |  +- org.eclipse.jgit:org.eclipse.jgit:jar:4.4.1.201607150455-r:compile
+[INFO] |  |  |  +- com.jcraft:jsch:jar:0.1.53:compile
+[INFO] |  |  |  +- com.googlecode.javaewah:JavaEWAH:jar:0.7.9:compile
+[INFO] |  |  |  \- org.apache.httpcomponents:httpclient:jar:4.3.6:compile
+[INFO] |  |  |     \- org.apache.httpcomponents:httpcore:jar:4.3.3:compile
+[INFO] |  |  +- org.slf4j:jcl-over-slf4j:jar:1.7.7:runtime
+[INFO] |  |  \- org.slf4j:slf4j-api:jar:1.7.7:compile
+[INFO] |  +- org.uberfire:uberfire-nio2-api:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  +- commons-io:commons-io:jar:2.4:compile
+[INFO] |  +- org.uberfire:uberfire-nio2-fs:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  +- org.guvnor:guvnor-services-backend:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  +- com.thoughtworks.xstream:xstream:jar:1.4.9:compile
+[INFO] |  |  |  +- xmlpull:xmlpull:jar:1.1.3.1:compile
+[INFO] |  |  |  \- xpp3:xpp3_min:jar:1.1.4c:compile
+[INFO] |  |  +- org.guvnor:guvnor-project-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.guvnor:guvnor-workingset-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.kie.uberfire:kie-uberfire-social-activities-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  |  \- org.uberfire:uberfire-client-api:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.guvnor:guvnor-services-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.guvnor:guvnor-structure-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.uberfire:uberfire-backend-api:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.uberfire:uberfire-security-api:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  |  |  \- org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.2_spec:jar:1.0.0.Final:compile
+[INFO] |  |  +- javax.enterprise:cdi-api:jar:1.2:compile
+[INFO] |  |  |  +- javax.el:javax.el-api:jar:3.0.0:compile
+[INFO] |  |  |  \- javax.interceptor:javax.interceptor-api:jar:1.2:compile
+[INFO] |  |  \- commons-fileupload:commons-fileupload:jar:1.3.1:compile
+[INFO] |  +- org.drools:drools-wb-drl-text-editor-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.jboss.errai:errai-common:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.jboss.errai.reflections:reflections:jar:4.0.0-SNAPSHOT:compile
+[INFO] |  |  |  |  \- dom4j:dom4j:jar:1.6.1:compile
+[INFO] |  |  |  |     \- xml-apis:xml-apis:jar:1.0.b2:compile
+[INFO] |  |  |  \- de.benediktmeurer.gwt-slf4j:gwt-slf4j:jar:0.0.2:compile
+[INFO] |  |  \- org.kie.workbench.services:kie-wb-common-datamodel-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |     \- org.kie.workbench.services:kie-wb-common-services-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |        \- org.guvnor:guvnor-message-console-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  +- org.drools:drools-workbench-models-commons:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  +- org.drools:drools-compiler:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.kie:kie-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.kie:kie-internal:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.antlr:antlr-runtime:jar:3.5:compile
+[INFO] |  |  |  +- org.eclipse.jdt.core.compiler:ecj:jar:4.4.2:compile
+[INFO] |  |  |  \- com.google.protobuf:protobuf-java:jar:2.6.0:compile
+[INFO] |  |  \- org.drools:drools-core:jar:7.0.0-SNAPSHOT:compile
+[INFO] |  \- org.drools:drools-workbench-models-datamodel-api:jar:7.0.0-SNAPSHOT:compile
+[INFO] +- p2.eclipse-plugin:org.slf4j.api:jar:1.7.2.v20121108-1250:system
+[INFO] +- p2.eclipse-plugin:com.google.guava:jar:20.0.0:system
+[INFO] +- p2.eclipse-plugin:javaewah:jar:0.7.9.v201605172130:system
+[INFO] +- p2.eclipse-plugin:com.jcraft.jsch:jar:0.1.53.v201508180515:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.osgi:jar:3.11.1.v20160708-1632:system
+[INFO] +- p2.eclipse-plugin:javax.xml:jar:1.3.4.v201005080400:system
+[INFO] +- p2.eclipse-plugin:org.apache.batik.css:jar:1.7.0.v201011041433:system
+[INFO] +- p2.eclipse-plugin:org.apache.batik.util:jar:1.7.0.v201011041433:system
+[INFO] +- p2.eclipse-plugin:org.w3c.dom.events:jar:3.0.0.draft20060413_v201105210656:system
+[INFO] +- p2.eclipse-plugin:org.w3c.css.sac:jar:1.3.1.v200903091627:system
+[INFO] +- p2.eclipse-plugin:org.w3c.dom.svg:jar:1.1.0.v201011041433:system
+[INFO] +- p2.eclipse-plugin:org.apache.batik.util.gui:jar:1.7.0.v200903091627:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.osgi.services:jar:3.5.100.v20160504-1419:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.compare:jar:3.6.0.v20160418-1534:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.ui:jar:3.108.0.v20160518-1929:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.resources:jar:3.11.0.v20160503-1608:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.jface.text:jar:3.11.1.v20160819-1517:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.ui.ide:jar:3.12.1.v20160823-0925:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.ui.views:jar:3.8.101.v20160816-1954:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.ui.workbench.texteditor:jar:3.10.1.v20160818-1626:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.runtime:jar:3.12.0.v20160606-1342:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.expressions:jar:3.5.100.v20160418-1621:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.ui.editors:jar:3.10.0.v20160505-0931:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.ui.forms:jar:3.7.0.v20160518-1929:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.compare.core:jar:3.6.0.v20160418-1534:system
+[INFO] +- p2.eclipse-plugin:com.ibm.icu:jar:56.1.0.v201601250100:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.commands:jar:3.8.0.v20160316-1921:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.common:jar:3.8.0.v20160509-1230:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.contenttype:jar:3.5.100.v20160418-1621:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.preferences:jar:3.6.1.v20160815-1406:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.registry:jar:3.6.100.v20160223-2218:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.databinding:jar:1.6.0.v20160412-0910:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.databinding.observable:jar:1.6.0.v20160511-1747:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.databinding.property:jar:1.6.0.v20160427-0852:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.filebuffers:jar:3.6.0.v20160503-1849:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.text:jar:3.6.0.v20160503-1849:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.filesystem:jar:1.6.0.v20160503-1608:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.jobs:jar:3.8.0.v20160509-0411:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.net:jar:1.3.0.v20160418-1534:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.security:jar:1.2.200.v20150715-1528:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.app:jar:1.3.400.v20150715-1528:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.core.variables:jar:3.3.0.v20160419-1720:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.core.commands:jar:0.11.100.v20160506-0804:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.core.di:jar:1.6.1.v20160712-0927:system
+[INFO] +- p2.eclipse-plugin:javax.inject:jar:1.0.0.v20091030:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.core.contexts:jar:1.5.0.v20160504-0909:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.core.services:jar:2.0.100.v20160509-1032:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.core.di.annotations:jar:1.5.0.v20151127-1241:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.core.di.extensions:jar:0.14.0.v20160211-1614:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.emf.xpath:jar:0.1.200.v20160506-0804:system
+[INFO] +- p2.eclipse-plugin:org.apache.commons.jxpath:jar:1.3.0.v200911051830:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.emf.ecore:jar:2.12.0.v20160420-0247:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.bindings:jar:0.11.100.v20160509-1025:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.swt:jar:3.105.1.v20160907-0248:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.jface:jar:3.12.0.v20160518-1929:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.css.core:jar:0.12.0.v20160505-1310:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.css.swt:jar:0.12.100.v20160517-1505:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.css.swt.theme:jar:0.10.100.v20160523-0836:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.di:jar:1.1.100.v20160506-0759:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.model.workbench:jar:1.2.0.v20160229-1459:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.services:jar:1.2.100.v20160506-0759:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.widgets:jar:1.1.100.v20160506-0759:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.workbench:jar:1.4.0.v20160517-1624:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.emf.ecore.change:jar:2.11.0.v20160420-0247:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.emf.ecore.xmi:jar:2.12.0.v20160420-0247:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.workbench.renderers.swt:jar:0.14.0.v20160525-0940:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.workbench.swt:jar:0.14.1.v20160829-0832:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.workbench.addons.swt:jar:1.2.100.v20160831-1151:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.ds:jar:1.4.400.v20160226-2036:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.jface.databinding:jar:1.8.0.v20160420-2231:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.e4.ui.workbench3:jar:0.13.100.v20160506-0759:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.team.core:jar:3.8.0.v20160418-1534:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.jgit:jar:4.4.1.201607150455-r:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.jsch.core:jar:1.3.0.v20160422-1917:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.egit.core:jar:4.4.1.201607150455-r:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.team.ui:jar:3.8.0.v20160518-1906:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.ui.navigator:jar:3.6.100.v20160518-1929:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.help:jar:3.7.0.v20160602-1307:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.egit.ui:jar:4.4.1.201607150455-r:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.emf.common:jar:2.12.0.v20160420-0247:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.bidi:jar:1.0.0.v20160307-1318:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.util:jar:1.0.500.v20130404-1337:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.p2.core:jar:2.4.100.v20160419-0834:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.p2.engine:jar:2.4.100.v20160419-0834:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.p2.metadata:jar:2.3.100.v20160427-2220:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.p2.metadata.repository:jar:1.2.300.v20160419-0834:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.equinox.p2.repository:jar:2.3.200.v20160421-0324:system
+[INFO] +- p2.eclipse-plugin:org.tukaani.xz:jar:1.3.0.v201308270617:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.swt.gtk.linux.x86:jar:3.105.1.v20160907-0248:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.ui.workbench:jar:3.108.1.v20160819-2118:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-api-1.0.0-SNAPSHOT.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-commons-1.0.0-SNAPSHOT.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-ioc-4.0.0-20161103.221326-229.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-config-4.0.0-20161103.214848-227.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-codegen-4.0.0-20161103.214831-231.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-codegen-gwt-4.0.0-20161103.214842-228.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/guice-3.0.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/aopalliance-1.0.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/guava-gwt-20.0.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jsr305-1.3.9.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/error_prone_annotations-2.0.12.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/j2objc-annotations-1.1.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-javax-enterprise-4.0.0-20161103.214819-228.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-security-server-4.0.0-20161103.230505-221.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/deltaspike-core-api-1.5.1.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/resteasy-cdi-3.0.16.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jboss-jaxrs-api_2.0_spec-1.0.0.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/validation-api-1.1.0.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/resteasy-jaxrs-3.0.16.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jboss-annotations-api_1.2_spec-1.0.0.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/activation-1.1.1.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jcip-annotations-1.0.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jboss-logging-3.1.4.GA.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/javassist-3.18.2-GA.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jsoup-1.8.3.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-marshalling-4.0.0-20161103.214901-230.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-commons-editor-backend-1.0.0-20161103.151819-86.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-bus-4.0.0-20161103.220338-227.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/mvel2-2.2.8.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/junit-4.12.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/hamcrest-core-1.3.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/netty-codec-http-4.0.12.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/netty-codec-4.0.12.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/netty-transport-4.0.12.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/netty-handler-4.0.12.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/netty-buffer-4.0.12.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/netty-common-4.0.12.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/guava-20.0.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jgroups-3.6.8.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-commons-editor-api-1.0.0-20161103.151622-91.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-backend-server-1.0.0-20161103.151758-86.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/prettytime-3.0.2.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jdom-1.1.3.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-cdi-server-4.0.0-20161103.223327-216.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-cdi-shared-4.0.0-20161103.221839-137.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jasypt-1.9.1.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-io-1.0.0-20161103.151719-86.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/helix-core-0.6.5.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/zookeeper-3.3.4.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jline-0.9.94.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jackson-core-asl-1.8.5.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jackson-mapper-asl-1.8.5.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/commons-cli-1.2.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/zkclient-0.1.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/commons-math-2.1.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/snakeyaml-1.12.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/log4j-over-slf4j-1.7.7.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-nio2-model-1.0.0-SNAPSHOT.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/commons-codec-1.10.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-server-1.0.0-20161103.151736-86.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/gson-2.6.2.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/commons-lang3-3.1.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-nio2-jgit-1.0.0-20161103.151626-86.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/sshd-core-0.12.0.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/mina-core-2.0.7.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/org.eclipse.jgit-4.4.1.201607150455-r.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jsch-0.1.53.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/JavaEWAH-0.7.9.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/httpclient-4.3.6.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/httpcore-4.3.3.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jcl-over-slf4j-1.7.7.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-nio2-api-1.0.0-20161103.151654-86.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/commons-io-2.4.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-nio2-fs-1.0.0-20161103.151623-91.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/guvnor-services-backend-7.0.0-20161013.081504-596.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/xstream-1.4.9.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/xmlpull-1.1.3.1.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/xpp3_min-1.1.4c.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/guvnor-project-api-7.0.0-20161013.081423-596.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/guvnor-workingset-api-7.0.0-20161013.081352-595.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/kie-uberfire-social-activities-api-7.0.0-20160929.093342-526.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-client-api-1.0.0-SNAPSHOT.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/guvnor-services-api-7.0.0-20161013.081354-596.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/guvnor-structure-api-7.0.0-20161013.081354-595.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-backend-api-1.0.0-SNAPSHOT.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/uberfire-security-api-1.0.0-SNAPSHOT.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/jboss-interceptors-api_1.2_spec-1.0.0.Final.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/cdi-api-1.2.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/javax.el-api-3.0.0.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/javax.interceptor-api-1.2.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/commons-fileupload-1.3.1.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/drools-wb-drl-text-editor-api-7.0.0-20161104.165506-758.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/errai-common-4.0.0-20161103.214813-231.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/reflections-4.0.0-20161103.214756-228.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/dom4j-1.6.1.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/xml-apis-1.0.b2.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/gwt-slf4j-0.0.2.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/kie-wb-common-datamodel-api-7.0.0-20161104.160835-705.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/kie-wb-common-services-api-7.0.0-20161104.160620-704.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/guvnor-message-console-api-7.0.0-20161013.081447-591.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/drools-workbench-models-commons-7.0.0-20161103.162501-661.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/drools-compiler-7.0.0-20161103.162354-665.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/kie-api-7.0.0-20161103.161444-419.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/kie-internal-7.0.0-20161103.161508-418.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/antlr-runtime-3.5.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/ecj-4.4.2.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/protobuf-java-2.6.0.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/drools-core-7.0.0-20161103.162101-678.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.uberfire.eclipse.runtime:jar:lib/drools-workbench-models-datamodel-api-7.0.0-20161103.162027-680.jar:1.0.0.Final-v20161104-2140-B1:system
+[INFO] +- p2.eclipse-plugin:org.w3c.dom.smil:jar:1.0.1.v200903091627:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.swt.gtk.linux.x86_64:jar:3.105.1.v20160907-0248:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.swt.win32.win32.x86:jar:3.105.1.v20160907-0248:system
+[INFO] +- p2.eclipse-plugin:org.eclipse.swt.win32.win32.x86_64:jar:3.105.1.v20160907-0248:system
+[INFO] \- p2.eclipse-plugin:org.eclipse.swt.cocoa.macosx.x86_64:jar:3.105.1.v20160907-0248:system
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 15.882 s
+[INFO] Finished at: 2016-11-08T09:34:44-07:00
+[INFO] Final Memory: 78M/432M
+[INFO] ------------------------------------------------------------------------

@@ -14,8 +14,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.actions.RetargetAction;
-import org.uberfire.eclipse.browser.shadowservices.EclipseDRLTextEditorService;
-import org.uberfire.eclipse.browser.shadowservices.EclipseVFSService;
+import org.uberfire.eclipse.browser.shadowservices.EclipseShadowService;
 
 
 public class BrowserProxy  {
@@ -87,6 +86,7 @@ public class BrowserProxy  {
                     // it's a menu action
                     Action action = new UberfireEditorAction(browser, (String)caption, (String)item);
 
+                    System.out.println("Action: "+action.getText()+" "+action.getId());
                     // search for common menu actions like File -> Save, etc.
                     if (action.getId().matches(".*[Ss]ave")) {
                         saveAction = action;
@@ -194,8 +194,7 @@ public class BrowserProxy  {
     }
     
     protected void registerServiceFunctions() {
-        drlTextEditorService = new EclipseDRLTextEditorService(browser);
-        vfsService = new EclipseVFSService(browser);
+    	EclipseShadowService.createServices(browser);
     }
     
     public Object executeMenuAction(String id) {
