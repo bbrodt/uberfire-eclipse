@@ -17,6 +17,8 @@ import org.drools.workbench.models.datamodel.rule.DSLSentence;
 import org.drools.workbench.screens.drltext.model.DrlModelContent;
 import org.drools.workbench.screens.drltext.service.DRLTextEditorService;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
@@ -30,8 +32,6 @@ import org.jboss.errai.security.shared.api.Group;
 import org.jboss.errai.security.shared.api.Role;
 import org.jboss.errai.security.shared.api.identity.User;
 import org.jboss.errai.security.shared.api.identity.UserImpl;
-import org.kie.internal.builder.KnowledgeBuilderResult;
-import org.kie.internal.builder.ResultSeverity;
 import org.uberfire.backend.server.io.ConfigIOServiceProducer;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.commons.lifecycle.PriorityDisposableRegistry;
@@ -65,31 +65,59 @@ public class EclipseDRLTextEditorService extends EclipseShadowService implements
 	public EclipseDRLTextEditorService(Browser browser) {
 		super(browser, NAME);
 	}
+	
+	private void addMarker(IFile file, String message, int lineNumber, int severity) {
+		try {
+			IMarker marker = file.createMarker(IMarker.PROBLEM);
+			marker.setAttribute(IMarker.MESSAGE, message);
+			marker.setAttribute(IMarker.SEVERITY, severity);
+			if (lineNumber == -1) {
+				lineNumber = 1;
+			}
+			marker.setAttribute(IMarker.LINE_NUMBER, lineNumber);
+		} catch (CoreException e) {
+		}
+	}
 
 	@Override
 	public List<ValidationMessage> validate(Path path, String content) {
 		List<ValidationMessage> errors = new ArrayList<ValidationMessage>();
-        IFile file = FileUtils.getFile(path.toURI());
 		try {
+	        IFile file = FileUtils.getFile(path.toURI());
+			try {
+			   file.deleteMarkers(IMarker.PROBLEM, true, IResource.DEPTH_INFINITE);
+			} catch (Exception e) {
+			}
+			
+			DroolsEclipsePlugin.getDefault().invalidateResource(file);
 			DRLInfo info = DroolsEclipsePlugin.getDefault().generateParsedResource(content, file, false, true);
-			for (BaseKnowledgeBuilderResultImpl r : info.getParserErrors()) {
-				ValidationMessage m = new ValidationMessage();
-				switch (r.getSeverity()) {
+			for (BaseKnowledgeBuilderResultImpl parseError : info.getParserErrors()) {
+				ValidationMessage validationMessage = new ValidationMessage();
+				int line = parseError.getLines().length>0 ? parseError.getLines()[0] : 1;
+				int severity = IMarker.SEVERITY_INFO;
+				String message = parseError.getMessage().replaceFirst(".*[lL]ine [0-9]+:[0-9]+ ", "");
+				switch (parseError.getSeverity()) {
 				case ERROR:
-					m.setLevel(Level.ERROR);
+					validationMessage.setLevel(Level.ERROR);
+					severity = IMarker.SEVERITY_ERROR;
 					break;
 				case INFO:
-					m.setLevel(Level.INFO);
+					validationMessage.setLevel(Level.INFO);
+					severity = IMarker.SEVERITY_INFO;
 					break;
 				case WARNING:
-					m.setLevel(Level.WARNING);
+					validationMessage.setLevel(Level.WARNING);
+					severity = IMarker.SEVERITY_WARNING;
 					break;
 				default:
 					break;
 				
 				}
-				m.setText(r.getMessage());
-				errors.add(m);
+				validationMessage.setLine(line);
+				validationMessage.setText(message);
+				validationMessage.setPath(path);
+				errors.add(validationMessage);
+				addMarker(file, message, line, severity);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
