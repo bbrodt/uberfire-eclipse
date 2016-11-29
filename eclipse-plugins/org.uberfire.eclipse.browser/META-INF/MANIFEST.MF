@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jgit,
  javax.xml,
  javax.inject,
- org.drools.eclipse;bundle-version="6.5.0",
+ org.drools.eclipse,
  org.uberfire.eclipse.runtime;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

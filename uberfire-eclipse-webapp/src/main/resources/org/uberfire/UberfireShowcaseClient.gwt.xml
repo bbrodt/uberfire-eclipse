@@ -25,11 +25,21 @@
   <inherits name="org.uberfire.commons.UberfireCommons"/>
   <inherits name="org.uberfire.ext.widgets.common.UberfireWidgetsCommons"/>
   <inherits name='org.uberfire.ext.editor.commons.UberfireCommonsEditorClient'/>
+  <inherits name='org.uberfire.ext.preferences.UberfirePreferencesAPI'/>
+  <inherits name='org.uberfire.ext.preferences.UberfirePreferences'/>
+
 <!-- <inherits name="org.drools.workbench.models.datamodel.DroolsWorkbenchDataModelAPI"/>  -->
   <inherits name="org.drools.workbench.screens.drltext.DroolsWorkbenchDRLTextEditorClient"/>
   <inherits name='org.drools.workbench.screens.drltext.DroolsWorkbenchDRLTextEditorAPI'/>
 <!--   <inherits name="org.drools.workbench.screens.globals.DroolsWorkbenchGlobalsEditorClient"/> -->
+
+<!--  
+  <inherits name="org.drools.workbench.screens.dtablexls.DroolsWorkbenchDecisionTableXLSEditorClient"/>
+  <inherits name='org.drools.workbench.screens.dtablexls.DroolsWorkbenchDecisionTableXLSEditorAPI'/>
+-->
+
   <inherits name="org.guvnor.structure.GuvnorStructureAPI"/>
+  <inherits name="org.guvnor.common.services.project.GuvnorProjectAPI"/>
 
   <inherits name="org.uberfire.client.views.PatternFly"/>    
 
