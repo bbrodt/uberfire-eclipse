@@ -27,6 +27,7 @@
   <properties>
     <!-- Add the absolute path for $JBOSS_HOME below to manage another instance -->
     <errai.jboss.home>${project.build.directory}/wildfly-${version.org.wildfly.gwt.sdm}</errai.jboss.home>
+    <!--  <version.org.hibernate.hibernate-validator>4.1.0.Final</version.org.hibernate.hibernate-validator>  -->
   </properties>
 
   <dependencies>
@@ -246,14 +247,13 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <scope>provided</scope>
+      <version>${version.org.hibernate.validator}</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <scope>provided</scope>
       <classifier>sources</classifier>
-      <version>4.3.2.Final</version>
+      <version>${version.org.hibernate.validator}</version>
     </dependency>
 
 	<!-- Drools Workbench -->    
