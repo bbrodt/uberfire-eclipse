@@ -34,7 +34,7 @@ public class ShowcaseEntryPoint {
 
     @Inject
     PlaceManager placeManager;
-
+   
     @PostConstruct
     public void startApp() {
 //        declareEclipseFunctions();

@@ -4,6 +4,7 @@
 
    <extension
          point="org.eclipse.ui.editors">
+         <!-- NOTE: the last segment of the extension id ("TextEditor" in this example) must match the @WorkbenchEditor(identifier) value -->
       <editor
             name="Sample Uberfire Editor"
             extensions="uf"
@@ -15,6 +16,7 @@
    </extension>
    <extension
          point="org.eclipse.ui.editors">
+         <!-- @WorkbenchEditor(identifier="DRLEditor") -->
       <editor
             class="org.uberfire.eclipse.browser.editors.UberfireEditor"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
@@ -22,6 +24,18 @@
             icon="icons/sample.gif"
             id="org.uberfire.eclipse.editors.DRLEditor"
             name="Uberclipse Drools Rule Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+         <!-- @WorkbenchEditor(identifier="GuidedDecisionTableEditor") -->
+      <editor
+            class="org.uberfire.eclipse.browser.editors.UberfireEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="gdst"
+            icon="icons/sample.gif"
+            id="org.uberfire.eclipse.editors.GuidedDecisionTableEditor"
+            name="Uberclipse Decision Table Editor">
       </editor>
    </extension>
 

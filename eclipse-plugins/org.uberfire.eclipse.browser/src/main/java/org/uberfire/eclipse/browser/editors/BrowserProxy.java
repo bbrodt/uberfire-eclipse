@@ -1,6 +1,5 @@
 package org.uberfire.eclipse.browser.editors;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
@@ -15,7 +14,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.actions.RetargetAction;
-import org.uberfire.eclipse.browser.FileUtils;
+import org.uberfire.eclipse.browser.shadowservices.EclipseShadowService;
 
 
 public class BrowserProxy  {
@@ -23,7 +22,10 @@ public class BrowserProxy  {
     UberfireEditor editor;
     Browser browser;
     BrowserListener browserListener;
+    
     BrowserFunction vfsService;
+    BrowserFunction drlTextEditorService;
+
     Action saveAction = null;
 
     private class BrowserListener implements ProgressListener {
@@ -84,6 +86,7 @@ public class BrowserProxy  {
                     // it's a menu action
                     Action action = new UberfireEditorAction(browser, (String)caption, (String)item);
 
+                    System.out.println("Action: "+action.getText()+" "+action.getId());
                     // search for common menu actions like File -> Save, etc.
                     if (action.getId().matches(".*[Ss]ave")) {
                         saveAction = action;
@@ -161,11 +164,13 @@ public class BrowserProxy  {
                     Object o = evaluate(
                             "var ed = new window.uberclipse.Editor();"
                             + "return ed.isDirty(\""
-                            + editor.getFileUri() + "\");");
+                            + editor.getFileUri()
+                            + "\");");
                     if (o instanceof Boolean)
                         dirty = ((Boolean) o).booleanValue();
                 }
                 catch (Exception e2) {
+                	e2.printStackTrace();
                 }
                 editor.setDirty(dirty);
             }
@@ -182,44 +187,14 @@ public class BrowserProxy  {
             }
         });
 
-        vfsService = new BrowserFunction(browser, "EclipseVFSService") {
-            @Override
-            public Object function(Object[] arguments) {
-                String function = "none";
-                if (arguments.length > 0)
-                    function = arguments[0].toString();
-                if ("readAllString".equals(function)) {
-                    String uriString = arguments[1].toString();
-                    try {
-                        System.out.println();
-                        IFile file = FileUtils.getFile(uriString);
-                        String contents = FileUtils.read(file);
-                        return contents;
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    return "";
-                }
-                if ("write".equals(function)) {
-                    String uriString = arguments[1].toString();
-                    String contents = arguments[2].toString();
-                    String response = uriString;
-                    try {
-                        IFile file = FileUtils.getFile(uriString);
-                        if (FileUtils.write(file, contents) < 0 )
-                            response = "Write Error";
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    return response;
-                }
-                return null;
-            }
-        };
+        registerServiceFunctions();
+        
         browserListener = new BrowserListener(this);
         browser.addProgressListener(browserListener);
+    }
+    
+    protected void registerServiceFunctions() {
+    	EclipseShadowService.createServices(browser);
     }
     
     public Object executeMenuAction(String id) {

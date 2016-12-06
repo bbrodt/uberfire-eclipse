@@ -1,1 +1,0 @@
-open `find uberfire-eclipse-webapp/target/uberfire-* -name index.html`
