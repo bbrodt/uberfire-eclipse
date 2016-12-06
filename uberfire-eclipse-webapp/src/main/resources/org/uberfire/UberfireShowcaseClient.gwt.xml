@@ -28,6 +28,8 @@
   <inherits name='org.uberfire.ext.editor.commons.UberfireCommonsEditorClient'/>
   <inherits name='org.uberfire.ext.preferences.UberfirePreferencesAPI'/>
   <inherits name='org.uberfire.ext.preferences.UberfirePreferences'/>
+  <inherits name="org.uberfire.ext.wires.core.WiresCoreApi"/>
+  <inherits name="org.uberfire.ext.wires.core.grids.WiresCoreGrids"/>
 
   <inherits name="org.drools.workbench.models.datamodel.DroolsWorkbenchDataModelAPI"/>
   <inherits name="org.drools.workbench.screens.drltext.DroolsWorkbenchDRLTextEditorClient"/>
@@ -36,10 +38,22 @@
   <inherits name="org.drools.workbench.screens.guided.dtable.DroolsWorkbenchGuidedDecisionTableEditorClient"/>
   <inherits name='org.drools.workbench.screens.guided.dtable.DroolsWorkbenchGuidedDecisionTableEditorAPI'/>
 
+  <inherits name="org.drools.workbench.screens.guided.rule.DroolsWorkbenchGuidedRuleEditorClient"/>
+  <inherits name='org.drools.workbench.screens.guided.rule.DroolsWorkbenchGuidedRuleEditorAPI'/>
+
+  <inherits name="org.drools.workbench.screens.guided.template.DroolsWorkbenchGuidedTemplateEditorClient"/>
+  <inherits name='org.drools.workbench.screens.guided.template.DroolsWorkbenchGuidedTemplateEditorAPI'/>
+
   <inherits name="org.guvnor.structure.GuvnorStructureAPI"/>
   <inherits name="org.guvnor.common.services.project.GuvnorProjectAPI"/>
+  <inherits name="org.guvnor.common.services.workingset.GuvnorWorkingsetClient"/>
 
   <inherits name="org.uberfire.client.views.PatternFly"/>    
+
+  <inherits name="org.kie.workbench.common.widgets.decoratedgrid.KieWorkbenchDecoratedGridWidget"/>
+  <inherits name="org.kie.workbench.common.widgets.metadata.KieWorkbenchMetadataWidget"/>
+
+  <inherits name="com.ait.lienzo.Lienzo"/>    
 
   <!-- Specify the application specific style sheet. -->
   <stylesheet src='css/uberfire-showcase.css'/>
