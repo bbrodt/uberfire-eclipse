@@ -28,13 +28,13 @@
    </extension>
    <extension
          point="org.eclipse.ui.editors">
-         <!-- @WorkbenchEditor(identifier="DecisionTableXLSEditor") -->
+         <!-- @WorkbenchEditor(identifier="GuidedDecisionTableEditor") -->
       <editor
             class="org.uberfire.eclipse.browser.editors.UberfireEditor"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            extensions="xls"
+            extensions="gdst"
             icon="icons/sample.gif"
-            id="org.uberfire.eclipse.editors.DecisionTableXLSEditor"
+            id="org.uberfire.eclipse.editors.GuidedDecisionTableEditor"
             name="Uberclipse Decision Table Editor">
       </editor>
    </extension>

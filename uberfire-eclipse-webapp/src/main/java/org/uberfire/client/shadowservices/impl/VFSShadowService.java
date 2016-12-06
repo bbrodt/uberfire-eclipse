@@ -40,12 +40,14 @@ public class VFSShadowService extends WebappShadowService implements VFSService 
 		return (Path) callEclipseService("get", uri);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public DirectoryStream<Path> newDirectoryStream(Path dir)
 			throws IllegalArgumentException, NotDirectoryException, IOException {
 		return (DirectoryStream<Path>) callEclipseService("newDirectoryStream", dir);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public DirectoryStream<Path> newDirectoryStream(Path dir, Filter<Path> filter)
 			throws IllegalArgumentException, NotDirectoryException, IOException {
@@ -76,6 +78,7 @@ public class VFSShadowService extends WebappShadowService implements VFSService 
 		return (Path) callEclipseService("createDirectories", dir, attrs);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Map<String, Object> readAttributes(Path path)
 			throws UnsupportedOperationException, IllegalArgumentException, IOException {

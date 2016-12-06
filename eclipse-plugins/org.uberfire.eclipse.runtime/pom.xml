@@ -18,33 +18,27 @@
 		<dependency>
 			<groupId>org.uberfire</groupId>
 			<artifactId>uberfire-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.uberfire</groupId>
 			<artifactId>uberfire-commons-editor-backend</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.uberfire</groupId>
 			<artifactId>uberfire-backend-server</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.uberfire</groupId>
 			<artifactId>uberfire-security-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.uberfire</groupId>
 			<artifactId>uberfire-nio2-jgit</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.uberfire</groupId>
 			<artifactId>uberfire-nio2-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -54,32 +48,23 @@
 		<dependency>
 			<groupId>org.uberfire</groupId>
 			<artifactId>uberfire-io</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.uberfire</groupId>
 			<artifactId>uberfire-nio2-fs</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.uberfire</groupId>
 			<artifactId>uberfire-nio2-jgit</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.guvnor</groupId>
 			<artifactId>guvnor-services-backend</artifactId>
-			<version>7.0.0-SNAPSHOT</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.jboss.weld.se</groupId> <artifactId>weld-se-core</artifactId> 
-			<version>2.3.3.Final</version> </dependency> <dependency> <groupId>org.jboss.weld.environment</groupId> 
-			<artifactId>weld-environment-common</artifactId> <version>2.3.3.Final</version> 
-			</dependency> -->
 
 		<dependency>
 			<groupId>org.kie.workbench.services</groupId>
 			<artifactId>kie-wb-common-datamodel-backend</artifactId>
-			<version>7.0.0-SNAPSHOT</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.drools</groupId>
@@ -91,7 +76,6 @@
 		<dependency>
 			<groupId>org.kie</groupId>
 			<artifactId>kie-api</artifactId>
-			<version>7.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Uberfire ^^^ -->
@@ -100,7 +84,16 @@
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-wb-drl-text-editor-api</artifactId>
-			<version>7.0.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-wb-guided-dtable-editor-api</artifactId>
 			<exclusions>
 				<exclusion>
 					<groupId>xml-apis</groupId>
@@ -111,7 +104,6 @@
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-workbench-models-commons</artifactId>
-			<version>7.0.0-SNAPSHOT</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.drools</groupId>
@@ -122,18 +114,13 @@
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-workbench-models-datamodel-api</artifactId>
-			<version>7.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-core</artifactId>
-			<version>7.0.0-SNAPSHOT</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.drools</groupId> <artifactId>drools-compiler</artifactId> 
-			<version>7.0.0-SNAPSHOT</version> </dependency> <dependency> <groupId>org.drools</groupId> 
-			<artifactId>drools-decisiontables</artifactId> <version>7.0.0-SNAPSHOT</version> 
-			</dependency> -->
+		
 		<!-- Drools ^^^ -->
 	</dependencies>
 	<build>

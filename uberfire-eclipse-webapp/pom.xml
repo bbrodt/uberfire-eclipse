@@ -27,8 +27,65 @@
   <properties>
     <!-- Add the absolute path for $JBOSS_HOME below to manage another instance -->
     <errai.jboss.home>${project.build.directory}/wildfly-${version.org.wildfly.gwt.sdm}</errai.jboss.home>
-    <!--  <version.org.hibernate.hibernate-validator>4.1.0.Final</version.org.hibernate.hibernate-validator>  -->
+    <version.org.hibernate.validator>4.1.0.Final</version.org.hibernate.validator>
+    <version.org.kie>7.0.0.Beta3</version.org.kie>
+    <version.org.jboss.errai>4.0.0.Beta5</version.org.jboss.errai>
+    <version.org.uberfire>1.0.0.Beta3</version.org.uberfire>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jboss.errai.bom</groupId>
+        <artifactId>errai-internal-bom</artifactId>
+        <version>${version.org.jboss.errai}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.uberfire</groupId>
+        <artifactId>uberfire-bom</artifactId>
+        <version>${version.org.uberfire}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.kie</groupId>
+        <artifactId>kie-bom</artifactId>
+        <version>${version.org.kie}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.drools</groupId>
+        <artifactId>drools-bom</artifactId>
+        <version>${version.org.kie}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-bom</artifactId>
+        <version>${version.org.kie}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.kie.uberfire</groupId>
+        <artifactId>kie-uberfire-extensions-bom</artifactId>
+        <version>${version.org.kie}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.guvnor</groupId>
+        <artifactId>guvnor-bom</artifactId>
+        <version>${version.org.kie}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -46,6 +103,12 @@
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-workbench-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-simple-docks-client</artifactId>
       <scope>provided</scope>
     </dependency>
 
@@ -134,12 +197,10 @@
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-wb-drl-text-editor-api</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-wb-drl-text-editor-client</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
       <exclusions>
           <exclusion>
 		      <groupId>org.uberfire</groupId>
@@ -148,17 +209,14 @@
       </exclusions>
     </dependency>
 
-	<!-- Drools XLS Decision Table editor -->
-	<!-- 
+	<!-- Drools Guided Decision Table editor -->
     <dependency>
       <groupId>org.drools</groupId>
-      <artifactId>drools-wb-dtable-xls-editor-api</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
+      <artifactId>drools-wb-guided-dtable-editor-api</artifactId>      
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
-      <artifactId>drools-wb-dtable-xls-editor-client</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
+      <artifactId>drools-wb-guided-dtable-editor-client</artifactId>      
       <exclusions>
           <exclusion>
 		      <groupId>org.uberfire</groupId>
@@ -166,12 +224,11 @@
 		  </exclusion>
       </exclusions>
     </dependency>
- 	-->
+
 	<!-- KIE Workbench -->
     <dependency>
       <groupId>org.kie.workbench.widgets</groupId>
       <artifactId>kie-wb-common-ui</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
       <exclusions>
           <exclusion>
 		      <groupId>org.uberfire</groupId>
@@ -182,60 +239,50 @@
     <dependency>
       <groupId>org.kie.workbench.widgets</groupId>
       <artifactId>kie-wb-metadata-widget</artifactId>     
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.kie.workbench.widgets</groupId>
       <artifactId>kie-wb-config-resource-widget</artifactId>     
-      <version>7.0.0-SNAPSHOT</version>
+      <version>${version.org.kie}</version>
     </dependency>
     <dependency>
       <groupId>org.kie.workbench.services</groupId>
       <artifactId>kie-wb-common-datamodel-api</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
 
 	<!-- Guvnor -->
     <dependency>
       <groupId>org.guvnor</groupId>
       <artifactId>guvnor-services-api</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.guvnor</groupId>
       <artifactId>guvnor-structure-api</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.guvnor</groupId>
       <artifactId>guvnor-structure-client</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.guvnor</groupId>
       <artifactId>guvnor-project-api</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.guvnor</groupId>
       <artifactId>guvnor-message-console-client</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.guvnor</groupId>
       <artifactId>guvnor-message-console-api</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.guvnor</groupId>
       <artifactId>guvnor-workingset-api</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
 
     <dependency>
         <groupId>org.kie.uberfire</groupId>
 	    <artifactId>kie-uberfire-social-activities-api</artifactId>
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
 
     <dependency>
@@ -260,12 +307,10 @@
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-workbench-models-commons</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-workbench-models-datamodel-api</artifactId>      
-      <version>7.0.0-SNAPSHOT</version>
     </dependency>
 
     <dependency>
@@ -302,6 +347,7 @@
             <compileSourcesArtifact>org.uberfire:uberfire-workbench-client</compileSourcesArtifact>
             <compileSourcesArtifact>org.uberfire:uberfire-workbench-client-backend</compileSourcesArtifact>
             <compileSourcesArtifact>org.uberfire:uberfire-workbench-client-views-patternfly</compileSourcesArtifact>
+            <compileSourcesArtifact>org.uberfire:uberfire-simple-docks-client</compileSourcesArtifact>
             <!-- <compileSourcesArtifact>org.uberfire:uberfire-workbench-processors</compileSourcesArtifact> -->
 
             <compileSourcesArtifact>org.uberfire:uberfire-commons-editor-api</compileSourcesArtifact>
