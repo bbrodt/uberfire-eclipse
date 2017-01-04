@@ -70,23 +70,24 @@ public class BaseEditorProviderShadowService extends EclipseShadowService {
 	public URI pathToURI(Path path) {
 			URI uri = null;
 			try {
-				Repository repository = getRepository(path);
-				if (repository==null) {
-					uri = new URI(path.toURI());
-				}
-				else {
-	//				String dir = repository.getDirectory().toURI().toString().replaceAll("file:", "");
-	//				uri = new URI("git", "localhost", path.getFileName(), null);
-					uri = new URI(path.toURI().replace("file:", "git:"));
-				}
+				uri = new URI(path.toURI());
+//				Repository repository = getRepository(path);
+//				if (repository==null) {
+//					uri = new URI(path.toURI());
+//				}
+//				else {
+//	//				String dir = repository.getDirectory().toURI().toString().replaceAll("file:", "");
+//	//				uri = new URI("git", "localhost", path.getFileName(), null);
+//					uri = new URI(path.toURI().replace("file:", "git:"));
+//				}
 			} catch (Exception e) {
-				try {
-					uri = new URI(path.toURI());
-				} catch (URISyntaxException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				e.printStackTrace();
+//				try {
+//					uri = new URI(path.toURI());
+//				} catch (URISyntaxException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//				e.printStackTrace();
 			}
 			return uri;
 		}

@@ -8,12 +8,14 @@ import org.drools.workbench.models.datamodel.workitems.PortableWorkDefinition;
 import org.drools.workbench.models.guided.dtable.shared.model.GuidedDecisionTable52;
 import org.drools.workbench.screens.guided.dtable.model.GuidedDecisionTableEditorContent;
 import org.drools.workbench.screens.guided.dtable.service.GuidedDecisionTableEditorService;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.swt.browser.Browser;
 import org.guvnor.common.services.shared.metadata.model.Metadata;
 import org.guvnor.common.services.shared.metadata.model.Overview;
 import org.guvnor.common.services.shared.validation.model.ValidationMessage;
 import org.kie.workbench.common.services.datamodel.model.PackageDataModelOracleBaselinePayload;
 import org.uberfire.backend.vfs.Path;
+import org.uberfire.eclipse.browser.FileUtils;
 
 public class EclipseGuidedDecisionTableEditorService extends BaseEditorProviderShadowService implements GuidedDecisionTableEditorService {
 
@@ -79,10 +81,19 @@ public class EclipseGuidedDecisionTableEditorService extends BaseEditorProviderS
 
 	@Override
 	public GuidedDecisionTableEditorContent loadContent(Path path) {
+		IFile file = FileUtils.getFile(path.toURI());
+
 		GuidedDecisionTable52 model = new GuidedDecisionTable52();
+		model.setTableName(file.getName());
+		model.setPackageName("com.sample");
+		model.getRowNumberCol().setWidth(-1);
+		model.getDescriptionCol().setWidth(-1);
+		model.getAuditLog();
 		Set<PortableWorkDefinition> workDefinitions = new HashSet<PortableWorkDefinition>();
 		Overview overview = getOverview(path);
 		PackageDataModelOracleBaselinePayload dataModel = new PackageDataModelOracleBaselinePayload();
+		dataModel.setPackageName("com.sample");
+		dataModel.setProjectName(file.getProject().getName());
 		GuidedDecisionTableEditorContent content = new GuidedDecisionTableEditorContent(model, workDefinitions, overview, dataModel);
 		return content;
 	}

@@ -14,7 +14,9 @@ import org.jboss.errai.marshalling.server.ServerMarshalling;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseCopyService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseDRLTextEditorService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseDeleteService;
+import org.uberfire.eclipse.browser.shadowservices.impl.EclipseGuidedDecisionTableEditorService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseRenameService;
+import org.uberfire.eclipse.browser.shadowservices.impl.EclipseRuleNamesService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseVFSService;
 
 /**
@@ -47,6 +49,8 @@ public class EclipseShadowService extends BrowserFunction {
 		serviceRegistry.add(EclipseDRLTextEditorService.class);
 		serviceRegistry.add(EclipseRenameService.class);
 		serviceRegistry.add(EclipseVFSService.class);
+		serviceRegistry.add(EclipseGuidedDecisionTableEditorService.class);
+		serviceRegistry.add(EclipseRuleNamesService.class);
 		
 		ObjectMarshaller m = new ObjectMarshaller();
 	}

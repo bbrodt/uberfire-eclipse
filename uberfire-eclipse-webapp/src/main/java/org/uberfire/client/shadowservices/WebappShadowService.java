@@ -39,17 +39,17 @@ public abstract class WebappShadowService {
 		for (Object a : args) {
 			jsonArgs[i++] = Marshalling.toJSON(a);
 		}
-//		Window.alert("callEclipseService: "+serviceName+" "+funcName+" "+jsonArgs);
+		Window.alert("callEclipseService: "+serviceName+" "+funcName+" "+jsonArgs);
 
 		try {
 			// call the Eclipse browser function that implements this service
 			Object result = callEclipseServiceJs(serviceName, funcName, jsonArgs);
 			if (result!=null) {
-//				Window.alert("callEclipseService result: "+result);
+				Window.alert("callEclipseService result: "+result);
 				object = Marshalling.fromJSON(result.toString());
 			}
-//			else
-//				Window.alert("callEclipseService returned null");
+			else
+				Window.alert("callEclipseService returned null");
 		}
 		catch (JavaScriptException jse) {
 			// During startup, the browser may not have completed loading the page

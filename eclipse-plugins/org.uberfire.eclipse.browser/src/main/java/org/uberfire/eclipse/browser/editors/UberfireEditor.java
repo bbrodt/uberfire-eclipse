@@ -85,7 +85,8 @@ public class UberfireEditor extends EditorPart {
             browser = new BrowserProxy(this);
             browser.createBrowser(parent, SWT.NONE);
             String HOME = System.getProperty("user.home");
-            browser.setUrl(HOME + INDEX_HTML + "?path="+getFileUri()+"&id="+getEditorId());
+            String url = HOME + INDEX_HTML + "?path="+getFileUri()+"&id="+getEditorId();
+            browser.setUrl(url);
         }
         catch (Exception e) {
             e.printStackTrace();
