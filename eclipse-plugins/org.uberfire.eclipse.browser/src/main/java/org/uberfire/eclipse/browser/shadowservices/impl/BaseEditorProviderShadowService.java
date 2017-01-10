@@ -23,6 +23,7 @@ import org.uberfire.backend.server.io.ConfigIOServiceProducer;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.commons.lifecycle.PriorityDisposableRegistry;
 import org.uberfire.eclipse.browser.FileUtils;
+import org.uberfire.eclipse.browser.editors.BrowserProxy;
 import org.uberfire.eclipse.browser.shadowservices.EclipseShadowService;
 import org.uberfire.io.IOService;
 import org.uberfire.io.impl.IOServiceDotFileImpl;
@@ -41,17 +42,20 @@ public class BaseEditorProviderShadowService extends EclipseShadowService {
 	protected SessionInfo sessionInfo;
 	protected MetadataServiceImpl metadataService;
 
+	public BaseEditorProviderShadowService(BrowserProxy browserProxy, String name) {
+		super(browserProxy, name);
+	}
+
 	public static Repository getRepository(Path path) {
-	    Repository repository = null;
-	    try{
+		Repository repository = null;
+		try {
 			File f = new java.io.File(new URI(path.toURI()));
-	        FileRepositoryBuilder builder = new FileRepositoryBuilder();
-	        repository = builder.findGitDir(f).build();
-	    }
-	    catch (Exception e){
+			FileRepositoryBuilder builder = new FileRepositoryBuilder();
+			repository = builder.findGitDir(f).build();
+		} catch (Exception e) {
 			e.printStackTrace();
-	    }
-	    return repository;
+		}
+		return repository;
 	}
 
 	protected void addMarker(IFile file, String message, int lineNumber, int severity) {
@@ -68,32 +72,30 @@ public class BaseEditorProviderShadowService extends EclipseShadowService {
 	}
 
 	public URI pathToURI(Path path) {
-			URI uri = null;
-			try {
-				uri = new URI(path.toURI());
-//				Repository repository = getRepository(path);
-//				if (repository==null) {
-//					uri = new URI(path.toURI());
-//				}
-//				else {
-//	//				String dir = repository.getDirectory().toURI().toString().replaceAll("file:", "");
-//	//				uri = new URI("git", "localhost", path.getFileName(), null);
-//					uri = new URI(path.toURI().replace("file:", "git:"));
-//				}
-			} catch (Exception e) {
-//				try {
-//					uri = new URI(path.toURI());
-//				} catch (URISyntaxException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//				e.printStackTrace();
-			}
-			return uri;
+		URI uri = null;
+		try {
+			uri = new URI(path.toURI());
+			// Repository repository = getRepository(path);
+			// if (repository==null) {
+			// uri = new URI(path.toURI());
+			// }
+			// else {
+			// // String dir =
+			// repository.getDirectory().toURI().toString().replaceAll("file:",
+			// "");
+			// // uri = new URI("git", "localhost", path.getFileName(), null);
+			// uri = new URI(path.toURI().replace("file:", "git:"));
+			// }
+		} catch (Exception e) {
+			// try {
+			// uri = new URI(path.toURI());
+			// } catch (URISyntaxException e1) {
+			// // TODO Auto-generated catch block
+			// e1.printStackTrace();
+			// }
+			// e.printStackTrace();
 		}
-
-	public BaseEditorProviderShadowService(Browser browser, String name) {
-		super(browser, name);
+		return uri;
 	}
 
 	protected Overview getOverview(Path path) {
@@ -103,57 +105,58 @@ public class BaseEditorProviderShadowService extends EclipseShadowService {
 		Metadata metadata = getMetadata(path);
 		overview.setMetadata(metadata);
 		overview.setProjectName(file.getProject().getName());
-		
+
 		return overview;
 	}
-	
+
 	protected Metadata getMetadata(Path path) {
-			URI uri = pathToURI(path);
-			if (metadataService==null) {
+		URI uri = pathToURI(path);
+		if (metadataService == null) {
+			try {
+
+				if (fsProvider == null) {
+					// force loading of FS providers first time
+					fsProvider = FileSystemProviders.resolveProvider(uri);
+				}
+
 				try {
-	
-					if (fsProvider == null) {
-			        	// force loading of FS providers first time
-			        	fsProvider = FileSystemProviders.resolveProvider(uri);
-					}	        
-		
+					fs = fsProvider.getFileSystem(uri);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				if (fs == null) {
 					try {
-				        fs = fsProvider.getFileSystem(uri);
+						fs = fsProvider.newFileSystem(uri, new java.util.HashMap<String, Object>());
 					} catch (Exception e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-			        if (fs==null) {
-			        	try {
-							fs = fsProvider.newFileSystem(uri, new java.util.HashMap<String,Object>());
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-			        }
-	//				KieServices kieServices = KieServices.Factory.get();
-	//				KieFileSystem kfs = new KieFileSystemImpl();
-	//				KieBuilderImpl kieBuilder = (KieBuilderImpl) kieServices.newKieBuilder( kfs );
-	//				kieBuilder.createFileSet(path.toURI().replace("file:", ""));
-	//				Results r = kieBuilder.buildAll().getResults();
-					
-					PriorityDisposableRegistry.register("systemFS", fs);
-					ioService = new IOServiceDotFileImpl();
-					ConfigIOServiceProducer cfiosProducer = new ConfigIOServiceProducer();
-					cfiosProducer.setup();
-					configIOService = cfiosProducer.configIOService();
-		            Collection<Role> roles = new ArrayList<Role>();
-		            Collection<Group> groups = new ArrayList<Group>();
-					User user = new UserImpl("bbrodt", roles, groups);
-					sessionInfo = new SessionInfoImpl("bbrodt", user);
-					metadataService = new MetadataServiceImpl(ioService, configIOService, sessionInfo);
-	
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
+				// KieServices kieServices = KieServices.Factory.get();
+				// KieFileSystem kfs = new KieFileSystemImpl();
+				// KieBuilderImpl kieBuilder = (KieBuilderImpl)
+				// kieServices.newKieBuilder( kfs );
+				// kieBuilder.createFileSet(path.toURI().replace("file:", ""));
+				// Results r = kieBuilder.buildAll().getResults();
+
+				PriorityDisposableRegistry.register("systemFS", fs);
+				ioService = new IOServiceDotFileImpl();
+				ConfigIOServiceProducer cfiosProducer = new ConfigIOServiceProducer();
+				cfiosProducer.setup();
+				configIOService = cfiosProducer.configIOService();
+				Collection<Role> roles = new ArrayList<Role>();
+				Collection<Group> groups = new ArrayList<Group>();
+				User user = new UserImpl("bbrodt", roles, groups);
+				sessionInfo = new SessionInfoImpl("bbrodt", user);
+				metadataService = new MetadataServiceImpl(ioService, configIOService, sessionInfo);
+
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			org.uberfire.java.nio.file.Path aPath = fsProvider.getPath(uri);
-			return metadataService.getMetadata(aPath);
 		}
+		org.uberfire.java.nio.file.Path aPath = fsProvider.getPath(uri);
+		return metadataService.getMetadata(aPath);
+	}
 
 }

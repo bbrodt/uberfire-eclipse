@@ -24,6 +24,7 @@ import org.guvnor.common.services.shared.validation.model.ValidationMessage;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.eclipse.browser.FileUtils;
 import org.uberfire.eclipse.browser.JavaProjectClassLoader;
+import org.uberfire.eclipse.browser.editors.BrowserProxy;
 
 /**
  * Service-side Shadow Service implementation of the DRLTextEditorService.
@@ -35,8 +36,8 @@ public class EclipseDRLTextEditorService extends BaseEditorProviderShadowService
 		implements DRLTextEditorService {
 
 	public static final String NAME = "EclipseDRLTextEditorService";
-	public EclipseDRLTextEditorService(Browser browser) {
-		super(browser, NAME);
+	public EclipseDRLTextEditorService(BrowserProxy browserProxy) {
+		super(browserProxy, NAME);
 	}
 	
 	@Override

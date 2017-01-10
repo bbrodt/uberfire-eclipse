@@ -26,9 +26,9 @@
 		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
 		<build.version.format>'${BUILD_ALIAS}-v'${maven.build.timestamp.format}'-B${BUILD_NUMBER}'</build.version.format>
 		<version.org.hibernate.validator>4.1.0.Final</version.org.hibernate.validator>
-		<version.org.kie>7.0.0.Beta3</version.org.kie>
-		<version.org.jboss.errai>4.0.0.Beta5</version.org.jboss.errai>
-		<version.org.uberfire>1.0.0.Beta3</version.org.uberfire>
+		<version.org.kie>7.0.0.Beta5</version.org.kie>
+		<version.org.jboss.errai>4.0.0.Beta7</version.org.jboss.errai>
+		<version.org.uberfire>1.0.0.Beta5</version.org.uberfire>
 	</properties>
 
 	<profiles>

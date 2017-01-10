@@ -194,7 +194,7 @@ public class BrowserProxy  {
     }
     
     protected void registerServiceFunctions() {
-    	EclipseShadowService.createServices(browser);
+    	EclipseShadowService.createServices(this);
     }
     
     public Object executeMenuAction(String id) {
@@ -218,6 +218,10 @@ public class BrowserProxy  {
         browser.setUrl(url);
     }
 
+    public UberfireEditor getEditor() {
+    	return editor;
+    }
+    
     public Browser getBrowser() {
         return browser;
     }

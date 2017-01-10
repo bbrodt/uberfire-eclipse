@@ -1,13 +1,17 @@
 package org.uberfire.client.shadowservices.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import org.drools.workbench.models.datamodel.workitems.PortableWorkDefinition;
 import org.drools.workbench.models.guided.dtable.shared.model.GuidedDecisionTable52;
 import org.drools.workbench.screens.guided.dtable.model.GuidedDecisionTableEditorContent;
 import org.drools.workbench.screens.guided.dtable.service.GuidedDecisionTableEditorService;
 import org.guvnor.common.services.shared.metadata.model.Metadata;
+import org.guvnor.common.services.shared.metadata.model.Overview;
 import org.guvnor.common.services.shared.validation.model.ValidationMessage;
 import org.jboss.errai.bus.server.annotations.ShadowService;
 import org.kie.workbench.common.services.datamodel.model.PackageDataModelOracleBaselinePayload;
@@ -78,11 +82,41 @@ public class GuidedDecisionTableEditorShadowService extends WebappShadowService
 
 	@Override
 	public GuidedDecisionTableEditorContent loadContent(Path path) {
-		return (GuidedDecisionTableEditorContent) callEclipseService("loadContent", path);
+		try {
+//			return (GuidedDecisionTableEditorContent) callEclipseService("loadContent", path);
+			GuidedDecisionTable52 model = new GuidedDecisionTable52();
+			model.setTableName("Test");
+			model.setPackageName("com.sample");
+			model.getRowNumberCol().setWidth(-1);
+			model.getDescriptionCol().setWidth(-1);
+			model.getAuditLog();
+			Set<PortableWorkDefinition> workDefinitions = new HashSet<PortableWorkDefinition>();
+			Overview overview = new Overview();
+			Metadata metadata = new Metadata();
+			metadata.setDescription("Description");
+			metadata.setSubject("Subject");
+			metadata.setType("Type");
+			overview.setMetadata(metadata);
+			overview.setProjectName("com.sample");
+
+			PackageDataModelOracleBaselinePayload dataModel = new PackageDataModelOracleBaselinePayload();
+			dataModel.setPackageName("com.sample");
+			dataModel.setProjectName("com.sample");
+			GuidedDecisionTableEditorContent content = new GuidedDecisionTableEditorContent(model, workDefinitions, overview, dataModel);
+			return content;
+		}
+		catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
 	public PackageDataModelOracleBaselinePayload loadDataModel(Path path) {
 		return (PackageDataModelOracleBaselinePayload) callEclipseService("loadDataModel", path);
+	}
+
+	@Override
+	public Path saveAndUpdateGraphEntries(Path path, GuidedDecisionTable52 model, Metadata metadata, String comment) {
+		return (Path) callEclipseService("saveAndUpdateGraphEntries", path, model, metadata, comment);
 	}
 }

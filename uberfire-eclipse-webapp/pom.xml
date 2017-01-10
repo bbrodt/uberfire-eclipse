@@ -28,9 +28,9 @@
 		<!-- Add the absolute path for $JBOSS_HOME below to manage another instance -->
 		<errai.jboss.home>${project.build.directory}/wildfly-${version.org.wildfly.gwt.sdm}</errai.jboss.home>
 		<version.org.hibernate.validator>4.1.0.Final</version.org.hibernate.validator>
-		<version.org.kie>7.0.0.Beta4</version.org.kie>
-		<version.org.jboss.errai>4.0.0.Beta6</version.org.jboss.errai>
-		<version.org.uberfire>1.0.0.Beta4</version.org.uberfire>
+		<version.org.kie>7.0.0.Beta5</version.org.kie>
+		<version.org.jboss.errai>4.0.0.Beta7</version.org.jboss.errai>
+		<version.org.uberfire>1.0.0.Beta5</version.org.uberfire>
 		<version.com.ahome-it.lienzo-core>2.0.277-RELEASE</version.com.ahome-it.lienzo-core>
 		<version.com.ahome-it.lienzo-tests>1.0.0-RC3</version.com.ahome-it.lienzo-tests>
 	</properties>
@@ -88,7 +88,8 @@
 			</dependency>
 
 			<!-- Lienzo -->
-			<!-- when the new jboss-ip-bom 7.0.0.CR5 was released the lienzo artifacts can be removed -->
+			<!-- when the new jboss-ip-bom 7.0.0.CR5 was released the lienzo artifacts 
+				can be removed -->
 			<dependency>
 				<groupId>com.ahome-it</groupId>
 				<artifactId>lienzo-core</artifactId>
@@ -162,13 +163,13 @@
 		<dependency>
 			<groupId>org.jboss.errai</groupId>
 			<artifactId>errai-cdi-jboss</artifactId>
-      <scope>provided</scope>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.errai</groupId>
 			<artifactId>errai-ioc</artifactId>
-      <scope>provided</scope>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -421,6 +422,11 @@
 			<artifactId>drools-wb-verifier-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-wb-verifier-client</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -488,6 +494,7 @@
 						<compileSourcesArtifact>org.drools:drools-workbench-models-commons</compileSourcesArtifact>
 
 						<compileSourcesArtifact>org.drools:drools-wb-verifier-api</compileSourcesArtifact>
+						<compileSourcesArtifact>org.drools:drools-wb-verifier-client</compileSourcesArtifact>
 
 						<compileSourcesArtifact>org.kie.workbench.widgets:kie-wb-common-ui</compileSourcesArtifact>
 						<compileSourcesArtifact>org.kie.workbench.widgets:kie-wb-metadata-widget</compileSourcesArtifact>

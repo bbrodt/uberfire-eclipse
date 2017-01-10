@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.eclipse.swt.browser.Browser;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.eclipse.browser.FileUtils;
+import org.uberfire.eclipse.browser.editors.BrowserProxy;
 import org.uberfire.eclipse.browser.shadowservices.EclipseShadowService;
 import org.uberfire.ext.editor.commons.backend.service.CopyServiceImpl;
 import org.uberfire.ext.editor.commons.service.CopyService;
@@ -15,8 +16,8 @@ public class EclipseCopyService extends EclipseShadowService implements CopyServ
 
 //	private CopyServiceImpl copyService;
 
-	public EclipseCopyService(Browser browser) {
-		super(browser, NAME);
+	public EclipseCopyService(BrowserProxy browserProxy) {
+		super(browserProxy, NAME);
 	}
 
 	@Override

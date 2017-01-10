@@ -10,6 +10,7 @@ import org.uberfire.backend.vfs.DirectoryStream.Filter;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.backend.vfs.VFSService;
 import org.uberfire.eclipse.browser.FileUtils;
+import org.uberfire.eclipse.browser.editors.BrowserProxy;
 import org.uberfire.eclipse.browser.shadowservices.EclipseShadowService;
 import org.uberfire.java.nio.IOException;
 import org.uberfire.java.nio.file.AtomicMoveNotSupportedException;
@@ -30,8 +31,8 @@ public class EclipseVFSService extends EclipseShadowService implements VFSServic
 
 	public static final String NAME = "EclipseVFSService";
 
-	public EclipseVFSService(Browser browser) {
-		super(browser, NAME);
+	public EclipseVFSService(BrowserProxy browserProxy) {
+		super(browserProxy, NAME);
 	}
 
 	public String readAllString(Path path) {

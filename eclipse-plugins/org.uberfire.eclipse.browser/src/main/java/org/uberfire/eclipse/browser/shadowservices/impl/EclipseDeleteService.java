@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.swt.browser.Browser;
 import org.uberfire.backend.vfs.Path;
+import org.uberfire.eclipse.browser.editors.BrowserProxy;
 import org.uberfire.eclipse.browser.shadowservices.EclipseShadowService;
 import org.uberfire.ext.editor.commons.service.DeleteService;
 
@@ -11,8 +12,8 @@ public class EclipseDeleteService extends EclipseShadowService implements Delete
 
 	public static final String NAME = "EclipseDeleteService";
 	
-	public EclipseDeleteService(Browser browser) {
-		super(browser, NAME);
+	public EclipseDeleteService(BrowserProxy browserProxy) {
+		super(browserProxy, NAME);
 	}
 
 	@Override

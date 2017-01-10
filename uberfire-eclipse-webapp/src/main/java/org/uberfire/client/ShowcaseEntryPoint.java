@@ -15,15 +15,22 @@
  */
 package org.uberfire.client;
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.guvnor.common.services.shared.config.AppConfigService;
+import org.jboss.errai.common.client.api.Caller;
+import org.jboss.errai.common.client.api.RemoteCallback;
 import org.jboss.errai.ioc.client.api.EntryPoint;
+import org.kie.workbench.common.services.shared.preferences.ApplicationPreferences;
 import org.uberfire.client.mvp.PlaceManager;
 
 import com.google.gwt.animation.client.Animation;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -32,43 +39,52 @@ import com.google.gwt.user.client.ui.RootPanel;
 @EntryPoint
 public class ShowcaseEntryPoint {
 
-    @Inject
-    PlaceManager placeManager;
-   
-    @PostConstruct
-    public void startApp() {
-//        declareEclipseFunctions();
-        hideLoadingPopup();
-    }
+	@Inject
+	PlaceManager placeManager;
 
-//    private native void declareEclipseFunctions() /*-{
-//        var thisRef = this;
-//        $wnd.eclipse_hello = function () {
-//            window.alert("Hello from Eclipse");
-//            var ec = new $wnd.uberclipse.PlaceManager();
-//            ec.goTo("test.uf");
-//        };
-//    }-*/;
+	@Inject
+	protected AppConfigService appConfigService;
 
-    //Fade out the "Loading application" pop-up
-    private void hideLoadingPopup() {
-        final Element e = RootPanel.get( "loading" ).getElement();
+	@PostConstruct
+	public void startApp() {
+		// declareEclipseFunctions();
+		loadPreferences();
+		hideLoadingPopup();
+	}
 
-        new Animation() {
+	void loadPreferences() {
+		Map<String, String> preferences = appConfigService.loadPreferences();
+		ApplicationPreferences.setUp(preferences);
+	}
 
-            @Override
-            protected void onUpdate( double progress ) {
-                e.getStyle().setOpacity( 1.0 - progress );
-            }
+	// private native void declareEclipseFunctions() /*-{
+	// var thisRef = this;
+	// $wnd.eclipse_hello = function () {
+	// window.alert("Hello from Eclipse");
+	// var ec = new $wnd.uberclipse.PlaceManager();
+	// ec.goTo("test.uf");
+	// };
+	// }-*/;
 
-            @Override
-            protected void onComplete() {
-                e.getStyle().setVisibility( Style.Visibility.HIDDEN );
-            }
-        }.run( 500 );
-    }
+	// Fade out the "Loading application" pop-up
+	private void hideLoadingPopup() {
+		final Element e = RootPanel.get("loading").getElement();
 
-    public static native void redirect( String url )/*-{
-        $wnd.location = url;
-    }-*/;
+		new Animation() {
+
+			@Override
+			protected void onUpdate(double progress) {
+				e.getStyle().setOpacity(1.0 - progress);
+			}
+
+			@Override
+			protected void onComplete() {
+				e.getStyle().setVisibility(Style.Visibility.HIDDEN);
+			}
+		}.run(500);
+	}
+
+	public static native void redirect(String url)/*-{
+													$wnd.location = url;
+													}-*/;
 }

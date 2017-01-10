@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.swt.browser.Browser;
 import org.uberfire.backend.vfs.Path;
+import org.uberfire.eclipse.browser.editors.BrowserProxy;
 import org.uberfire.eclipse.browser.shadowservices.EclipseShadowService;
 import org.uberfire.ext.editor.commons.service.RenameService;
 
@@ -11,8 +12,8 @@ public class EclipseRenameService extends EclipseShadowService implements Rename
 
 	public static final String NAME = "EclipseRenameService";
 	
-	public EclipseRenameService(Browser browser) {
-		super(browser, NAME);
+	public EclipseRenameService(BrowserProxy browserProxy) {
+		super(browserProxy, NAME);
 	}
 
 	@Override

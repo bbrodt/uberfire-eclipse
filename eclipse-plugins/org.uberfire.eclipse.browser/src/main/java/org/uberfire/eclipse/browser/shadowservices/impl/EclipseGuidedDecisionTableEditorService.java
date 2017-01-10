@@ -16,13 +16,14 @@ import org.guvnor.common.services.shared.validation.model.ValidationMessage;
 import org.kie.workbench.common.services.datamodel.model.PackageDataModelOracleBaselinePayload;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.eclipse.browser.FileUtils;
+import org.uberfire.eclipse.browser.editors.BrowserProxy;
 
 public class EclipseGuidedDecisionTableEditorService extends BaseEditorProviderShadowService implements GuidedDecisionTableEditorService {
 
 	public static final String NAME = "EclipseGuidedDecisionTableEditorService";
 	
-	public EclipseGuidedDecisionTableEditorService(Browser browser) {
-		super(browser, NAME);
+	public EclipseGuidedDecisionTableEditorService(BrowserProxy browserProxy) {
+		super(browserProxy, NAME);
 	}
 
 	@Override
@@ -101,6 +102,12 @@ public class EclipseGuidedDecisionTableEditorService extends BaseEditorProviderS
 	@Override
 	public PackageDataModelOracleBaselinePayload loadDataModel(Path arg0) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Path saveAndUpdateGraphEntries(Path resource, GuidedDecisionTable52 model, Metadata metadata,
+			String comment) {
 		return null;
 	}
 

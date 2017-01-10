@@ -34,7 +34,7 @@ import org.uberfire.workbench.model.menu.Menus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.IsWidget;
 
-@WorkbenchEditor(identifier = "TextEditor", supportedTypes = { UfResourceType.class })
+@WorkbenchEditor(identifier = "EclipseTextEditor", supportedTypes = { UfResourceType.class })
 public class TextEditorPresenter {
 
     public interface View extends UberView<TextEditorPresenter> {

@@ -11,6 +11,8 @@ import org.eclipse.swt.browser.BrowserFunction;
 import org.jboss.errai.common.client.protocols.SerializationParts;
 import org.jboss.errai.marshalling.client.marshallers.ObjectMarshaller;
 import org.jboss.errai.marshalling.server.ServerMarshalling;
+import org.uberfire.eclipse.browser.editors.BrowserProxy;
+import org.uberfire.eclipse.browser.shadowservices.impl.EclipseAppConfigService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseCopyService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseDRLTextEditorService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseDeleteService;
@@ -51,20 +53,24 @@ public class EclipseShadowService extends BrowserFunction {
 		serviceRegistry.add(EclipseVFSService.class);
 		serviceRegistry.add(EclipseGuidedDecisionTableEditorService.class);
 		serviceRegistry.add(EclipseRuleNamesService.class);
+		serviceRegistry.add(EclipseAppConfigService.class);
 		
 		ObjectMarshaller m = new ObjectMarshaller();
 	}
 	
-	public EclipseShadowService(Browser browser, String name) {
-		super(browser, name);
+	protected BrowserProxy browserProxy;
+	
+	public EclipseShadowService(BrowserProxy browserProxy, String name) {
+		super(browserProxy.getBrowser(), name);
+		this.browserProxy = browserProxy;
 	}
 	
-	public static void createServices(Browser browser) {
+	public static void createServices(BrowserProxy browserProxy) {
 		for (Class<? extends EclipseShadowService> clazz : serviceRegistry) {
 			Constructor<? extends EclipseShadowService> ctor;
 			try {
-				ctor = clazz.getConstructor(Browser.class);
-				EclipseShadowService service = ctor.newInstance(browser);
+				ctor = clazz.getConstructor(BrowserProxy.class);
+				EclipseShadowService service = ctor.newInstance(browserProxy);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
