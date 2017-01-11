@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.drools.workbench.models.datamodel.workitems.PortableWorkDefinition;
+import org.drools.workbench.models.guided.dtable.backend.GuidedDTXMLPersistence;
 import org.drools.workbench.models.guided.dtable.shared.model.GuidedDecisionTable52;
 import org.drools.workbench.screens.guided.dtable.model.GuidedDecisionTableEditorContent;
 import org.drools.workbench.screens.guided.dtable.service.GuidedDecisionTableEditorService;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.swt.browser.Browser;
 import org.guvnor.common.services.shared.metadata.model.Metadata;
 import org.guvnor.common.services.shared.metadata.model.Overview;
@@ -28,8 +30,14 @@ public class EclipseGuidedDecisionTableEditorService extends BaseEditorProviderS
 
 	@Override
 	public String toSource(Path path, GuidedDecisionTable52 model) {
-		// TODO Auto-generated method stub
-		return null;
+		IFile file = FileUtils.getFile(path.toURI());
+		try {
+			return FileUtils.read(file);
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 	}
 
 	@Override
@@ -52,8 +60,10 @@ public class EclipseGuidedDecisionTableEditorService extends BaseEditorProviderS
 
 	@Override
 	public Path save(Path path, GuidedDecisionTable52 content, Metadata metadata, String comment) {
-		// TODO Auto-generated method stub
-		return null;
+		IFile file = FileUtils.getFile(path.toURI());
+		String xml = GuidedDTXMLPersistence.getInstance().marshal(content);
+		FileUtils.write(file, xml);
+		return path;
 	}
 
 	@Override
@@ -100,15 +110,13 @@ public class EclipseGuidedDecisionTableEditorService extends BaseEditorProviderS
 	}
 
 	@Override
-	public PackageDataModelOracleBaselinePayload loadDataModel(Path arg0) {
-		// TODO Auto-generated method stub
+	public PackageDataModelOracleBaselinePayload loadDataModel(Path path) {
 		return null;
 	}
 
 	@Override
-	public Path saveAndUpdateGraphEntries(Path resource, GuidedDecisionTable52 model, Metadata metadata,
-			String comment) {
-		return null;
+	public Path saveAndUpdateGraphEntries(Path resource, GuidedDecisionTable52 model, Metadata metadata, String comment) {
+		return this.save(resource, model, metadata, comment);
 	}
 
 }

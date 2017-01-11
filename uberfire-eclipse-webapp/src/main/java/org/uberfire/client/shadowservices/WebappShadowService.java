@@ -49,7 +49,7 @@ public abstract class WebappShadowService {
 				object = Marshalling.fromJSON(result.toString());
 			}
 			else
-				Window.alert("callEclipseService returned null");
+				Window.alert("callEclipseService returned null: "+serviceName+" "+funcName+" "+jsonArgs);
 		}
 		catch (JavaScriptException jse) {
 			// During startup, the browser may not have completed loading the page
