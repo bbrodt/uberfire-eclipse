@@ -111,8 +111,7 @@ public class UberfireEditor extends EditorPart {
     	    		String id = null;
 	    	    	id = e.getAttribute("id");
 	    	    	if (id!=null && id.startsWith("org.uberfire.eclipse.editors.")) {
-	    	    		i = id.lastIndexOf(".");
-	    	    		id = id.substring(i+1); 
+	    	    		id = id.replace("org.uberfire.eclipse.editors", "");
 	    	    	}
 	    	    	else
 	    	    		id = null;

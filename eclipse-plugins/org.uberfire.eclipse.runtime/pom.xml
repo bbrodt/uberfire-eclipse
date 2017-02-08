@@ -103,6 +103,16 @@
 		</dependency>
 		<dependency>
 			<groupId>org.drools</groupId>
+			<artifactId>drools-wb-globals-editor-api</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
 			<artifactId>drools-workbench-models-commons</artifactId>
 			<exclusions>
 				<exclusion>

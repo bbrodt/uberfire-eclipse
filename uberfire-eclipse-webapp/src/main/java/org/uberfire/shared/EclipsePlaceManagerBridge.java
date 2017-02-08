@@ -8,8 +8,6 @@ import org.uberfire.backend.vfs.PathFactory;
 import org.uberfire.client.mvp.PlaceManager;
 import org.uberfire.mvp.impl.PathPlaceRequest;
 
-import com.google.gwt.user.client.Window;
-
 import jsinterop.annotations.JsType;
 
 @JsType(namespace = "uberclipse", name = "PlaceManager")

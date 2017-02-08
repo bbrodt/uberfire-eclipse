@@ -3,8 +3,10 @@ package org.uberfire.shared;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.drools.workbench.screens.guided.dtable.client.editor.menu.EditMenuBuilder;
 import org.uberfire.client.mvp.Activity;
 import org.uberfire.client.mvp.WorkbenchEditorActivity;
+import org.uberfire.ext.editor.commons.client.history.SaveButton;
 import org.uberfire.workbench.model.menu.MenuCustom;
 import org.uberfire.workbench.model.menu.MenuGroup;
 import org.uberfire.workbench.model.menu.MenuItem;
@@ -13,6 +15,7 @@ import org.uberfire.workbench.model.menu.MenuItemPerspective;
 import org.uberfire.workbench.model.menu.MenuItemPlain;
 import org.uberfire.workbench.model.menu.MenuVisitor;
 import org.uberfire.workbench.model.menu.Menus;
+import org.uberfire.workbench.model.menu.impl.BaseMenuCustom;
 
 import com.google.gwt.user.client.Window;
 
@@ -72,8 +75,27 @@ public class EclipseEditorBridge {
 
         @Override
         public void visit(MenuCustom<?> menuCustom) {
-            items.add(menuCustom.getCaption());
-            items.add(menuCustom.getIdentifier());
+        	if (menuCustom instanceof SaveButton) {
+        		items.add("Save");
+        		items.add(getClass().getName()+"#Save");
+        	}
+        	else {
+        		items.add(menuCustom.getCaption());
+        		items.add(menuCustom.getIdentifier());
+        		String className = menuCustom.getClass().getName();
+        		if (menuCustom instanceof BaseMenuCustom) {
+        			Object item = ((BaseMenuCustom)menuCustom).build();
+        			className = item.getClass().getName();
+        			if (className.contains("BaseMenuCustom")) {
+        				BaseMenuCustom bmc = (BaseMenuCustom) item;
+        				String ca = bmc.getCaption();
+        				String cb = bmc.getContributionPoint();
+        				String id = bmc.getIdentifier();
+        				List ra = bmc.getResourceActions();
+        				Window.alert("");
+        			}
+        		}
+        	}
         }
         
         public Object[] getMenus() {

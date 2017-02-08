@@ -2,29 +2,37 @@ package org.uberfire.eclipse.browser.shadowservices.impl;
 
 import java.io.File;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.eclipse.swt.browser.Browser;
 import org.guvnor.common.services.backend.metadata.MetadataServiceImpl;
+import org.guvnor.common.services.shared.file.SupportsUpdate;
 import org.guvnor.common.services.shared.metadata.model.Metadata;
 import org.guvnor.common.services.shared.metadata.model.Overview;
+import org.guvnor.common.services.shared.validation.ValidationService;
+import org.guvnor.common.services.shared.validation.model.ValidationMessage;
 import org.jboss.errai.security.shared.api.Group;
 import org.jboss.errai.security.shared.api.Role;
 import org.jboss.errai.security.shared.api.identity.User;
 import org.jboss.errai.security.shared.api.identity.UserImpl;
+import org.kie.workbench.common.services.shared.source.ViewSourceService;
 import org.uberfire.backend.server.io.ConfigIOServiceProducer;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.commons.lifecycle.PriorityDisposableRegistry;
 import org.uberfire.eclipse.browser.FileUtils;
 import org.uberfire.eclipse.browser.editors.BrowserProxy;
 import org.uberfire.eclipse.browser.shadowservices.EclipseShadowService;
+import org.uberfire.ext.editor.commons.service.support.SupportsCopy;
+import org.uberfire.ext.editor.commons.service.support.SupportsCreate;
+import org.uberfire.ext.editor.commons.service.support.SupportsDelete;
+import org.uberfire.ext.editor.commons.service.support.SupportsRead;
+import org.uberfire.ext.editor.commons.service.support.SupportsRename;
 import org.uberfire.io.IOService;
 import org.uberfire.io.impl.IOServiceDotFileImpl;
 import org.uberfire.java.nio.file.FileSystem;
@@ -33,7 +41,17 @@ import org.uberfire.java.nio.file.spi.FileSystemProvider;
 import org.uberfire.rpc.SessionInfo;
 import org.uberfire.rpc.impl.SessionInfoImpl;
 
-public class BaseEditorProviderShadowService extends EclipseShadowService {
+public class BaseEclipseEditorService<T>
+	extends EclipseShadowService
+	implements
+		SupportsCopy,
+		SupportsCreate<T>,
+		SupportsDelete,
+		SupportsRead<T>,
+		SupportsRename,
+		SupportsUpdate<T>,
+		ValidationService<T>,
+		ViewSourceService<T> {
 
 	protected FileSystemProvider fsProvider = null;
 	protected FileSystem fs = null;
@@ -42,7 +60,7 @@ public class BaseEditorProviderShadowService extends EclipseShadowService {
 	protected SessionInfo sessionInfo;
 	protected MetadataServiceImpl metadataService;
 
-	public BaseEditorProviderShadowService(BrowserProxy browserProxy, String name) {
+	public BaseEclipseEditorService(BrowserProxy browserProxy, String name) {
 		super(browserProxy, name);
 	}
 
@@ -159,4 +177,55 @@ public class BaseEditorProviderShadowService extends EclipseShadowService {
 		return metadataService.getMetadata(aPath);
 	}
 
+
+	@Override
+	public String toSource(Path path, T model) {
+		return "";
+	}
+
+	@Override
+	public List<ValidationMessage> validate(Path path, T content) {
+		return new ArrayList<ValidationMessage>();
+	}
+
+	@Override
+	public Path create(Path context, String fileName, T content, String comment) {
+		return context;
+	}
+
+	@Override
+	public T load(Path path) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Path save(Path path, T content, Metadata metadata, String comment) {
+		// TODO Auto-generated method stub
+		return path;
+	}
+
+	@Override
+	public void delete(Path path, String comment) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Path copy(Path path, String newName, String comment) {
+		// TODO Auto-generated method stub
+		return path;
+	}
+
+	@Override
+	public Path copy(Path path, String newName, Path targetDirectory, String comment) {
+		// TODO Auto-generated method stub
+		return path;
+	}
+
+	@Override
+	public Path rename(Path path, String newName, String comment) {
+		// TODO Auto-generated method stub
+		return path;
+	}
 }

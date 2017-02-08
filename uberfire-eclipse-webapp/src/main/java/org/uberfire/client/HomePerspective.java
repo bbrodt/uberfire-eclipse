@@ -19,11 +19,14 @@ package org.uberfire.client;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
+import javax.inject.Inject;
 
+import org.drools.workbench.screens.globals.service.GlobalsEditorService;
 import org.uberfire.client.annotations.Perspective;
 import org.uberfire.client.annotations.WorkbenchPerspective;
 import org.uberfire.client.workbench.events.PerspectiveChange;
 import org.uberfire.client.workbench.panels.impl.SimpleWorkbenchPanelPresenter;
+import org.uberfire.shared.EclipseEditorBridge;
 import org.uberfire.shared.EclipsePlaceManagerBridge;
 import org.uberfire.workbench.model.PerspectiveDefinition;
 import org.uberfire.workbench.model.impl.PerspectiveDefinitionImpl;
@@ -37,6 +40,9 @@ import com.google.gwt.user.client.Window;
 
 public class HomePerspective {
     
+	@Inject
+	GlobalsEditorService globalsEditorService;
+	
     PerspectiveDefinition perspectiveDefinition;
     String pathParameter;
     String idParameter;
@@ -68,6 +74,12 @@ public class HomePerspective {
 //		        Window.alert("HomePerspective.loadEditor() path="+pathParameter);
 		        EclipsePlaceManagerBridge ec = new EclipsePlaceManagerBridge();
 				ec.goTo(pathParameter, idParameter);
+				try {
+					new EclipseEditorBridge().getMenus(pathParameter);
+				}
+				catch (Exception e) {
+					
+				}
 			}
 		});
     }    

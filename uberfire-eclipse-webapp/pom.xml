@@ -96,6 +96,7 @@
 				<version>${version.com.ahome-it.lienzo-core}</version>
 			</dependency>
 
+			<!-- 
 			<dependency>
 				<groupId>com.ahome-it</groupId>
 				<artifactId>lienzo-tests</artifactId>
@@ -107,6 +108,7 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			-->
 		</dependencies>
 	</dependencyManagement>
 
@@ -219,6 +221,11 @@
 			<artifactId>uberfire-preferences-client</artifactId>
 			<scope>provided</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.uberfire</groupId>
+            <artifactId>uberfire-preferences-ui-client</artifactId>
+            <scope>provided</scope>
+        </dependency>
 		<dependency>
 			<groupId>org.uberfire</groupId>
 			<artifactId>uberfire-preferences-processors</artifactId>
@@ -265,6 +272,23 @@
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-wb-guided-dtable-editor-client</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.uberfire</groupId>
+					<artifactId>uberfire-security-management-client</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Drools Globals editor -->
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-wb-globals-editor-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-wb-globals-editor-client</artifactId>
 			<exclusions>
 				<exclusion>
 					<groupId>org.uberfire</groupId>
@@ -471,18 +495,22 @@
 						<compileSourcesArtifact>org.uberfire:uberfire-widgets-service-api</compileSourcesArtifact>
 						<compileSourcesArtifact>org.uberfire:uberfire-preferences-api</compileSourcesArtifact>
 						<compileSourcesArtifact>org.uberfire:uberfire-preferences-client</compileSourcesArtifact>
+                        <compileSourcesArtifact>org.uberfire:uberfire-preferences-ui-client</compileSourcesArtifact>
 						<compileSourcesArtifact>org.uberfire:uberfire-preferences-processors</compileSourcesArtifact>
 						<compileSourcesArtifact>org.uberfire:uberfire-wires-core-api</compileSourcesArtifact>
 						<compileSourcesArtifact>org.uberfire:uberfire-wires-core-grids</compileSourcesArtifact>
 
 						<compileSourcesArtifact>com.ahome-it:lienzo-core</compileSourcesArtifact>
-						<compileSourcesArtifact>com.ahome-it:lienzo-tests</compileSourcesArtifact>
+						<!-- <compileSourcesArtifact>com.ahome-it:lienzo-tests</compileSourcesArtifact> -->
 
 						<compileSourcesArtifact>org.drools:drools-wb-drl-text-editor-api</compileSourcesArtifact>
 						<compileSourcesArtifact>org.drools:drools-wb-drl-text-editor-client</compileSourcesArtifact>
 
 						<compileSourcesArtifact>org.drools:drools-wb-guided-dtable-editor-api</compileSourcesArtifact>
 						<compileSourcesArtifact>org.drools:drools-wb-guided-dtable-editor-client</compileSourcesArtifact>
+
+						<compileSourcesArtifact>org.drools:drools-wb-globals-editor-api</compileSourcesArtifact>
+						<compileSourcesArtifact>org.drools:drools-wb-globals-editor-client</compileSourcesArtifact>
 
 						<compileSourcesArtifact>org.drools:drools-wb-guided-rule-editor-api</compileSourcesArtifact>
 						<compileSourcesArtifact>org.drools:drools-wb-guided-rule-editor-client</compileSourcesArtifact>

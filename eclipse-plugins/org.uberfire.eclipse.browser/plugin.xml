@@ -4,14 +4,14 @@
 
    <extension
          point="org.eclipse.ui.editors">
-         <!-- NOTE: the last segment of the extension id ("TextEditor" in this example) must match the @WorkbenchEditor(identifier) value -->
+         <!-- NOTE: the last segment of the extension id ("EclipseTextEditor" in this example) must match the @WorkbenchEditor(identifier) value -->
       <editor
-            name="Sample Uberfire Editor"
+            name="Uberclipse Text Editor"
             extensions="uf"
             icon="icons/sample.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             class="org.uberfire.eclipse.browser.editors.UberfireEditor"
-            id="org.uberfire.eclipse.editors.TextEditor">
+            id="org.uberfire.eclipse.editors.EclipseTextEditor">
       </editor>
    </extension>
    <extension
@@ -38,6 +38,17 @@
             name="Uberclipse Decision Table Editor">
       </editor>
    </extension>
-
+   <extension
+         point="org.eclipse.ui.editors">
+         <!-- @WorkbenchEditor(identifier="org.kie.guvnor.globals") -->
+      <editor
+            class="org.uberfire.eclipse.browser.editors.UberfireEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="gdrl"
+            icon="icons/sample.gif"
+            id="org.uberfire.eclipse.editors.org.kie.guvnor.globals"
+            name="Uberclipse Globals Editor">
+      </editor>
+   </extension>
 
 </plugin>

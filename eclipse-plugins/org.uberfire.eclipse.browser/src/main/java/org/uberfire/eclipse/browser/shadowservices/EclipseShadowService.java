@@ -6,7 +6,6 @@ import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
 import org.jboss.errai.common.client.protocols.SerializationParts;
 import org.jboss.errai.marshalling.client.marshallers.ObjectMarshaller;
@@ -16,6 +15,7 @@ import org.uberfire.eclipse.browser.shadowservices.impl.EclipseAppConfigService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseCopyService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseDRLTextEditorService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseDeleteService;
+import org.uberfire.eclipse.browser.shadowservices.impl.EclipseGlobalsEditorService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseGuidedDecisionTableEditorService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseRenameService;
 import org.uberfire.eclipse.browser.shadowservices.impl.EclipseRuleNamesService;
@@ -54,6 +54,7 @@ public class EclipseShadowService extends BrowserFunction {
 		serviceRegistry.add(EclipseGuidedDecisionTableEditorService.class);
 		serviceRegistry.add(EclipseRuleNamesService.class);
 		serviceRegistry.add(EclipseAppConfigService.class);
+		serviceRegistry.add(EclipseGlobalsEditorService.class);
 		
 		ObjectMarshaller m = new ObjectMarshaller();
 	}

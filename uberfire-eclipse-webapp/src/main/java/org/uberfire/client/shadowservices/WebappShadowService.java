@@ -45,11 +45,11 @@ public abstract class WebappShadowService {
 			// call the Eclipse browser function that implements this service
 			Object result = callEclipseServiceJs(serviceName, funcName, jsonArgs);
 			if (result!=null) {
-				Window.alert("callEclipseService result: "+result);
+//				Window.alert("callEclipseService result: "+result);
 				object = Marshalling.fromJSON(result.toString());
 			}
-			else
-				Window.alert("callEclipseService returned null: "+serviceName+" "+funcName+" "+jsonArgs);
+//			else
+//				Window.alert("callEclipseService returned null: "+serviceName+" "+funcName+" "+jsonArgs);
 		}
 		catch (JavaScriptException jse) {
 			// During startup, the browser may not have completed loading the page

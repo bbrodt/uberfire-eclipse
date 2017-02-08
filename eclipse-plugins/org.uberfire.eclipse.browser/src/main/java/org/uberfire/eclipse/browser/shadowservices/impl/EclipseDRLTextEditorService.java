@@ -32,7 +32,7 @@ import org.uberfire.eclipse.browser.editors.BrowserProxy;
  * @author bbrodt
  *
  */
-public class EclipseDRLTextEditorService extends BaseEditorProviderShadowService
+public class EclipseDRLTextEditorService extends BaseEclipseEditorService<String>
 		implements DRLTextEditorService {
 
 	public static final String NAME = "EclipseDRLTextEditorService";
@@ -84,50 +84,6 @@ public class EclipseDRLTextEditorService extends BaseEditorProviderShadowService
 			e.printStackTrace();
 		}
 		return errors;
-	}
-
-	@Override
-	public Path create(Path context, String fileName, String content, String comment) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String load(Path path) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Path save(Path path, String content, Metadata metadata, String comment) {
-        IFile file = FileUtils.getFile(path.toURI());
-        if (FileUtils.write(file, content) < 0 )
-            return null;
-		return path;
-	}
-
-	@Override
-	public void delete(Path path, String comment) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Path copy(Path path, String newName, String comment) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Path copy(Path path, String newName, Path targetDirectory, String comment) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Path rename(Path path, String newName, String comment) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
