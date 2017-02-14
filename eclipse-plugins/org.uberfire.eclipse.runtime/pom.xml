@@ -130,6 +130,13 @@
 			<groupId>org.drools</groupId>
 			<artifactId>drools-core</artifactId>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.drools/org.drools.eclipse -->
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>org.drools.eclipse</artifactId>
+			<version>7.0.0.Beta5</version>
+		</dependency>
 		
 		<!-- Drools ^^^ -->
 	</dependencies>

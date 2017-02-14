@@ -28,8 +28,8 @@
 		<!-- Add the absolute path for $JBOSS_HOME below to manage another instance -->
 		<errai.jboss.home>${project.build.directory}/wildfly-${version.org.wildfly.gwt.sdm}</errai.jboss.home>
 		<version.org.hibernate.validator>4.1.0.Final</version.org.hibernate.validator>
-		<version.org.kie>7.0.0.Beta5</version.org.kie>
-		<version.org.jboss.errai>4.0.0.Beta7</version.org.jboss.errai>
+		<version.org.kie>7.0.0-SNAPSHOT</version.org.kie>
+		<version.org.jboss.errai>4.0.0-SNAPSHOT</version.org.jboss.errai>
 		<version.org.uberfire>1.0.0-SNAPSHOT</version.org.uberfire>
 		<version.com.ahome-it.lienzo-core>2.0.277-RELEASE</version.com.ahome-it.lienzo-core>
 		<version.com.ahome-it.lienzo-tests>1.0.0-RC3</version.com.ahome-it.lienzo-tests>
@@ -398,10 +398,16 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.kie.uberfire</groupId>
-			<artifactId>kie-uberfire-social-activities-api</artifactId>
+			<groupId>org.uberfire</groupId>
+			<artifactId>uberfire-social-activities-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>org.uberfire</groupId>
+            <artifactId>uberfire-social-activities-client</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -499,6 +505,8 @@
 						<compileSourcesArtifact>org.uberfire:uberfire-preferences-processors</compileSourcesArtifact>
 						<compileSourcesArtifact>org.uberfire:uberfire-wires-core-api</compileSourcesArtifact>
 						<compileSourcesArtifact>org.uberfire:uberfire-wires-core-grids</compileSourcesArtifact>
+                        <compileSourcesArtifact>org.uberfire:uberfire-social-activities-api</compileSourcesArtifact>
+                        <compileSourcesArtifact>org.uberfire:uberfire-social-activities-client</compileSourcesArtifact>
 
 						<compileSourcesArtifact>com.ahome-it:lienzo-core</compileSourcesArtifact>
 						<!-- <compileSourcesArtifact>com.ahome-it:lienzo-tests</compileSourcesArtifact> -->
@@ -542,7 +550,6 @@
 						<compileSourcesArtifact>org.hibernate:hibernate-validator</compileSourcesArtifact>
 
 						<compileSourcesArtifact>org.jboss.errai:errai-ioc</compileSourcesArtifact>
-						<compileSourcesArtifact>org.kie.uberfire:kie-uberfire-social-activities-api</compileSourcesArtifact>
 
 						<compileSourcesArtifact>org.kie.workbench.widgets:kie-wb-decorated-grid-widget</compileSourcesArtifact>
 

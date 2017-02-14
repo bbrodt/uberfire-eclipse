@@ -2,6 +2,10 @@ package org.uberfire.eclipse.browser.editors;
 
 import java.net.URI;
 
+import org.drools.workbench.models.datamodel.oracle.ProjectDataModelOracle;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -16,6 +20,7 @@ import org.eclipse.ui.IPathEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 import org.jboss.errai.marshalling.server.MappingContextSingleton;
+import org.uberfire.eclipse.browser.shadowservices.DataModelOracleProvider;
 
 public class UberfireEditor extends EditorPart {
 
