@@ -3,6 +3,7 @@ package org.uberfire.eclipse.browser.shadowservices.impl;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.drools.workbench.models.datamodel.oracle.ProjectDataModelOracle;
 import org.drools.workbench.models.datamodel.workitems.PortableWorkDefinition;
 import org.drools.workbench.models.guided.dtable.shared.model.GuidedDecisionTable52;
 import org.drools.workbench.screens.guided.dtable.model.GuidedDecisionTableEditorContent;

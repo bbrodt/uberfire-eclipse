@@ -34,25 +34,25 @@ public class GuidedDecisionTableEditorShadowService
 
 	@Override
 	public GuidedDecisionTableEditorContent loadContent(Path path) {
-		try {
+//		try {
 			return (GuidedDecisionTableEditorContent) callEclipseService("loadContent", path);
-		}
-		catch (Exception e) {
-			GuidedDecisionTable52 model = new GuidedDecisionTable52();
-			model.setTableName("Test");
-			model.setPackageName("com.sample");
-			model.getRowNumberCol().setWidth(-1);
-			model.getDescriptionCol().setWidth(-1);
-			model.getAuditLog();
-			Set<PortableWorkDefinition> workDefinitions = new HashSet<PortableWorkDefinition>();
-			Overview overview = getOverview(path);
-
-			PackageDataModelOracleBaselinePayload dataModel = new PackageDataModelOracleBaselinePayload();
-			dataModel.setPackageName("com.sample");
-			dataModel.setProjectName("com.sample");
-			GuidedDecisionTableEditorContent content = new GuidedDecisionTableEditorContent(model, workDefinitions, overview, dataModel);
-			return content;
-		}
+//		}
+//		catch (Exception e) {
+//			GuidedDecisionTable52 model = new GuidedDecisionTable52();
+//			model.setTableName("Test");
+//			model.setPackageName("com.sample");
+//			model.getRowNumberCol().setWidth(-1);
+//			model.getDescriptionCol().setWidth(-1);
+//			model.getAuditLog();
+//			Set<PortableWorkDefinition> workDefinitions = new HashSet<PortableWorkDefinition>();
+//			Overview overview = getOverview(path);
+//
+//			PackageDataModelOracleBaselinePayload dataModel = new PackageDataModelOracleBaselinePayload();
+//			dataModel.setPackageName("com.sample");
+//			dataModel.setProjectName("com.sample");
+//			GuidedDecisionTableEditorContent content = new GuidedDecisionTableEditorContent(model, workDefinitions, overview, dataModel);
+//			return content;
+//		}
 	}
 
 	@Override
@@ -62,11 +62,11 @@ public class GuidedDecisionTableEditorShadowService
 
 	@Override
 	public Path saveAndUpdateGraphEntries(Path path, GuidedDecisionTable52 model, Metadata metadata, String comment) {
-		try {
+//		try {
 			return (Path) callEclipseService("saveAndUpdateGraphEntries", path, model, metadata, comment);
-		}
-		catch (Exception e) {
-			return path;
-		}
+//		}
+//		catch (Exception e) {
+//			return path;
+//		}
 	}
 }

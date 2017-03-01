@@ -14,18 +14,20 @@
 */
 package org.uberfire.eclipse.browser.shadowservices;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.function.Predicate;
 
 import javax.enterprise.event.Event;
 import javax.enterprise.inject.Instance;
 
+import org.drools.workbench.models.datamodel.oracle.PackageDataModelOracle;
 import org.drools.workbench.models.datamodel.oracle.ProjectDataModelOracle;
 import org.guvnor.common.services.backend.file.FileDiscoveryService;
 import org.guvnor.common.services.backend.file.FileDiscoveryServiceImpl;
@@ -81,8 +83,8 @@ import org.kie.workbench.common.services.backend.whitelist.PackageNameSearchProv
 import org.kie.workbench.common.services.backend.whitelist.PackageNameWhiteListLoader;
 import org.kie.workbench.common.services.backend.whitelist.PackageNameWhiteListSaver;
 import org.kie.workbench.common.services.backend.whitelist.PackageNameWhiteListServiceImpl;
-import org.kie.workbench.common.services.datamodel.backend.server.DataModelOracleUtilities;
 import org.kie.workbench.common.services.datamodel.backend.server.DataModelServiceImpl;
+import org.kie.workbench.common.services.datamodel.backend.server.builder.packages.PackageDataModelOracleBuilder;
 import org.kie.workbench.common.services.datamodel.backend.server.cache.LRUDataModelOracleCache;
 import org.kie.workbench.common.services.datamodel.backend.server.cache.LRUProjectDataModelOracleCache;
 import org.kie.workbench.common.services.datamodel.backend.server.cache.ProjectDataModelOracleBuilderProvider;
@@ -93,12 +95,15 @@ import org.kie.workbench.common.services.shared.whitelist.PackageNameWhiteListSe
 import org.uberfire.backend.server.io.ConfigIOServiceProducer;
 import org.uberfire.backend.server.util.Paths;
 import org.uberfire.backend.vfs.Path;
+import org.uberfire.commons.lifecycle.PriorityDisposableRegistry;
 import org.uberfire.io.IOService;
 import org.uberfire.io.impl.IOServiceDotFileImpl;
 import org.uberfire.java.nio.file.FileSystem;
 import org.uberfire.java.nio.file.FileSystemNotFoundException;
 import org.uberfire.java.nio.file.api.FileSystemProviders;
 import org.uberfire.java.nio.file.spi.FileSystemProvider;
+import org.uberfire.java.nio.fs.jgit.JGitFileSystem;
+import org.uberfire.java.nio.fs.jgit.JGitFileSystemProvider;
 import org.uberfire.rpc.SessionInfo;
 import org.uberfire.rpc.impl.SessionInfoImpl;
 import org.uberfire.security.ResourceType;
@@ -113,9 +118,10 @@ import org.uberfire.security.impl.authz.DotNamedPermissionType;
 @SuppressWarnings("serial")
 public class DataModelOracleProvider {
 
-    private static Hashtable<URI, DataModelOracleProvider> registry = new Hashtable<URI, DataModelOracleProvider>();
+    private static Hashtable<URI, DataModelOracleProvider> cache = new Hashtable<URI, DataModelOracleProvider>();
 
-    protected ProjectDataModelOracle oracle;
+    protected ProjectDataModelOracle projectOracle;
+    Hashtable<String, PackageDataModelOracle> packageOracles = null;
     protected FileSystemProvider fsProvider;
     protected FileSystem fs;
     protected IOService ioService;
@@ -133,7 +139,22 @@ public class DataModelOracleProvider {
     }
 
     public static DataModelOracleProvider getProvider( URI uri ) {
-        DataModelOracleProvider provider = registry.get( uri );
+        URI projectUri = null;
+        String path = uri.getPath();
+        while (path.contains( "/" )) {
+            File f = new File(path+"/src");
+            if (f.exists() && f.isDirectory()) {
+                try {
+                    projectUri = new URI(uri.getScheme(), uri.getHost(), path, uri.getFragment());
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+            path = path.substring( 0, path.lastIndexOf( "/" ) );
+        }
+        
+        DataModelOracleProvider provider = cache.get( projectUri );
         if (provider == null) {
             try {
                 provider = new DataModelOracleProvider( uri );
@@ -148,13 +169,17 @@ public class DataModelOracleProvider {
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
-            registry.put( uri, provider );
+            cache.put( projectUri, provider );
         }
         return provider;
     }
 
+    public static void clear() {
+        cache.clear();
+    }
+    
     public ProjectDataModelOracle getProjectDataModelOracle() {
-        return oracle;
+        return projectOracle;
     }
 
     public FileSystemProvider getFileSystemProvider() {
@@ -176,12 +201,30 @@ public class DataModelOracleProvider {
     public MetadataService getMetadataService() {
         return metadataService;
     }
+
+    
+    public Collection<PackageDataModelOracle> getPackageDataModelOracles() {
+        return getPackageOracles().values();
+    }
+    
+    public PackageDataModelOracle getPackageDataModelOracle( String packageName ) {
+        return getPackageOracles().get(packageName);
+    }
+
+    private Hashtable<String, PackageDataModelOracle> getPackageOracles() {
+        if (packageOracles==null) {
+            packageOracles = new Hashtable<String, PackageDataModelOracle>();
+            for (String pkgName : projectOracle.getProjectPackageNames() ) {
+                PackageDataModelOracleBuilder builder = PackageDataModelOracleBuilder.newPackageOracleBuilder(pkgName);
+                PackageDataModelOracle packageOracle = builder.build();
+                packageOracles.put( pkgName, packageOracle );
+            }
+        }
+        return packageOracles;
+    }
     
     private void initialize( URI uri ) throws IllegalArgumentException, FileSystemNotFoundException, SecurityException,
             URISyntaxException, MalformedURLException {
-
-        final URL packageUrl = uri.toURL();
-        // this.getClass().getResource( resourceName );
 
         // disable git and ssh daemons as they are not needed here
         System.setProperty( "org.uberfire.nio.git.daemon.enabled", "false" );
@@ -197,6 +240,7 @@ public class DataModelOracleProvider {
             fs = fsProvider.newFileSystem( uri, new java.util.HashMap<String, Object>() );
         }
 
+        PriorityDisposableRegistry.register("systemFS", fs);
         ioService = new IOServiceDotFileImpl();
         // TODO: use actual user credentials here, either from user login or System.getProperty()
         Collection<Role> roles = new ArrayList<Role>();
@@ -216,6 +260,13 @@ public class DataModelOracleProvider {
         ConfigurationFactory configurationFactory = new ConfigurationFactoryImpl( secureService );
 
         org.guvnor.structure.repositories.Repository systemRepository = new GitRepository( "system" );
+        try {
+            JGitFileSystemProvider gfsp = (JGitFileSystemProvider) FileSystemProviders.resolveProvider( new URI("git://system") );
+            JGitFileSystem gfs = (JGitFileSystem) gfsp.newFileSystem( new URI("git://system"), new java.util.HashMap<String, Object>() );
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         ConfigGroupMarshaller marshaller = new ConfigGroupMarshaller();
         ConfigurationService configurationService = new ConfigurationServiceImpl(
                 systemRepository, marshaller, user, ioService, new EventSourceMock<SystemRepositoryChangedEvent>(),
@@ -240,19 +291,21 @@ public class DataModelOracleProvider {
         permissionType.createPermission( REPOSITORY_TYPE, RepositoryAction.CREATE, true );
         permissionType.createPermission( REPOSITORY_TYPE, RepositoryAction.UPDATE, true );
         permissionType.createPermission( REPOSITORY_TYPE, RepositoryAction.DELETE, true );
+        permissionTypeRegistry.register( permissionType );
 
         permissionType = new DotNamedPermissionType( ORGUNIT_TYPE.getName() );
         permissionType.createPermission( ORGUNIT_TYPE, OrganizationalUnitAction.CREATE, true );
         permissionType.createPermission( ORGUNIT_TYPE, OrganizationalUnitAction.UPDATE, true );
         permissionType.createPermission( ORGUNIT_TYPE, OrganizationalUnitAction.DELETE, true );
+        permissionTypeRegistry.register( permissionType );
 
         permissionType = new DotNamedPermissionType( PROJECT_TYPE.getName() );
         permissionType.createPermission( PROJECT_TYPE, ProjectAction.CREATE, true );
         permissionType.createPermission( PROJECT_TYPE, ProjectAction.BUILD, true );
         permissionType.createPermission( PROJECT_TYPE, ProjectAction.UPDATE, true );
         permissionType.createPermission( PROJECT_TYPE, ProjectAction.DELETE, true );
-
         permissionTypeRegistry.register( permissionType );
+
         PermissionManager permissionManager = new DefaultPermissionManager();
 
         AuthorizationManager authorizationManager = new DefaultAuthorizationManager( permissionManager );
@@ -327,9 +380,9 @@ public class DataModelOracleProvider {
         );
         DataModelService dataModelService = new DataModelServiceImpl( cachePackages, cacheProjects, projectService );
 
-        final org.uberfire.java.nio.file.Path nioPackagePath = fsProvider.getPath( packageUrl.toURI() );
+        final org.uberfire.java.nio.file.Path nioPackagePath = fsProvider.getPath( uri );
         final Path packagePath = Paths.convert( nioPackagePath );
 
-        oracle = dataModelService.getProjectDataModel( packagePath );
+        projectOracle = dataModelService.getProjectDataModel( packagePath );
     }
 }

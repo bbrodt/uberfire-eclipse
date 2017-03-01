@@ -4,8 +4,11 @@ import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import org.drools.workbench.models.datamodel.oracle.PackageDataModelOracle;
+import org.drools.workbench.models.datamodel.oracle.ProjectDataModelOracle;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
@@ -100,9 +103,19 @@ public class BaseEclipseEditorService<T>
         return dmoProvider;
 	}
 	
+	protected ProjectDataModelOracle getProjectDataModelOracle(Path path) {
+	    return getDataModelOracleProvider(path).getProjectDataModelOracle(); 
+	}
+    
+    protected Collection<PackageDataModelOracle> getPackageDataModelOracles(Path path) {
+        return getDataModelOracleProvider(path).getPackageDataModelOracles(); 
+    }
+	
 	protected Metadata getMetadata(Path path) {
         URI uri = toURI(path);
+        DataModelOracleProvider.clear();
         getDataModelOracleProvider(path);
+        getPackageDataModelOracles(path);
         /*
 		if (dmoProvider == null) {
 			try {

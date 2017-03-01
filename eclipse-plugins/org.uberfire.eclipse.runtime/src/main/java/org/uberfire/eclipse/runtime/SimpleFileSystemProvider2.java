@@ -157,7 +157,7 @@ public class SimpleFileSystemProvider2 extends SimpleFileSystemProvider {
 	
 	@Override
 	public Path getPath(URI uri) throws IllegalArgumentException, FileSystemNotFoundException, SecurityException {
-		AbstractPath<?> aPath = GeneralPathImpl.create(this.getFileSystem(uri), uri.getPath(), true);
+		AbstractPath<?> aPath = GeneralPathImpl.create(this.getFileSystem(uri), uri.getPath(), false);
 		aPath.addAttrView(new VersionAttributeView2(aPath));
 		return aPath;
 	}
