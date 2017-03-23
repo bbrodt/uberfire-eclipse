@@ -12,6 +12,10 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.launching.JavaRuntime;
 
+/**
+ * Java class loader.
+ * This class is obsolete - replaced by the DMO Provider.
+ */
 public class JavaProjectClassLoader {
 	private IJavaProject javaProject;
 	private URLClassLoader classLoader = null;

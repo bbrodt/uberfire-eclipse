@@ -15,6 +15,9 @@ import org.uberfire.commons.data.Pair;
 import org.uberfire.eclipse.browser.FileUtils;
 import org.uberfire.eclipse.browser.editors.BrowserProxy;
 
+/**
+ * Service-side Shadow Service implementation of the GlobalsEditorService.
+ */
 public class EclipseGlobalsEditorService extends BaseEclipseEditorService<GlobalsModel> implements GlobalsEditorService {
 
 	public static final String NAME = "EclipseGlobalsEditorService";

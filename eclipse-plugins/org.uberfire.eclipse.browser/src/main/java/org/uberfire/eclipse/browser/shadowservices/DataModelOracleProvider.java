@@ -20,7 +20,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.function.Predicate;
 
@@ -115,7 +114,10 @@ import org.uberfire.security.impl.authz.DefaultPermissionManager;
 import org.uberfire.security.impl.authz.DefaultPermissionTypeRegistry;
 import org.uberfire.security.impl.authz.DotNamedPermissionType;
 
-@SuppressWarnings("serial")
+/**
+ * Provider class for DataModelOracle. DMOs are cached by project since
+ * construction/initialization is an expensive operation.
+ */
 public class DataModelOracleProvider {
 
     private static Hashtable<URI, DataModelOracleProvider> cache = new Hashtable<URI, DataModelOracleProvider>();

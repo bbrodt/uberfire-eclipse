@@ -12,6 +12,9 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 
+/**
+ * A simple text editor WorkbenchEditor View for testing purposes only
+ */
 @Templated
 public class TextEditorView extends Composite implements TextEditorPresenter.View {
 

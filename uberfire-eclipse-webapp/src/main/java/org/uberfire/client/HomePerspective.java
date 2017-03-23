@@ -19,9 +19,7 @@ package org.uberfire.client;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
-import javax.inject.Inject;
 
-import org.drools.workbench.screens.globals.service.GlobalsEditorService;
 import org.uberfire.client.annotations.Perspective;
 import org.uberfire.client.annotations.WorkbenchPerspective;
 import org.uberfire.client.workbench.events.PerspectiveChange;
@@ -39,24 +37,24 @@ import com.google.gwt.user.client.Window;
 @WorkbenchPerspective(identifier = "HomePerspective", isDefault = true)
 
 public class HomePerspective {
-    
-	@Inject
-	GlobalsEditorService globalsEditorService;
-	
     PerspectiveDefinition perspectiveDefinition;
     String pathParameter;
     String idParameter;
     
     @Perspective
     public PerspectiveDefinition buildPerspective() {
-    	// this panel hides menus
+    	// this panel hides menus: use this when the Uberfire-eclipse editors are ready for production
 //        perspectiveDefinition = new PerspectiveDefinitionImpl(SingleWorkbenchPanelPresenter.class.getName() );
-    	// use a panel that shows client menus
+    	// this panel shows client menus: use this during debugging/testing
         perspectiveDefinition = new PerspectiveDefinitionImpl(SimpleWorkbenchPanelPresenter.class.getName() );
         perspectiveDefinition.setName( "Eclipse Editor Perspective" );
         return perspectiveDefinition;
     }
     
+    /**
+	 * Fetch the query parameters from URL. These should be the full path to the
+	 * file being edited and the WorkbenchEditor identifier string.
+	 */
     @PostConstruct
     public void onPostConstruct() {
         if ( Window.Location.getParameterMap().containsKey( "path" ) ) {
@@ -67,6 +65,11 @@ public class HomePerspective {
         }
     }
 
+    /**
+	 * Once the perspective has finished loading, load the requested editor
+	 * 
+	 * @param e
+	 */
     public void loadEditor(@Observes PerspectiveChange e) {
     	Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 			@Override
@@ -75,6 +78,8 @@ public class HomePerspective {
 		        EclipsePlaceManagerBridge ec = new EclipsePlaceManagerBridge();
 				ec.goTo(pathParameter, idParameter);
 				try {
+					// test to make sure this stuff works
+					// TODO: remove this
 					new EclipseEditorBridge().getMenus(pathParameter);
 				}
 				catch (Exception e) {

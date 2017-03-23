@@ -7,15 +7,13 @@ import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.user.client.Window;
 
 /**
- * Base class for client-side Shadow Services. This class handles marshalling of
+ * Base class for client-side Shadow Services. This class handles marshaling of
  * service call arguments to JSON, invokes the Eclipse browser function via a
  * native javascript call to handle the service request, and performs
- * unmarshalling of the returned object from JSON.
+ * unmarshaling of the returned object from JSON.
  * 
  * Shadow service implementations need to provide the name of the Eclipse-side
  * service function and calling arguments.
- * 
- * @author bbrodt
  *
  */
 public abstract class WebappShadowService {

@@ -22,6 +22,9 @@ import org.uberfire.io.IOService;
 import org.uberfire.rpc.SessionInfo;
 import org.uberfire.security.authz.AuthorizationManager;
 
+/**
+ *
+ */
 class HackedKieProjectServiceImpl extends KieProjectServiceImpl {
 
     public HackedKieProjectServiceImpl(

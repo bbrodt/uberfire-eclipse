@@ -5,6 +5,9 @@ import java.lang.annotation.Annotation;
 import javax.enterprise.event.Event;
 import javax.enterprise.util.TypeLiteral;
 
+/**
+ * Event stub class for DMO provider.
+ */
 class EventSourceMock<T> implements Event<T> {
 
     @Override

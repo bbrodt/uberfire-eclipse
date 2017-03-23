@@ -15,8 +15,17 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.uberfire.backend.vfs.PathFactory;
 
+/**
+ * File Utility class
+ */
 public class FileUtils {
 
+	/**
+	 * Finds the eclipse IFile resource for a given URI string.
+	 * 
+	 * @param - uriString the URI for the file.
+	 * @return an IFile if the file exists, null if not
+	 */
 	public static IFile getFile(String uriString) {
 		IFile file = null;
 		if (uriString != null) {
@@ -33,6 +42,13 @@ public class FileUtils {
 		return file;
 	}
 
+	/**
+	 * Reads the entire contents of the given IFile
+	 * 
+	 * @param - file an eclipse IFile resource
+	 * @return contents of the file, or null if the file does not exist
+	 * @throws CoreException
+	 */
 	public static String read(IFile file) throws CoreException {
 		InputStream inputStream = file.getContents();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -60,6 +76,13 @@ public class FileUtils {
 		return sb.toString();
 	}
 
+	/**
+	 * Writes the given string contents to an IFile
+	 * 
+	 * @param file - an eclipse IFile resource
+	 * @param contents - the string contents to be written
+	 * @return number of characters written
+	 */
 	public static int write(IFile file, String contents) {
 		InputStream inputStream = new ByteArrayInputStream(contents.getBytes());
 		try {
@@ -76,6 +99,12 @@ public class FileUtils {
 		return contents.length();
 	}
 
+	/**
+	 * Creates an Uberfire VFS Path from the given URI.
+	 * 
+	 * @param uri - URI of a file
+	 * @return Uberfire VFS Path
+	 */
 	public static org.uberfire.backend.vfs.Path createVfsPath(String uri) {
 		String filename = uri;
 		int i = uri.lastIndexOf("/");

@@ -3,13 +3,11 @@ package org.uberfire.shared;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.drools.workbench.screens.guided.dtable.client.editor.menu.EditMenuBuilder;
 import org.uberfire.client.mvp.Activity;
 import org.uberfire.client.mvp.WorkbenchEditorActivity;
 import org.uberfire.ext.editor.commons.client.history.SaveButton;
 import org.uberfire.workbench.model.menu.MenuCustom;
 import org.uberfire.workbench.model.menu.MenuGroup;
-import org.uberfire.workbench.model.menu.MenuItem;
 import org.uberfire.workbench.model.menu.MenuItemCommand;
 import org.uberfire.workbench.model.menu.MenuItemPerspective;
 import org.uberfire.workbench.model.menu.MenuItemPlain;
@@ -21,6 +19,24 @@ import com.google.gwt.user.client.Window;
 
 import jsinterop.annotations.JsType;
 
+/**
+ * This class acts as a Javascript to Java bridge object. The functions in this
+ * object can be called from the eclipse plugin code by calling evaluate() on
+ * the SWT Browser object.
+ * 
+ * The @JsType annotation lets the GWT compiler know not to name-mangle this
+ * class; instead, it is known by its namespace (uberclipse) and name (Editor)
+ * in the javascript global namespace.
+ * 
+ * The class currently implements a editor menu interface (fetch menu items
+ * and execute menu actions)
+ * 
+ * TODO: expand this class' functionality to include additional editor interfaces.
+ * 
+ * @see org.uberfire.eclipse.browser.editors.BrowserProxy.BrowserListener
+ * @author bbrodt
+ *
+ */
 @JsType(namespace = "uberclipse", name = "Editor")
 public class EclipseEditorBridge {
 

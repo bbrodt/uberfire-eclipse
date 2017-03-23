@@ -38,8 +38,6 @@ import org.uberfire.eclipse.browser.shadowservices.impl.EclipseVFSService;
  * 
  * Finally the return value from the service method, if any, is serialized as a
  * JSON string and returned to the client.
- * 
- * @author bbrodt
  *
  */
 public class EclipseShadowService extends BrowserFunction {
@@ -55,7 +53,9 @@ public class EclipseShadowService extends BrowserFunction {
 		serviceRegistry.add(EclipseRuleNamesService.class);
 		serviceRegistry.add(EclipseAppConfigService.class);
 		serviceRegistry.add(EclipseGlobalsEditorService.class);
+		// TODO: add other service implementations here
 		
+		// initialize the errai marshaller
 		ObjectMarshaller m = new ObjectMarshaller();
 	}
 	
@@ -66,6 +66,10 @@ public class EclipseShadowService extends BrowserFunction {
 		this.browserProxy = browserProxy;
 	}
 	
+	/**
+	 * Install the shadow service implementations
+	 * @param browserProxy
+	 */
 	public static void createServices(BrowserProxy browserProxy) {
 		for (Class<? extends EclipseShadowService> clazz : serviceRegistry) {
 			Constructor<? extends EclipseShadowService> ctor;
@@ -78,6 +82,12 @@ public class EclipseShadowService extends BrowserFunction {
 		}
 	}
 	
+    /* (non-Javadoc)
+     * @see org.eclipse.swt.browser.BrowserFunction#function(java.lang.Object[])
+     * 
+     * Javascript function that handles the web app shadow service requests.
+     * @see org.uberfire.client.shadowservices.WebappShadowService
+     */
     @Override
     public Object function(Object[] arguments) {
     	Object result = null;
@@ -85,16 +95,13 @@ public class EclipseShadowService extends BrowserFunction {
         String functionName = "";
         if (arguments.length > 0) {
             functionName = arguments[0].toString();
-//            System.out.println("call to "+getName()+"."+functionName);
         }
 
         // remaining arguments should be JSON string representations of actual service call arguments
         Object jsonArgs[] = (Object[]) arguments[1];
         Object args[] = new Object[jsonArgs.length];
         for (int i=0; i<jsonArgs.length; ++i) {
-//        	System.out.println("  jsonArgs["+i+"] "+jsonArgs[i].toString());
         	args[i] = fromJSON(jsonArgs[i].toString());
-//        	System.out.println("  args["+i+"] type "+args[i].getClass().getSimpleName());
         }
         
         // look up service method by name and number and type of arguments using reflection
@@ -109,7 +116,6 @@ public class EclipseShadowService extends BrowserFunction {
         			Class ac = args[i]==null ? Object.class : args[i].getClass();
         			Class pc = p.getType();
         			if (!pc.isAssignableFrom(ac) && args[i]!=null) {
-        				System.out.println("ac="+ac+" pc="+pc);
         				match = false;
         				break;
         			}
@@ -142,18 +148,25 @@ public class EclipseShadowService extends BrowserFunction {
         }
         
         if (!match) {
+        	// TODO: handle this
         	System.err.println("function "+functionName+" in "+getName()+" not found!");
         }
         
         if (result!=null) {
         	// result needs to be marshalled to JSON string for return
         	result = toJSON(result);
-//        	System.out.println("returns "+result);
         }
         return result;
     }
     
+    /**
+     * Un-marshal the json string
+     * 
+     * @param json
+     * @return
+     */
     private Object fromJSON(String json) {
+    	// check if json is a null object
     	String nullObject = "{\"" + SerializationParts.ENCODED_TYPE + "\":\"java.lang.Object\",\""
               + SerializationParts.QUALIFIED_VALUE + "\":null}";
     	if (nullObject.equals(json))
@@ -161,6 +174,12 @@ public class EclipseShadowService extends BrowserFunction {
     	return ServerMarshalling.fromJSON(json);
     }
     
+    /**
+     * Marshal the object into a json string
+     * 
+     * @param object
+     * @return
+     */
     private String toJSON(Object object) {
     	return ServerMarshalling.toJSON(object);
     }

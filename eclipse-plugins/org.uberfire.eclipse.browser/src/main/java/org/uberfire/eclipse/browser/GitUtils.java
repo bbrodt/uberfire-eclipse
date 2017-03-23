@@ -19,6 +19,9 @@ import org.jboss.errai.marshalling.client.api.json.EJObject;
 import org.uberfire.ext.editor.commons.version.impl.PortableVersionRecord;
 import org.uberfire.java.nio.base.version.VersionRecord;
 
+/**
+ * This class is obsolete - to be replaced
+ */
 public class GitUtils {
 
 	public static class FileHistory {

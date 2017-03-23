@@ -17,6 +17,10 @@ import org.eclipse.ui.actions.RetargetAction;
 import org.uberfire.eclipse.browser.shadowservices.EclipseShadowService;
 
 
+/**
+ * A proxy class for an SWT Browser widget. This acts as a bridge between the
+ * EditorPart and the actual SWT widget and handles browser events.
+ */
 public class BrowserProxy  {
 
     UberfireEditor editor;
@@ -28,6 +32,15 @@ public class BrowserProxy  {
 
     Action saveAction = null;
 
+    /**
+	 * A Browser progress listener. When the Browser widget has finished loading
+	 * the URL that invokes the web app editor, it fires a Javascript function
+	 * that fetches the editor's menu bar. The returned menu items are then
+	 * hooked into the eclipse workbench menu bar.
+	 * 
+	 * TODO: insert common menu items (like Edit->Copy/Paste, File->Save, etc.)
+	 * into existing eclipse workbench menus.
+	 */
     private class BrowserListener implements ProgressListener {
 
         BrowserProxy browser;
@@ -64,6 +77,11 @@ public class BrowserProxy  {
             }
         }
 
+        /**
+         * Add the web app editor's menu items to the eclipse workbench menu bar
+         * 
+		 * @param menuEntries - the array of menu entries returned by the web app
+         */
         void buildMenuBar(Object[] menuEntries) {
             menuBar = editor.getEditorSite().getActionBars().getMenuManager();
             buildMenuBar((Object[])menuEntries, menuBar);
@@ -72,13 +90,17 @@ public class BrowserProxy  {
             abc.setActiveEditor(editor);
         }
         
+        /**
+		 * Parse the menu entries returned from the {@see EclipseEditorBridge}.
+		 * This will be an array of groups of two Objects: the first Object is
+		 * the menu label the second Object is either:
+		 * 1. the menu action ID String if it is an action, or
+		 * 2. an array of groups of two Objects if it is a submenu
+		 * 
+		 * @param menuEntries - the array of menu entries returned by the web app
+		 * @param menu - the eclipse menu manager
+		 */
         void buildMenuBar(Object[] menuEntries, IMenuManager menu) {
-            // Parse the menu entries returned from the {@see EclipseEditorBridge}.
-            // This will be an array of groups of two Objects:
-            // * the first Object is the menu label
-            // * the second Object is either:
-            //   * the menu action ID String if it is an action
-            //   * an array of groups of two Objects if it is a submenu
             for (int i=0; i<menuEntries.length-1; i+=2) {
                 Object caption = menuEntries[i];
                 final Object item = menuEntries[i+1];
@@ -116,6 +138,9 @@ public class BrowserProxy  {
         }
     }
     
+    /**
+     * A menu action class for the web app editor menu items.
+     */
     public static class UberfireEditorAction extends RetargetAction {
         BrowserProxy browser;
         
@@ -138,16 +163,39 @@ public class BrowserProxy  {
         }
     }
     
+    /**
+     * Construct the Browser Proxy class.
+     * 
+     * @param editor - the EditorPart
+     */
     public BrowserProxy(UberfireEditor editor) {
         this.editor = editor;
     }
     
+    /**
+     * Called by the Uberfire EditorPart to create the SWT widget.
+     * 
+     * @param parent - the editor's container widget
+     * @param style - SWT style bits
+     */
     public void createBrowser(Composite parent, int style) {
         browser = new Browser(parent, style);
 
         browser.setJavascriptEnabled(true);
         browser.addKeyListener(new KeyListener() {
             
+            /*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.eclipse.swt.events.KeyListener#keyReleased(org.eclipse.swt.
+			 * events.KeyEvent)
+			 * 
+			 * TODO: this is an attempt to determine if the editor is "dirty".
+			 * This obviously doesn't work for graphic editors that can become
+			 * dirty from a mouseclick action. Need to figure out a way of getting
+			 * events from the web app editor to let us know when the editor is dirty.
+			 */
             @Override
             public void keyReleased(KeyEvent e) {
                 char c = e.character;
@@ -193,10 +241,20 @@ public class BrowserProxy  {
         browser.addProgressListener(browserListener);
     }
     
+    /**
+     * Register the server-side Shadow Services implemented by our eclipse plugin.
+     */
     protected void registerServiceFunctions() {
     	EclipseShadowService.createServices(this);
     }
     
+    /**
+     * Run a menu action initiated from the eclipse workbench menu bar,
+     * on the web app editor.
+     *  
+     * @param id - menu item ID
+     * @return value returned by the web app editor
+     */
     public Object executeMenuAction(String id) {
         try {
             return evaluate(
@@ -214,18 +272,32 @@ public class BrowserProxy  {
         return browser.evaluate(script);
     }
 
+    /**
+     * Point the SWT Browser widget at the given URL.
+     * @param url
+     */
     public void setUrl(String url) {
         browser.setUrl(url);
     }
 
+    /**
+     * @return the Uberfire EditorPart
+     */
     public UberfireEditor getEditor() {
     	return editor;
     }
     
+    /**
+     * @return the SWT Browser widget
+     */
     public Browser getBrowser() {
         return browser;
     }
     
+    /**
+     * @return the "File->Save" action.
+     * TODO: implement other common menu actions for File and Edit menus.
+     */
     public Action getSaveAction() {
         return saveAction;
     }

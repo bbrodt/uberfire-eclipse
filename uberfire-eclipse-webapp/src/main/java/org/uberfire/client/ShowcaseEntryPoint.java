@@ -57,15 +57,6 @@ public class ShowcaseEntryPoint {
 		ApplicationPreferences.setUp(preferences);
 	}
 
-	// private native void declareEclipseFunctions() /*-{
-	// var thisRef = this;
-	// $wnd.eclipse_hello = function () {
-	// window.alert("Hello from Eclipse");
-	// var ec = new $wnd.uberclipse.PlaceManager();
-	// ec.goTo("test.uf");
-	// };
-	// }-*/;
-
 	// Fade out the "Loading application" pop-up
 	private void hideLoadingPopup() {
 		final Element e = RootPanel.get("loading").getElement();

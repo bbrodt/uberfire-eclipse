@@ -28,9 +28,6 @@ import org.uberfire.eclipse.browser.editors.BrowserProxy;
 
 /**
  * Service-side Shadow Service implementation of the DRLTextEditorService.
- * 
- * @author bbrodt
- *
  */
 public class EclipseDRLTextEditorService extends BaseEclipseEditorService<String>
 		implements DRLTextEditorService {
